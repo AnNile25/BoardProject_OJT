@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaea.work.board">
+
+	<sql id="searchKeyWord" >
+		where 
+			1=1
+		<if test="searchKeyword != null and searchKeyword != ''">
+			<![CDATA[ 
+			 AND 
+				( 
+				title like concat('%'||#{searchKeyword},'%') OR
+			    content like concat('%'||#{searchKeyword},'%') 
+				 )  
+			 ]]> 
+		</if>
+	</sql>
+
+	<update id="doUpdateLikeCnt" parameterType="BoardVO">
+	    <![CDATA[
+	    UPDATE board
+	       SET like_cnt = NVL(like_cnt,0)+1
+	     WHERE board_seq  = #{boardSeq}
+	       AND member_id <> #{memberId} ]]>  
+	</update>
+
+	<update id="doUpdateReadCnt" parameterType="BoardVO">
+	    <![CDATA[
+	    UPDATE board
+	       SET read_cnt = NVL(read_cnt,0)+1
+	     WHERE board_seq  = #{boardSeq}
+	       AND member_id <> #{memberId} ]]>  
+	</update>
+
+	<delete id="doDeleteAll" parameterType="BoardVO" >
+	    DELETE FROM board
+	    WHERE title LIKE #{title}||'%'
+	</delete>
+
+	<!-- board_seq 부여 -->
+	<select id="getSeq" resultType="int">
+		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+	</select>
+
+	<!-- 게시글 등록 -->
+	<insert id="doSave" parameterType="BoardVO">
+		INSERT INTO board (
+		    board_seq,
+		    member_id,
+		    board_ctgry_seq,
+		    title,
+		    content,
+		    like_cnt,
+		    read_cnt,
+		    reg_dt,
+		    mod_dt
+		) VALUES (
+		    #{boardSeq},
+		    #{memberId},
+		    #{boardCtgrySeq},
+		    #{title},
+		    #{content},
+		    #{likeCnt},
+		    #{readCnt},
+		    SYSDATE,
+		    SYSDATE
+		)
+	</insert>
+	
+	<!-- 게시글 한건 조회 -->
+	<select id="doSelectOne" parameterType="BoardVO" resultType="BoardVO">
+		SELECT
+		    board_seq,
+		    member_id,
+		    board_ctgry_seq,
+		    title,
+		    content,
+		    like_cnt,
+		    read_cnt,
+		    reg_dt,
+		    mod_dt
+		FROM
+		    board
+		WHERE board_seq = #{boardSeq}    
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="doUpdate" parameterType="BoardVO">
+		UPDATE board
+		SET
+			title = #{title},
+			content = #{content},
+			mod_dt = SYSDATE
+		WHERE
+		    board_seq = #{boardSeq}
+	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="doDelete" parameterType="BoardVO">
+		DELETE FROM board WHERE board_seq = #{boardSeq}
+	</delete>
+	
+	<!-- 전체 게시물 조회 -->
+	<select id="doRetrieve" parameterType="BoardVO" resultType="BoardVO">
+		<![CDATA[
+			SELECT 
+				(SELECT COUNT(*) FROM board) - iq.rnum + 1 AS no,
+				iq.*,
+	            (SELECT COUNT(*) FROM board) AS totalCnt
+			FROM (
+				SELECT 
+					ROWNUM AS rnum, 
+					b.board_seq as boardSeq,
+					b.board_ctgry_seq as boardCtgrySeq,
+					b.member_id as memberId,
+					b.title,
+					b.content,
+					b.like_cnt as likeCnt,
+					b.read_cnt as readCnt,
+					DECODE(TO_CHAR(b.mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
+						  ,TO_CHAR(b.mod_dt,'HH24:MI')
+						  ,TO_CHAR(b.mod_dt,'YYYY-MM-DD')) as modDt
+				FROM (
+					SELECT 
+						* 
+					FROM 
+						board
+					ORDER BY 
+						mod_dt DESC
+				) b
+			) iq ]]> 
+			<include refid="searchKeyWord"/>
+	</select>
+		
+</mapper>

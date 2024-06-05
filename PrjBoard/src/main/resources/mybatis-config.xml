@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis 설정 -->  
+<configuration>
+    <!-- mapUnderscoreToCamelCase 맵핑 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.gaea.work.board.domain.BoardVO" alias="BoardVO"/>
+    </typeAliases>
+</configuration>

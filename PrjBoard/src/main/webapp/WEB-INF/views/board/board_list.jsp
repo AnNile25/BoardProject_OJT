@@ -1,0 +1,119 @@
+<%@page import="com.gaea.work.cmn.StringUtil"%>
+<%@page import="com.gaea.work.board.domain.BoardVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>  
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<c:set var="CP" value="${pageContext.request.contextPath}" scope="page" />     
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="${CP}/resources/css/common.css">
+<meta charset="UTF-8">
+<title>Board List</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded",function(){
+	console.log("DOMContentLoaded");
+	
+	const moveToRegBTN = document.querySelector("#moveToReg");//등록 버튼
+	const rows = document.querySelectorAll("#boardTable>tbody>tr");
+	
+	// boardTable 이벤트
+	rows.forEach(function(row) {
+		row.addEventListener('click', function(e) {
+			let cells = row.getElementsByTagName("td");
+			
+			const boardSeq = cells[7].innerText; //게시글 seq 받기
+			console.log('boardSeq:' + boardSeq);
+		    
+			// 게시글 상세 조회
+			window.location.href = "/board/doSelectOne.do?boardSeq=" + boardSeq;
+		});
+	});
+	
+	moveToRegBTN.addEventListener("click", function(e) {
+		console.log("moveToRegBTN click");
+	    
+		const memberId = 'admin';
+		
+		window.location.href = "${CP}/board/moveToReg.do"
+	});
+	
+});//--DOMContentLoaded
+	
+function fn_search(){
+	$("#listForm").submit();
+	return false;
+}
+
+</script>
+</head>
+<body>
+
+<div>
+	<form action="#" method="get" id="listForm">
+	
+		<!-- 제목 -->
+	    <div class="row">
+	        <div class="col-lg-12">
+	            <h1 class="page-header">게시글 목록</h1>
+	        </div>
+	    </div>
+	    
+	    <!-- 버튼 -->
+		<div style="margin-bottom:10px">
+			<input type="button" value="글쓰기" class="button" id="moveToReg">
+		</div>
+	    
+	    <!-- 게시글 table -->
+	    <table class="table" id="boardTable">
+	    	<thead>
+				<tr >
+					<th>NO</th>
+					<th>제목</th>
+					<th>내용</th>
+					<th>등록일</th>
+					<th>작성자</th>
+					<th>조회수</th>
+				</tr>
+			</thead> 
+			<tbody>
+				<c:choose>
+					<c:when test="${ not empty list }">
+						<c:forEach var="vo" items="${list}" varStatus="status">
+							<tr>
+								<td><c:out value="${vo.no}"/> </td>
+								<td><c:out value="${vo.title}"/></td>
+								<td><c:out value="${vo.content}"/></td>
+								<td><c:out value="${vo.modDt}"/></td>
+								<td><c:out value="${vo.memberId}" /></td>
+								<td><c:out value="${vo.readCnt}" /></td>
+								<td style="display: none;"><c:out value="${vo.likeCnt}" /></td>
+								<td style="display: none;"><c:out value="${vo.boardSeq}" /></td>
+								<td style="display: none;"><c:out value="${vo.boardCtgrySeq}"/></td>
+							</tr>              
+						</c:forEach>
+						<!--// 반복문 -->      
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="99" class="text-center">조회된 데이터가 없습니다..</td>
+						</tr>              
+					</c:otherwise>
+				</c:choose>
+			</tbody>
+	    </table>
+    
+    
+	    <!-- 검색[s] -->
+		<div class="card-header py-3">
+		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paramVO.searchKeyword }" style="width:200px; height:40px; margin-top:10px;" placeholder="검색어를 입력하세요." />
+			<a href="#" onclick="fn_search();" class="btn btn-primary">검색</a>
+		</div>
+    </form>
+</div>
+
+</body>
+</html>
