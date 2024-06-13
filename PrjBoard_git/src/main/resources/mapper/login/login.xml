@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaea.work.login">
+
+ 	<!-- idCheck -->    
+    <select id="idCheck" parameterType="MemberVO" resultType="int">
+        SELECT COUNT(*) AS cnt
+		FROM member
+		WHERE member_id = #{memberId}
+    
+    </select>
+    
+    <!-- idPassCheck -->    
+    <select id="idPassCheck" parameterType="MemberVO" resultType="int">
+        SELECT COUNT(*) AS cnt
+		FROM member
+		WHERE member_id = #{memberId}
+		AND password = #{password}
+    </select>
+    
+    <!-- login -->
+    <select id="selectOneMember" parameterType="MemberVO" resultType="MemberVO">
+        SELECT             
+             member_id  AS memberId,       
+             member_name AS memberName,
+             password,      
+             tel,       
+             nick_name AS nickName,         
+             email,         
+             TO_CHAR(join_dt,'yyyy-mm-dd HH24:MI:SS') AS joinDt     
+         FROM               
+             member          
+         WHERE member_id = #{memberId}     
+    </select> 
+    
+</mapper>

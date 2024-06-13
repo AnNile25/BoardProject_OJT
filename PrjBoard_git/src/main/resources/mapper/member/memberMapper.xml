@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gaea.work.member">
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="idDuplicateCheck" parameterType="MemberVO" resultType="int">
+	    SELECT 
+	    	COUNT(*)
+	    FROM 
+	    	member
+	    WHERE 
+	    	member_id = #{memberId}
+	</select>
+	
+	<!-- 닉네임 중복 체크 -->
+    <select id="nickNameDuplicateCheck" parameterType="MemberVO" resultType="int">
+        SELECT
+        	COUNT(*) 
+        FROM 
+        	member 
+        WHERE 
+        	nick_name = #{nickName}
+    </select>
+
+    <!-- 이메일 중복 체크 -->
+    <select id="emailDuplicateCheck" parameterType="MemberVO" resultType="int">
+        SELECT
+        	COUNT(*) 
+        FROM
+        	member 
+        WHERE
+        	email = #{email}
+    </select>
+
+	<!-- 회원 목록 조회 -->
+	<select id="retrieveMember" parameterType="MemberVO" resultType="MemberVO">
+	    SELECT 
+	        (SELECT COUNT(*) FROM member) - m2.rnum + 1 AS no,
+	        m2.memberId,
+	        m2.memberName,
+	        m2.tel,
+	        m2.nickName,
+	        m2.email,
+	        m2.joinDt,
+	        (SELECT COUNT(*) FROM member) AS totalCnt
+	    FROM (
+	        SELECT 
+	            ROWNUM AS rnum, 
+	            m.member_id AS memberId,
+	            m.member_name AS memberName,
+	            m.tel,
+	            m.nick_name AS nickName,
+	            m.email,
+	            DECODE(TO_CHAR(m.join_dt, 'YYYYMMDD'), TO_CHAR(SYSDATE, 'YYYYMMDD'),
+	                   TO_CHAR(m.join_dt, 'HH24:MI'),
+	                   TO_CHAR(m.join_dt, 'YYYY-MM-DD')) AS joinDt
+	        FROM (
+	            SELECT 
+	                member_id,
+	                member_name,
+	                tel,
+	                nick_name,
+	                email,
+	                join_dt
+	            FROM 
+	                member
+	            ORDER BY 
+	                join_dt desc
+	        ) m
+	    ) m2
+	</select>
+
+	<!-- 회원 한명 조회 -->
+	<select id="selectOneMember" parameterType="MemberVO" resultType="MemberVO">
+		SELECT
+		    member_id AS memberId,
+		    member_name AS memberName,
+		    password,
+		    tel,
+		    nick_name AS nickName,
+		    email,
+		    join_dt AS joinDt
+		FROM
+		    member
+		WHERE
+			member_id = #{memberId}	
+	</select>
+	
+	<!-- 회원 정보 삭제 -->
+	<delete id="deleteMember" parameterType="MemberVO">
+		DELETE FROM member WHERE member_id = #{memberId}	
+	</delete>
+	
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="MemberVO">
+		UPDATE member
+		SET
+			member_name = #{memberName},
+		    password 	= #{password},
+		    tel 		= #{tel},
+		    nick_name 	= #{nickName},
+		    email 		= #{email}
+		WHERE
+		    member_id 	= #{memberId}
+	</update>
+	
+	<!-- 회원 가입 -->
+	<insert id="saveMember" parameterType="MemberVO">
+		INSERT INTO member (
+		    member_id,
+		    member_name,
+		    password,
+		    tel,
+		    nick_name,
+		    email,
+		    join_dt
+		) VALUES (
+		    #{memberId},
+		    #{memberName},
+		    #{password},
+		    #{tel},
+		    #{nickName},
+		    #{email},
+		    SYSDATE
+		)
+	</insert>
+	
+</mapper>

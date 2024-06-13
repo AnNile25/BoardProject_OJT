@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis 설정 -->  
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="logImpl" value="LOG4J2"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.gaea.work.qna.QnaVO" alias="QnaVO"/>
+        <typeAlias type="com.gaea.work.qna.PageVO" alias="PageVO"/>
+        <typeAlias type="com.gaea.work.member.MemberVO" alias="MemberVO"/>
+        <typeAlias type="com.gaea.work.reply.ReplyVO" alias="ReplyVO"/>
+    </typeAliases>
+</configuration>

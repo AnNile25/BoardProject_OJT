@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaea.work.reply">
+
+<insert id="saveReply" parameterType="ReplyVO">
+	<selectKey keyProperty="replySeq" resultType="int" order="BEFORE">
+		SELECT REPLY_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+	INSERT INTO reply (
+	    reply_seq,
+	    content,
+	    like_cnt,
+	    reg_dt,
+	    mod_dt,
+	    board_seq,
+	    member_id
+	) VALUES (
+	    #{replySeq},
+	    #{content},
+	    #{likeCnt},
+	    SYSDATE,
+	    SYSDATE,
+	    #{boardSeq},
+	    #{memberId}
+	)
+</insert>
+
+<select id="selectOneReply" parameterType="ReplyVO" resultType="ReplyVO">
+	SELECT
+	    reply_seq,
+	    content,
+	    like_cnt,
+	    reg_dt,
+	    mod_dt,
+	    board_seq,
+	    member_id
+	FROM
+	    reply
+	WHERE
+		reply_seq = #{replySeq}
+</select>
+
+<select id="retrieveReply" parameterType="ReplyVO" resultType="ReplyVO">
+	SELECT
+	    reply_seq,
+	    content,
+	    like_cnt,
+	    reg_dt,
+	    DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
+	         ,TO_CHAR(mod_dt,'HH24:MI')
+	         ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt,
+	    board_seq,
+	    member_id
+	FROM
+	    reply
+	WHERE
+		board_seq = #{boardSeq}
+	ORDER BY reply_seq
+</select>
+
+<update id="updateReply" parameterType="ReplyVO">
+	UPDATE reply
+	SET
+		content = #{content},
+		like_cnt = #{likeCnt},
+		mod_dt = SYSDATE
+	WHERE
+	    reply_seq = #{replySeq}
+</update>
+
+<update id="updateLikeCnt" parameterType="ReplyVO">
+	<![CDATA[
+	UPDATE reply
+	   SET like_cnt = NVL(like_cnt,0)+1
+	 WHERE reply_seq  = #{replySeq}
+	   AND member_id <> #{memberId}
+	]]>
+</update>
+
+</mapper>
