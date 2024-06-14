@@ -1,0 +1,744 @@
+2024-06-14 11:28:59,214 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 1. Connection opened. {executed in 678ms} 
+2024-06-14 11:28:59,245 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.new Connection returned 
+2024-06-14 11:28:59,245 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.isClosed() returned false
+2024-06-14 11:28:59,254 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.getAutoCommit() returned true
+2024-06-14 11:28:59,254 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.isClosed() returned false
+2024-06-14 11:28:59,254 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.getAutoCommit() returned true
+2024-06-14 11:28:59,255 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.clearWarnings() returned 
+2024-06-14 11:28:59,255 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.getAutoCommit() returned true
+2024-06-14 11:28:59,256 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 1. Connection closed. {executed in 1ms} 
+2024-06-14 11:28:59,256 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.close() returned 
+2024-06-14 11:28:59,353 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 2. Connection opened. {executed in 94ms} 
+2024-06-14 11:28:59,355 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.new Connection returned 
+2024-06-14 11:28:59,355 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 11:28:59,358 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:28:59,362 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:28:59,829 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 11:28:59,830 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT 
+	    	COUNT(*)
+	    FROM 
+	    	member
+	    WHERE 
+	    	member_id = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@77ad7034
+2024-06-14 11:28:59,836 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "log") returned 
+2024-06-14 11:29:00,278 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE member_id = 'log'  {executed in 440 ms}
+2024-06-14 11:29:00,279 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 11:29:00,302 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 11:29:00,303 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@6823da4c
+2024-06-14 11:29:00,325 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@4dfa91e5
+2024-06-14 11:29:00,333 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 11:29:00,333 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:00,333 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:00,337 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 11:29:00,338 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 11:29:00,338 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:00,342 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 11:29:00,342 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 11:29:00,343 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 11:29:00,347 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 11:29:00,348 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 11:29:00,359 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 11:29:00,360 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:00,360 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 11:29:00,361 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:11,197 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:11,198 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:11,198 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 11:29:11,199 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM 
+        	member 
+        WHERE 
+        	nick_name = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@4e3007aa
+2024-06-14 11:29:11,199 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "log") returned 
+2024-06-14 11:29:11,201 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE nick_name = 'log'  {executed in 2 ms}
+2024-06-14 11:29:11,201 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 11:29:11,201 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 11:29:11,201 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@40f7f01c
+2024-06-14 11:29:11,202 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@44c86cda
+2024-06-14 11:29:11,202 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 11:29:11,202 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:11,202 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:11,202 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 11:29:11,203 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 11:29:11,203 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:11,203 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 11:29:11,203 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 11:29:11,203 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 11:29:11,204 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 11:29:11,204 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 11:29:11,204 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 11:29:11,204 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:11,205 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 11:29:11,205 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:15,132 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:15,133 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:15,133 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 11:29:15,134 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM
+        	member 
+        WHERE
+        	email = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@4cc30ec6
+2024-06-14 11:29:15,134 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "log") returned 
+2024-06-14 11:29:15,135 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE email = 'log'  {executed in 1 ms}
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@4204e92e
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@463b65b6
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:15,136 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:15,137 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 11:29:15,137 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 11:29:15,137 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:15,138 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 11:29:15,138 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 11:29:15,138 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 11:29:15,138 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 11:29:15,139 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 11:29:15,139 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 11:29:15,139 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:15,139 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 11:29:15,139 INFO  [http-nio-2405-exec-7] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:18,671 INFO  [http-nio-2405-exec-8] member.MemberController (MemberController.java:118) - 회원가입 시도:MemberVO(memberId=log, memberName=logcheck, password=1234, tel=12341234, nickName=log, email=log, joinDt=null, no=null)
+2024-06-14 11:29:18,671 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:18,672 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:18,672 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 11:29:18,672 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(INSERT INTO member (
+		    member_id,
+		    member_name,
+		    password,
+		    tel,
+		    nick_name,
+		    email,
+		    join_dt
+		) VALUES (
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    SYSDATE
+		)) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@6fe4e417
+2024-06-14 11:29:18,673 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "log") returned 
+2024-06-14 11:29:18,673 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(2, "logcheck") returned 
+2024-06-14 11:29:18,673 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(3, "1234") returned 
+2024-06-14 11:29:18,681 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setInt(4, 12341234) returned 
+2024-06-14 11:29:18,682 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(5, "log") returned 
+2024-06-14 11:29:18,682 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(6, "log") returned 
+2024-06-14 11:29:18,686 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. INSERT INTO member ( member_id, member_name, password, tel, nick_name, email, join_dt ) VALUES 
+( 'log', 'logcheck', '1234', 12341234, 'log', 'log', SYSDATE )  {executed in 4 ms}
+2024-06-14 11:29:18,687 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned false
+2024-06-14 11:29:18,690 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getUpdateCount() returned 1
+2024-06-14 11:29:18,690 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 11:29:18,691 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 11:29:18,691 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:18,691 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 11:29:18,691 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:18,692 INFO  [http-nio-2405-exec-8] member.MemberController (MemberController.java:123) - 회원가입 결과: MessageVO [msgId=1, msgContents=가입 되었습니다., toString()=com.gaea.work.cmn.SuccessMessageVO@13818f2e]
+2024-06-14 11:29:20,435 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:20,435 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:20,435 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 11:29:20,436 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT 
+	        (SELECT COUNT(*) FROM member) - m2.rnum + 1 AS no,
+	        m2.memberId,
+	        m2.memberName,
+	        m2.tel,
+	        m2.nickName,
+	        m2.email,
+	        m2.joinDt,
+	        (SELECT COUNT(*) FROM member) AS totalCnt
+	    FROM (
+	        SELECT 
+	            ROWNUM AS rnum, 
+	            m.member_id AS memberId,
+	            m.member_name AS memberName,
+	            m.tel,
+	            m.nick_name AS nickName,
+	            m.email,
+	            DECODE(TO_CHAR(m.join_dt, 'YYYYMMDD'), TO_CHAR(SYSDATE, 'YYYYMMDD'),
+	                   TO_CHAR(m.join_dt, 'HH24:MI'),
+	                   TO_CHAR(m.join_dt, 'YYYY-MM-DD')) AS joinDt
+	        FROM (
+	            SELECT 
+	                member_id,
+	                member_name,
+	                tel,
+	                nick_name,
+	                email,
+	                join_dt
+	            FROM 
+	                member
+	            ORDER BY 
+	                join_dt desc
+	        ) m
+	    ) m2) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@312203a4
+2024-06-14 11:29:20,449 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT (SELECT COUNT(*) FROM member) - m2.rnum + 1 AS no, m2.memberId, m2.memberName, m2.tel, 
+m2.nickName, m2.email, m2.joinDt, (SELECT COUNT(*) FROM member) AS totalCnt FROM ( SELECT ROWNUM 
+AS rnum, m.member_id AS memberId, m.member_name AS memberName, m.tel, m.nick_name AS nickName, 
+m.email, DECODE(TO_CHAR(m.join_dt, 'YYYYMMDD'), TO_CHAR(SYSDATE, 'YYYYMMDD'), TO_CHAR(m.join_dt, 
+'HH24:MI'), TO_CHAR(m.join_dt, 'YYYY-MM-DD')) AS joinDt FROM ( SELECT member_id, member_name, 
+tel, nick_name, email, join_dt FROM member ORDER BY join_dt desc ) m ) m2  {executed in 13 ms}
+2024-06-14 11:29:20,449 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 11:29:20,449 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 11:29:20,449 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@723194d
+2024-06-14 11:29:20,450 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@2a8dacba
+2024-06-14 11:29:20,450 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 11:29:20,450 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,450 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,462 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 11
+2024-06-14 11:29:20,462 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned log
+2024-06-14 11:29:20,462 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned logcheck
+2024-06-14 11:29:20,462 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12341234
+2024-06-14 11:29:20,462 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned log
+2024-06-14 11:29:20,462 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned log
+2024-06-14 11:29:20,463 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 11:29
+2024-06-14 11:29:20,463 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,463 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,464 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 10
+2024-06-14 11:29:20,464 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned dd
+2024-06-14 11:29:20,464 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned ㅈㅈ
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12341234
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned ww
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned ww
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 11:20
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 9
+2024-06-14 11:29:20,465 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned hi
+2024-06-14 11:29:20,466 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned dd
+2024-06-14 11:29:20,466 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12341234
+2024-06-14 11:29:20,466 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned dd
+2024-06-14 11:29:20,466 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned email@m
+2024-06-14 11:29:20,466 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-13
+2024-06-14 11:29:20,467 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,467 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,467 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 8
+2024-06-14 11:29:20,467 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned hanna
+2024-06-14 11:29:20,467 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned lee hanna
+2024-06-14 11:29:20,467 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 86281627
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned NILE
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned mail@mail.com
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-12
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 7
+2024-06-14 11:29:20,468 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned test
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 테스트
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12341234
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned 네임닉
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned mail@email.com
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-11
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,469 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 6
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned hihi2
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 1234
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 1234
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned 123
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned 1234
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-11
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,470 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 5
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned hihi
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 이이름
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12341234
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned nick
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned email@email.com
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-11
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,471 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 4
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned nile
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 이한나
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 86281627
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned 안나일
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned dlgkssk1627@naver.com
+2024-06-14 11:29:20,472 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-10
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 3
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned soft
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 소프트
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 87654321
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned 소프트
+2024-06-14 11:29:20,473 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned soft@gmail.com
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-10
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 2
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned gaea
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 지어
+2024-06-14 11:29:20,474 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12345678
+2024-06-14 11:29:20,475 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned 하이
+2024-06-14 11:29:20,475 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned gaea@naver.com
+2024-06-14 11:29:20,475 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-06-10
+2024-06-14 11:29:20,475 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,479 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 11:29:20,479 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NO) returned 1
+2024-06-14 11:29:20,480 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERID) returned admin
+2024-06-14 11:29:20,480 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(MEMBERNAME) returned 테스터
+2024-06-14 11:29:20,480 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(TEL) returned 12345678
+2024-06-14 11:29:20,480 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(NICKNAME) returned 시스템 관리자
+2024-06-14 11:29:20,481 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(EMAIL) returned admin@gaeasoft.co.kr
+2024-06-14 11:29:20,482 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getString(JOINDT) returned 2024-05-30
+2024-06-14 11:29:20,482 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---|---------|-----------|---------|---------|----------------------|-----------|---------|
+|no |memberid |membername |tel      |nickname |email                 |joindt     |totalcnt |
+|---|---------|-----------|---------|---------|----------------------|-----------|---------|
+|11 |log      |logcheck   |12341234 |log      |log                   |11:29      |[unread] |
+|10 |dd       |ㅈㅈ         |12341234 |ww       |ww                    |11:20      |[unread] |
+|9  |hi       |dd         |12341234 |dd       |email@m               |2024-06-13 |[unread] |
+|8  |hanna    |lee hanna  |86281627 |NILE     |mail@mail.com         |2024-06-12 |[unread] |
+|7  |test     |테스트        |12341234 |네임닉      |mail@email.com        |2024-06-11 |[unread] |
+|6  |hihi2    |1234       |1234     |123      |1234                  |2024-06-11 |[unread] |
+|5  |hihi     |이이름        |12341234 |nick     |email@email.com       |2024-06-11 |[unread] |
+|4  |nile     |이한나        |86281627 |안나일      |dlgkssk1627@naver.com |2024-06-10 |[unread] |
+|3  |soft     |소프트        |87654321 |소프트      |soft@gmail.com        |2024-06-10 |[unread] |
+|2  |gaea     |지어         |12345678 |하이       |gaea@naver.com        |2024-06-10 |[unread] |
+|1  |admin    |테스터        |12345678 |시스템 관리자  |admin@gaeasoft.co.kr  |2024-05-30 |[unread] |
+|---|---------|-----------|---------|---------|----------------------|-----------|---------|
+
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 11:29:20,484 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 11:29:20,485 INFO  [http-nio-2405-exec-9] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:04,825 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:04,836 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:04,837 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:42:04,838 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT 
+	    	COUNT(*)
+	    FROM 
+	    	member
+	    WHERE 
+	    	member_id = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@5b7dff16
+2024-06-14 12:42:04,838 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "logtestId") returned 
+2024-06-14 12:42:04,851 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE member_id = 'logtestId'  {executed in 13 ms}
+2024-06-14 12:42:04,852 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 12:42:04,852 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 12:42:04,852 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@684c7c85
+2024-06-14 12:42:04,852 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@4ccf136d
+2024-06-14 12:42:04,852 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 12:42:04,852 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:42:04,854 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 12:42:04,854 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:42:04,854 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 12:42:04,854 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:42:04,855 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:42:04,855 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 12:42:04,855 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 12:42:04,855 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 12:42:04,855 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 12:42:04,855 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 12:42:04,856 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:04,856 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 12:42:04,856 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:15,042 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:15,042 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:15,042 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:42:15,042 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM 
+        	member 
+        WHERE 
+        	nick_name = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@527c8a5f
+2024-06-14 12:42:15,043 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "logTest") returned 
+2024-06-14 12:42:15,045 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE nick_name = 'logTest'  {executed in 2 ms}
+2024-06-14 12:42:15,045 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 12:42:15,045 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@8c4a746
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@4d01952a
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 12:42:15,046 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:42:15,047 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:42:15,047 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 12:42:15,047 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 12:42:15,048 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 12:42:15,048 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 12:42:15,048 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 12:42:15,048 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:15,048 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 12:42:15,049 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:19,465 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:19,465 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:19,467 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:42:19,467 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM
+        	member 
+        WHERE
+        	email = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@47a1e53b
+2024-06-14 12:42:19,467 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "mailmail") returned 
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE email = 'mailmail'  {executed in 1 ms}
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@496613bf
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@4d598e4b
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:42:19,469 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 12:42:19,470 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:42:19,470 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 12:42:19,470 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:42:19,470 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:42:19,470 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 12:42:19,470 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 12:42:19,471 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@393e1692
+2024-06-14 12:42:19,471 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 12:42:19,471 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 12:42:19,471 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:19,471 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 12:42:19,471 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:22,467 INFO  [http-nio-2405-exec-1] member.MemberController (MemberController.java:118) - 회원가입 시도:MemberVO(memberId=logtestId, memberName=로그 테스트 아이디, password=1234, tel=12341234, nickName=logTest, email=mailmail, joinDt=null, no=null)
+2024-06-14 12:42:22,468 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:22,468 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:22,468 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:42:22,468 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(INSERT INTO member (
+		    member_id,
+		    member_name,
+		    password,
+		    tel,
+		    nick_name,
+		    email,
+		    join_dt
+		) VALUES (
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    SYSDATE
+		)) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@3ae97455
+2024-06-14 12:42:22,468 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "logtestId") returned 
+2024-06-14 12:42:22,468 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(2, "로그 테스트 아이디") returned 
+2024-06-14 12:42:22,469 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(3, "1234") returned 
+2024-06-14 12:42:22,469 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setInt(4, 12341234) returned 
+2024-06-14 12:42:22,469 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(5, "logTest") returned 
+2024-06-14 12:42:22,469 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(6, "mailmail") returned 
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. INSERT INTO member ( member_id, member_name, password, tel, nick_name, email, join_dt ) VALUES 
+( 'logtestId', '로그 테스트 아이디', '1234', 12341234, 'logTest', 'mailmail', SYSDATE )  {executed in 9 ms}
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned false
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getUpdateCount() returned 1
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:22,479 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 12:42:22,480 INFO  [http-nio-2405-exec-1] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:42:22,480 INFO  [http-nio-2405-exec-1] member.MemberController (MemberController.java:123) - 회원가입 결과: MessageVO [msgId=1, msgContents=가입 되었습니다., toString()=com.gaea.work.cmn.SuccessMessageVO@7a08afe7]
+2024-06-14 12:51:18,121 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 1. Connection opened. {executed in 879ms} 
+2024-06-14 12:51:18,147 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.new Connection returned 
+2024-06-14 12:51:18,147 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.isClosed() returned false
+2024-06-14 12:51:18,155 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,155 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.isClosed() returned false
+2024-06-14 12:51:18,155 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,156 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.clearWarnings() returned 
+2024-06-14 12:51:18,156 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,157 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 1. Connection closed. {executed in 1ms} 
+2024-06-14 12:51:18,158 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 1. Connection.close() returned 
+2024-06-14 12:51:18,277 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 2. Connection opened. {executed in 115ms} 
+2024-06-14 12:51:18,279 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.new Connection returned 
+2024-06-14 12:51:18,279 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 12:51:18,285 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,291 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,348 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:365) - 3. Connection opened. {executed in 188ms} 
+2024-06-14 12:51:18,349 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.new Connection returned 
+2024-06-14 12:51:18,349 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:18,349 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,351 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,620 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:18,620 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:18,620 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.prepareStatement(SELECT 
+	    	COUNT(*)
+	    FROM 
+	    	member
+	    WHERE 
+	    	member_id = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@3ad78010
+2024-06-14 12:51:18,620 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.prepareStatement(SELECT 
+	    	COUNT(*)
+	    FROM 
+	    	member
+	    WHERE 
+	    	member_id = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@1f963610
+2024-06-14 12:51:18,624 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.setString(1, "logTest2") returned 
+2024-06-14 12:51:18,624 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(1, "logTest2") returned 
+2024-06-14 12:51:18,836 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 2. SELECT COUNT(*) FROM member WHERE member_id = 'logTest2'  {executed in 208 ms}
+2024-06-14 12:51:18,836 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 3. SELECT COUNT(*) FROM member WHERE member_id = 'logTest2'  {executed in 208 ms}
+2024-06-14 12:51:18,837 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.execute() returned true
+2024-06-14 12:51:18,837 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.execute() returned true
+2024-06-14 12:51:18,856 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.new ResultSet returned 
+2024-06-14 12:51:18,856 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.new ResultSet returned 
+2024-06-14 12:51:18,856 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@3622722f
+2024-06-14 12:51:18,856 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@271fd763
+2024-06-14 12:51:18,874 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@3e4ddae9
+2024-06-14 12:51:18,874 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@acffe0b
+2024-06-14 12:51:18,879 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getType() returned 1003
+2024-06-14 12:51:18,879 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getType() returned 1003
+2024-06-14 12:51:18,879 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:18,879 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:51:18,880 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned true
+2024-06-14 12:51:18,880 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned true
+2024-06-14 12:51:18,885 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:51:18,885 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:51:18,886 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.wasNull() returned false
+2024-06-14 12:51:18,886 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.wasNull() returned false
+2024-06-14 12:51:18,887 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:18,887 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.isClosed() returned false
+2024-06-14 12:51:18,889 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:51:18,890 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned false
+2024-06-14 12:51:18,890 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:51:18,890 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.close() returned void
+2024-06-14 12:51:18,890 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.next() returned false
+2024-06-14 12:51:18,891 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. ResultSet.close() returned void
+2024-06-14 12:51:18,895 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@1edf5639
+2024-06-14 12:51:18,895 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@356af0ba
+2024-06-14 12:51:18,895 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.close() returned 
+2024-06-14 12:51:18,895 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. PreparedStatement.close() returned 
+2024-06-14 12:51:18,900 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:18,900 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.isClosed() returned false
+2024-06-14 12:51:18,901 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,901 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,901 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.clearWarnings() returned 
+2024-06-14 12:51:18,901 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.clearWarnings() returned 
+2024-06-14 12:51:18,902 INFO  [http-nio-2405-exec-4] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 2. Connection.getAutoCommit() returned true
+2024-06-14 12:51:18,902 INFO  [http-nio-2405-exec-3] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:30,341 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:30,341 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:30,342 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:30,342 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM 
+        	member 
+        WHERE 
+        	nick_name = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@b55210
+2024-06-14 12:51:30,342 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(1, "logtest2") returned 
+2024-06-14 12:51:30,345 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 3. SELECT COUNT(*) FROM member WHERE nick_name = 'logtest2'  {executed in 3 ms}
+2024-06-14 12:51:30,345 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.execute() returned true
+2024-06-14 12:51:30,345 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.new ResultSet returned 
+2024-06-14 12:51:30,345 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@e72bc76
+2024-06-14 12:51:30,346 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@a4d3960
+2024-06-14 12:51:30,346 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getType() returned 1003
+2024-06-14 12:51:30,346 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:30,346 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned true
+2024-06-14 12:51:30,347 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:51:30,347 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.wasNull() returned false
+2024-06-14 12:51:30,347 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:30,348 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:51:30,348 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned false
+2024-06-14 12:51:30,348 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.close() returned void
+2024-06-14 12:51:30,348 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@1edf5639
+2024-06-14 12:51:30,348 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.close() returned 
+2024-06-14 12:51:30,349 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:30,350 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:30,350 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.clearWarnings() returned 
+2024-06-14 12:51:30,350 INFO  [http-nio-2405-exec-5] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:31,359 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:31,359 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:31,360 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:31,360 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM 
+        	member 
+        WHERE 
+        	nick_name = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@6a1f6709
+2024-06-14 12:51:31,360 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(1, "logtest2") returned 
+2024-06-14 12:51:31,362 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 3. SELECT COUNT(*) FROM member WHERE nick_name = 'logtest2'  {executed in 2 ms}
+2024-06-14 12:51:31,362 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.execute() returned true
+2024-06-14 12:51:31,363 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.new ResultSet returned 
+2024-06-14 12:51:31,363 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@64d8843a
+2024-06-14 12:51:31,363 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@60e70c79
+2024-06-14 12:51:31,363 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getType() returned 1003
+2024-06-14 12:51:31,363 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:31,364 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned true
+2024-06-14 12:51:31,364 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:51:31,364 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.wasNull() returned false
+2024-06-14 12:51:31,365 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:31,365 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:51:31,365 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned false
+2024-06-14 12:51:31,366 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.close() returned void
+2024-06-14 12:51:31,366 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@1edf5639
+2024-06-14 12:51:31,366 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.close() returned 
+2024-06-14 12:51:31,366 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:31,366 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:31,367 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.clearWarnings() returned 
+2024-06-14 12:51:31,367 INFO  [http-nio-2405-exec-6] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:35,185 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:35,186 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:35,186 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:35,186 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM
+        	member 
+        WHERE
+        	email = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@3bc04449
+2024-06-14 12:51:35,186 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(1, "1234") returned 
+2024-06-14 12:51:35,188 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 3. SELECT COUNT(*) FROM member WHERE email = '1234'  {executed in 2 ms}
+2024-06-14 12:51:35,188 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.execute() returned true
+2024-06-14 12:51:35,188 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.new ResultSet returned 
+2024-06-14 12:51:35,189 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@3507ad41
+2024-06-14 12:51:35,189 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@31382f39
+2024-06-14 12:51:35,189 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getType() returned 1003
+2024-06-14 12:51:35,189 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:35,190 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned true
+2024-06-14 12:51:35,190 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getInt(COUNT(*)) returned 1
+2024-06-14 12:51:35,190 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:35,190 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|1        |
+|---------|
+
+2024-06-14 12:51:35,190 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned false
+2024-06-14 12:51:35,191 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.close() returned void
+2024-06-14 12:51:35,191 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@1edf5639
+2024-06-14 12:51:35,191 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.close() returned 
+2024-06-14 12:51:35,191 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:35,191 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:35,192 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.clearWarnings() returned 
+2024-06-14 12:51:35,192 INFO  [http-nio-2405-exec-8] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:39,117 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:39,118 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:39,118 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:39,118 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.prepareStatement(SELECT
+        	COUNT(*) 
+        FROM
+        	member 
+        WHERE
+        	email = ?) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@1044fa7e
+2024-06-14 12:51:39,119 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(1, "12341234") returned 
+2024-06-14 12:51:39,121 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 3. SELECT COUNT(*) FROM member WHERE email = '12341234'  {executed in 1 ms}
+2024-06-14 12:51:39,121 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.execute() returned true
+2024-06-14 12:51:39,121 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.new ResultSet returned 
+2024-06-14 12:51:39,121 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@1e831606
+2024-06-14 12:51:39,122 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getMetaData() returned oracle.jdbc.driver.OracleResultSetMetaData@1abc910e
+2024-06-14 12:51:39,122 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getType() returned 1003
+2024-06-14 12:51:39,122 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:39,122 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned true
+2024-06-14 12:51:39,122 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.getInt(COUNT(*)) returned 0
+2024-06-14 12:51:39,122 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.wasNull() returned false
+2024-06-14 12:51:39,123 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.isClosed() returned false
+2024-06-14 12:51:39,124 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:390) - 
+|---------|
+|count(*) |
+|---------|
+|0        |
+|---------|
+
+2024-06-14 12:51:39,124 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.next() returned false
+2024-06-14 12:51:39,124 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. ResultSet.close() returned void
+2024-06-14 12:51:39,124 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getMetaData() returned oracle.jdbc.driver.OracleDatabaseMetaData@1edf5639
+2024-06-14 12:51:39,125 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.close() returned 
+2024-06-14 12:51:39,125 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:39,125 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:39,125 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.clearWarnings() returned 
+2024-06-14 12:51:39,125 INFO  [http-nio-2405-exec-10] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:41,331 INFO  [http-nio-2405-exec-2] member.MemberController (MemberController.java:118) - 회원가입 시도:MemberVO(memberId=logTest2, memberName=logtest, password=1234, tel=12341234, nickName=logtest2, email=12341234, joinDt=null, no=null)
+2024-06-14 12:51:41,331 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:41,331 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:41,332 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.new PreparedStatement returned 
+2024-06-14 12:51:41,332 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.prepareStatement(INSERT INTO member (
+		    member_id,
+		    member_name,
+		    password,
+		    tel,
+		    nick_name,
+		    email,
+		    join_dt
+		) VALUES (
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    ?,
+		    SYSDATE
+		)) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@2a18a75f
+2024-06-14 12:51:41,332 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(1, "logTest2") returned 
+2024-06-14 12:51:41,332 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(2, "logtest") returned 
+2024-06-14 12:51:41,332 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(3, "1234") returned 
+2024-06-14 12:51:41,336 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setInt(4, 12341234) returned 
+2024-06-14 12:51:41,336 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(5, "logtest2") returned 
+2024-06-14 12:51:41,336 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.setString(6, "12341234") returned 
+2024-06-14 12:51:41,340 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:243) - 3. INSERT INTO member ( member_id, member_name, password, tel, nick_name, email, join_dt ) VALUES 
+( 'logTest2', 'logtest', '1234', 12341234, 'logtest2', '12341234', SYSDATE )  {executed in 3 ms}
+2024-06-14 12:51:41,341 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.execute() returned false
+2024-06-14 12:51:41,343 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.getUpdateCount() returned 1
+2024-06-14 12:51:41,343 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. PreparedStatement.close() returned 
+2024-06-14 12:51:41,343 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.isClosed() returned false
+2024-06-14 12:51:41,343 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:41,343 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.clearWarnings() returned 
+2024-06-14 12:51:41,343 INFO  [http-nio-2405-exec-2] log4j2.Log4j2SpyLogDelegator (Log4j2SpyLogDelegator.java:197) - 3. Connection.getAutoCommit() returned true
+2024-06-14 12:51:41,344 INFO  [http-nio-2405-exec-2] member.MemberController (MemberController.java:123) - 회원가입 결과: MessageVO [msgId=1, msgContents=가입 되었습니다., toString()=com.gaea.work.cmn.SuccessMessageVO@4414888f]

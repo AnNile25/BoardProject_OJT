@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import com.gaea.work.cmn.SuccessMessageVO;
 @Controller
 @RequestMapping("member")
 public class MemberController {
+	Logger logger = LogManager.getLogger(this.getClass());
+	
 	@Autowired
 	MemberService service;
 
@@ -111,10 +115,13 @@ public class MemberController {
 	@PostMapping(value = "/joinMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO joinMember(MemberVO inVO) throws SQLException {
+		logger.info("회원가입 시도:" + inVO);
         int flag = service.joinMember(inVO);
 
         String message = (flag == 1) ? "가입 되었습니다." : "가입 실패.";
         SuccessMessageVO messageVO = new SuccessMessageVO(String.valueOf(flag), message);
+        logger.info("회원가입 결과: " + messageVO);
+        
         return messageVO;
 	}
 

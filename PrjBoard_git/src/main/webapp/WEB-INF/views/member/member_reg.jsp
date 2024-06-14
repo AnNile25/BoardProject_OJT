@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
                 if ('1' == data.msgId) {
                     alert(data.msgContents);
-                    window.location.href = "${CP}/member/retrieveMember";
+                    window.location.href = "${CP}/login/loginView";
                 } else {
                     alert(data.msgContents);
                 }
