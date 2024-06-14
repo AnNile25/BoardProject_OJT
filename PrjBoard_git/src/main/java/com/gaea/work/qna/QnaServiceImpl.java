@@ -5,27 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.gaea.work.cmn.GLog;
-
 @Service
 public class QnaServiceImpl implements QnaService {
-
-    Logger LOG = LogManager.getLogger(GLog.class);
-
     @Autowired
     QnaDao dao;
     
     @Autowired
     PageVO pageVO;
     
-    private static final int PAGE_LIMIT = 10;
-    private static final int BLOCK_LIMIT = 5;
+    final int PAGE_LIMIT = 10;
+    final int BLOCK_LIMIT = 5;
 
     public QnaServiceImpl() {}
 
@@ -41,13 +34,8 @@ public class QnaServiceImpl implements QnaService {
 
     @Override
     public QnaVO selectOneQnaArticle(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
-        QnaVO outVO = dao.selectOneArticle(inVO);
-        // 조회수 증가
-        if (null != outVO) {
-            int updateReadCnt = dao.updateReadCnt(inVO);
-            LOG.debug("updateReadCnt:" + updateReadCnt);
-        }
-        return outVO;
+    	dao.updateReadCnt(inVO);
+        return dao.selectOneArticle(inVO);
     }
 
     @Override

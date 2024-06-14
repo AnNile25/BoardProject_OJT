@@ -22,7 +22,7 @@ import com.gaea.work.member.MemberVO;
 
 @Controller
 @RequestMapping("qna")
-public class QnaController implements GLog {
+public class QnaController  {
 
 	@Autowired
 	QnaService service;
@@ -44,8 +44,6 @@ public class QnaController implements GLog {
 
 	@GetMapping(value = "/moveToMod")
 	public String moveToMod(QnaVO inVO, Model model) throws SQLException, EmptyResultDataAccessException {
-		LOG.debug("[moveToMod]QnaVO:" + inVO);
-
 		if (0 == inVO.getBoardSeq()) {
 			throw new NullPointerException("게시물을 확인하세요");
 		}
@@ -58,8 +56,6 @@ public class QnaController implements GLog {
 
 	@GetMapping(value = "/moveToReg")
 	public String moveToReg(Model model, MemberVO inVO) throws SQLException {
-		LOG.debug("[moveToReg]");
-
 		model.addAttribute("paramVO", inVO);
 		return "qna/qna_reg";
 	}
@@ -67,8 +63,6 @@ public class QnaController implements GLog {
 	@PostMapping(value = "/updateQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO updateQnaArticle(QnaVO inVO, Model model) throws SQLException {
-		LOG.debug("[updateQnaArticle]QnaVO:" + inVO);
-
 		int flag = service.updateQnaArticle(inVO);
 		String message = (flag == 1) ? "수정 되었습니다." : "수정 실패.";
 
@@ -105,7 +99,6 @@ public class QnaController implements GLog {
 	@ResponseBody
 	public SuccessMessageVO saveQnaArticle(QnaVO inVO,
 			@RequestParam(value = "memberId", required = false) String memberId) throws SQLException {
-		LOG.debug("[saveQnaArticle]QnaVO:" + inVO);
 		inVO.setMemberId(memberId);
 
 		int flag = service.saveQnaArticle(inVO);
@@ -118,10 +111,7 @@ public class QnaController implements GLog {
 	@GetMapping(value ="/deleteQnaArticle",produces = "application/json;charset=UTF-8" )
 	@ResponseBody
 	public SuccessMessageVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
-		LOG.debug("[deleteQnaArticle]QnaVO:" + inVO);
-		
 		MemberVO member = (MemberVO) session.getAttribute("member");
-		LOG.debug("member:" + member);
 		
 		if (null == member)	{		
 			SuccessMessageVO messageVO = new SuccessMessageVO("0", "로그인 후 이용 가능합니다.");
