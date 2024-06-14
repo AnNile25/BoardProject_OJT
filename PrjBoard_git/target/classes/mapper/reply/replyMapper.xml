@@ -3,9 +3,6 @@
 <mapper namespace="com.gaea.work.reply">
 
 <insert id="saveReply" parameterType="ReplyVO">
-	<selectKey keyProperty="replySeq" resultType="int" order="BEFORE">
-		SELECT REPLY_SEQ.NEXTVAL FROM DUAL
-	</selectKey>
 	INSERT INTO reply (
 	    reply_seq,
 	    content,
@@ -15,7 +12,7 @@
 	    board_seq,
 	    member_id
 	) VALUES (
-	    #{replySeq},
+	    REPLY_SEQ.NEXTVAL,
 	    #{content},
 	    #{likeCnt},
 	    SYSDATE,
