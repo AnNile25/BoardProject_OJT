@@ -67,10 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<!-- 게시글 등록 -->
-	<insert id="saveArticle" parameterType="QnaVO"> 
-		<selectKey keyProperty="boardSeq" resultType="int" order="BEFORE">
-			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
-		</selectKey>
+	<insert id="saveArticle" parameterType="QnaVO">
 		INSERT INTO board (
 		    board_seq,
 		    member_id,
@@ -81,7 +78,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    reg_dt,
 		    mod_dt
 		) VALUES (
-		    #{boardSeq},
+		    BOARD_SEQ.NEXTVAL,
 		    #{memberId},
 		    #{title},
 		    #{content},
