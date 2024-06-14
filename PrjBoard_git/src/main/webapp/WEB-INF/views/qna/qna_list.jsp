@@ -1,4 +1,3 @@
-<%@page import="com.gaea.work.cmn.Pagination"%>
 <%@page import="com.gaea.work.qna.QnaVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
