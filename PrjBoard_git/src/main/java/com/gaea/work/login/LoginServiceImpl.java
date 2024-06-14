@@ -73,7 +73,7 @@ public class LoginServiceImpl implements LoginService {
                     MemberVO outVO = doSelectOne(member);
                     message.setMsgId("30");
                     message.setMsgContents(outVO.getMemberName() + "님 반갑습니다.");
-                    session.setAttribute("member", outVO);
+                    session.setAttribute("memberId", outVO.getMemberId());
                     break;
                 default:
                     return createJsonMessage("99", "오류가 발생 했습니다.");

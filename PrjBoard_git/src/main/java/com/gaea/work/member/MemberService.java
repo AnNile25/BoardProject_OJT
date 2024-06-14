@@ -24,5 +24,5 @@ public interface MemberService {
 	boolean isNickNameDuplicate(String nickName) throws SQLException;
 	
 	boolean isEmailDuplicate(String email) throws SQLException;	
-
+	
 }

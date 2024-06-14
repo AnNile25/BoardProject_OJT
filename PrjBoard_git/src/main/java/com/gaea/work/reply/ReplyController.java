@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gaea.work.cmn.SuccessMessageVO;
-import com.gaea.work.member.MemberVO;
+import com.gaea.work.login.SessionCheckService;
 
 @Controller
 @RequestMapping("reply")
@@ -23,6 +23,9 @@ public class ReplyController {
 
 	@Autowired
 	ReplyService service;
+	
+	@Autowired
+	SessionCheckService checkService;
 
 	@Autowired
 	MessageSource messageSource;
@@ -41,13 +44,10 @@ public class ReplyController {
 	@PostMapping(value = "/saveReply", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO saveReply(ReplyVO inVO, HttpSession session) throws SQLException {
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		if (null == member) {
-			return new SuccessMessageVO(String.valueOf("3"), "로그인 후 가능합니다.");
+		if (!checkService.isLoggedIn(session))	 {
+			return new SuccessMessageVO("0", "로그인 후 이용가능합니다.");
 		}
-		if ( null != member) {
-			inVO.setMemberId(member.getMemberId());
-		}		
+		inVO.setMemberId(session.getAttribute("memberId").toString());
 		int flag = service.saveReply(inVO);
 		
 		String message = (flag == 1) ? "등록 되었습니다." : "등록 실패.";

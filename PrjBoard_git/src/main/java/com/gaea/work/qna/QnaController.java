@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gaea.work.cmn.StrReplace;
 import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.member.MemberVO;
 
 @Controller
@@ -25,6 +25,9 @@ public class QnaController  {
 
 	@Autowired
 	QnaService service;
+	
+	@Autowired
+	SessionCheckService sessionService;
 
 	public QnaController() {
 	}
@@ -42,11 +45,11 @@ public class QnaController  {
 	}
 
 	@GetMapping(value = "/moveToMod")
-	public String moveToMod(QnaVO inVO, Model model) throws SQLException, EmptyResultDataAccessException {
-		if (0 == inVO.getBoardSeq()) {
-			throw new NullPointerException("게시물을 확인하세요");
+	public String moveToMod(QnaVO inVO, Model model, HttpSession session) throws SQLException, EmptyResultDataAccessException {
+		if (!sessionService.isSessionMatched(session, inVO.getMemberId())) {
+			model.addAttribute("errorMessage", "수정 권한이 없습니다.");
+			return "redirect:/currentPage";
 		}
-
 		QnaVO outVO = service.selectOneQnaArticle(inVO);
 		model.addAttribute("vo", outVO);
 		model.addAttribute("memberId", outVO.getMemberId());
@@ -54,7 +57,12 @@ public class QnaController  {
 	}
 
 	@GetMapping(value = "/moveToReg")
-	public String moveToReg(Model model, MemberVO inVO) throws SQLException {
+	public String moveToReg(Model model, MemberVO inVO, HttpSession session) throws SQLException {
+		if (!sessionService.isLoggedIn(session)) {
+			model.addAttribute("errorMessage", "로그인 후 이용 가능합니다.");
+			return "login/login";
+		}
+		
 		model.addAttribute("paramVO", inVO);
 		return "qna/qna_reg";
 	}
@@ -71,33 +79,20 @@ public class QnaController  {
 
 	@GetMapping(value = "/selectOneQna")
 	public String selectOneQna(QnaVO inVO, Model model, HttpSession session) throws SQLException {
-		String view = "qna/qna_mng";
-
-		if (0 == inVO.getBoardSeq()) {
-			model.addAttribute("errorMessage", "게시글을 조회할 수 없습니다.");
-			return "cmn/userError";
+		if (!sessionService.isLoggedIn(session)) {
+			model.addAttribute("errorMessage", "로그인 후 이용 가능합니다.");
+			return "login/login";
 		}
-
-		if (null == inVO.getMemberId()) {
-			inVO.setMemberId(StrReplace.nvl(inVO.getMemberId(), "Guest"));
-		}
-
-		// session이 있는 경우
-		if (null != session.getAttribute("member")) {
-			MemberVO member = (MemberVO) session.getAttribute("member");
-			inVO.setMemberId(member.getMemberId());
-		}
-
+		
 		QnaVO outVO = service.selectOneQnaArticle(inVO);
 		model.addAttribute("vo", outVO);
 
-		return view;
+		return"qna/qna_mng";
 	}
 
 	@PostMapping(value = "/saveQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO saveQnaArticle(QnaVO inVO,
-			@RequestParam(value = "memberId", required = false) String memberId) throws SQLException {
+	public SuccessMessageVO saveQnaArticle(QnaVO inVO, @RequestParam String memberId) throws SQLException {
 		inVO.setMemberId(memberId);
 
 		int flag = service.saveQnaArticle(inVO);
@@ -110,11 +105,8 @@ public class QnaController  {
 	@GetMapping(value ="/deleteQnaArticle",produces = "application/json;charset=UTF-8" )
 	@ResponseBody
 	public SuccessMessageVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		
-		if (null == member)	{		
-			SuccessMessageVO messageVO = new SuccessMessageVO("0", "로그인 후 이용 가능합니다.");
-			return messageVO;
+		if (!sessionService.isSessionMatched(session, inVO.getMemberId())) {
+			return new SuccessMessageVO("0", "삭제 권한이 없습니다.");
 		}
 
 		int flag = service.deleteQnaArticle(inVO);
