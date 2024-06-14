@@ -14,13 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gaea.work.cmn.GLog;
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.member.MemberVO;
 
 @Controller
 @RequestMapping("reply")
-public class ReplyController implements GLog {
+public class ReplyController {
 
 	@Autowired
 	ReplyService service;
