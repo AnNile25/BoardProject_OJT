@@ -4,22 +4,16 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.gaea.work.cmn.GLog;
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.member.MemberVO;
 import com.google.gson.Gson;
 
 @Service
 public class LoginServiceImpl implements LoginService {
-
-    Logger LOG = LogManager.getLogger(GLog.class);
-
     @Autowired
     LoginDao dao;
 
@@ -40,7 +34,6 @@ public class LoginServiceImpl implements LoginService {
 
         if(status == 0) {
             checkStatus = 10;
-            LOG.debug("10 idCheck checkStatus:" + checkStatus);
             return checkStatus;
         }
 
@@ -48,30 +41,25 @@ public class LoginServiceImpl implements LoginService {
         status = dao.idPassCheck(inVO);
         if(status == 0) {
             checkStatus = 20;
-            LOG.debug("20 idPassCheck checkStatus:" + checkStatus);
             return checkStatus;
         }
 
         checkStatus = 30; // id/비번 정상 로그인
-        LOG.debug("30 idPassCheck pass checkStatus:" + checkStatus);
         return checkStatus;
     }
 
     @Override
     public String doLogin(MemberVO member, HttpSession session) {
-        LOG.debug("[doLogin] member: " + member);
         String jsonString = "";
 
         SuccessMessageVO message = new SuccessMessageVO();
 
         try {
-            // id null check
-            if (member.getMemberId() == null || member.getMemberId().isEmpty()) {
+            if (member.getMemberId() == null || member.getMemberId().isEmpty()) { // id null check
                 return createJsonMessage("1", "아이디를 입력 하세요.");
             }
-
-            // pass null check
-            if (member.getPassword() == null || member.getPassword().isEmpty()) {
+            
+            if (member.getPassword() == null || member.getPassword().isEmpty()) { // pass null check
                 return createJsonMessage("2", "비밀번호를 입력 하세요.");
             }
 
@@ -91,12 +79,10 @@ public class LoginServiceImpl implements LoginService {
                     return createJsonMessage("99", "오류가 발생 했습니다.");
             }
         } catch (Exception e) {
-            LOG.error("Exception occurred while logging in: " + e.getMessage(), e);
             return createJsonMessage("99", "서버 오류가 발생했습니다.");
         }
 
         jsonString = new Gson().toJson(message);
-        LOG.debug("jsonString:" + jsonString);
 
         return jsonString;
     }

@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gaea.work.cmn.GLog;
 import com.gaea.work.member.MemberVO;
 
 @Controller
 @RequestMapping("login")
-public class LoginController implements GLog {
+public class LoginController {
 
     @Autowired
     LoginService service;
@@ -29,7 +28,6 @@ public class LoginController implements GLog {
     @PostMapping(value="/login.do", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String doLogin(MemberVO member, HttpSession session) {
-        LOG.debug("[doLogin] member: " + member);
         return service.doLogin(member, session);
     }
 
