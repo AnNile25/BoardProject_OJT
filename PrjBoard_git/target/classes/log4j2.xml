@@ -7,7 +7,7 @@
         </Console>
     
     	<!-- 파일 저장 방식 -->
-        <File name="file" fileName="C:\Users\dlgks\gaeasoft\ojtpj\git_gaea\PrjBoard_git\logs\joinLofFile.log">
+        <File name="file" fileName="C:\Users\dlgks\gaeasoft\ojtpj\git_gaea\PrjBoard_git\logs\joinLogFile.log">
               <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
         </File>
     </Appenders>
