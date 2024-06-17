@@ -12,10 +12,14 @@
         </File>
     </Appenders>
     
-    <loggers>
-        <root name="com.gaea.work.member.MemberControllerr" level="info" additivity="false">
+    <Loggers>
+        <Logger name="com.gaea.work.member.MemberControllerr" level="info" additivity="false">
             <AppenderRef ref="STDOUT"/>
             <AppenderRef ref="file"/>
-        </root>
-    </loggers> 
+        </Logger>
+        
+        <Root level="error">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers> 
 </configuration>
