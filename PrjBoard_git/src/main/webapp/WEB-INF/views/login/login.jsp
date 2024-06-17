@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded",function(){
 		
 		const memberId = document.querySelector("#memberId").value;		
 		if(eUtil.isEmpty(memberId)==true){
-			 alert('아이드를 입력 하세요.');
+			 alert('아이디를 입력 하세요.');
 			 document.querySelector("#memberId").focus();
 			 return;
 		 }

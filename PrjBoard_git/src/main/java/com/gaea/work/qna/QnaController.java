@@ -2,10 +2,12 @@ package com.gaea.work.qna;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,9 @@ public class QnaController  {
 	
 	@Autowired
 	SessionCheckService sessionService;
+	
+	@Autowired
+	MessageSource messageSource;
 
 	public QnaController() {
 	}
@@ -46,20 +51,20 @@ public class QnaController  {
 
 	@GetMapping(value = "/moveToMod")
 	public String moveToMod(QnaVO inVO, Model model, HttpSession session) throws SQLException, EmptyResultDataAccessException {
-		if (!sessionService.isSessionMatched(session, inVO.getMemberId())) {
-			model.addAttribute("errorMessage", "수정 권한이 없습니다.");
-			return "redirect:/currentPage";
-		}
 		QnaVO outVO = service.selectOneQnaArticle(inVO);
 		model.addAttribute("vo", outVO);
 		model.addAttribute("memberId", outVO.getMemberId());
+		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
+			model.addAttribute("errorMessage",  messageSource.getMessage("error.permission", null, Locale.getDefault()));
+			return "qna/qna_mng";
+		}
 		return "qna/qna_mod";
 	}
 
 	@GetMapping(value = "/moveToReg")
 	public String moveToReg(Model model, MemberVO inVO, HttpSession session) throws SQLException {
 		if (!sessionService.isLoggedIn(session)) {
-			model.addAttribute("errorMessage", "로그인 후 이용 가능합니다.");
+			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
 		
@@ -69,24 +74,23 @@ public class QnaController  {
 
 	@PostMapping(value = "/updateQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateQnaArticle(QnaVO inVO, Model model) throws SQLException {
+	public SuccessMessageVO updateQnaArticle(QnaVO inVO, HttpSession sesion) throws SQLException {
 		int flag = service.updateQnaArticle(inVO);
-		String message = (flag == 1) ? "수정 되었습니다." : "수정 실패.";
-
-		SuccessMessageVO messageVO = new SuccessMessageVO(String.valueOf(flag), message);
-		return messageVO;
+		String message = (flag == 1) ? 
+				messageSource.getMessage("success.update", null, Locale.getDefault()):
+			    messageSource.getMessage("error.update", null, Locale.getDefault());
+		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
 	@GetMapping(value = "/selectOneQna")
 	public String selectOneQna(QnaVO inVO, Model model, HttpSession session) throws SQLException {
-		if (!sessionService.isLoggedIn(session)) {
-			model.addAttribute("errorMessage", "로그인 후 이용 가능합니다.");
+		if (!sessionService.checkAndSetMemberId(session, inVO)) {
+			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
 		
 		QnaVO outVO = service.selectOneQnaArticle(inVO);
 		model.addAttribute("vo", outVO);
-
 		return"qna/qna_mng";
 	}
 
@@ -96,24 +100,28 @@ public class QnaController  {
 		inVO.setMemberId(memberId);
 
 		int flag = service.saveQnaArticle(inVO);
-		String message = (flag == 1) ? "등록 되었습니다." : "등록 실패.";
+		String message = (flag == 1) ? 
+				messageSource.getMessage("success.save", null, Locale.getDefault()):
+				messageSource.getMessage("error.save", null, Locale.getDefault());
 
-		SuccessMessageVO messageVO = new SuccessMessageVO(String.valueOf(flag), message);
-		return messageVO;
+		return  new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
 	@GetMapping(value ="/deleteQnaArticle",produces = "application/json;charset=UTF-8" )
 	@ResponseBody
 	public SuccessMessageVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
-		if (!sessionService.isSessionMatched(session, inVO.getMemberId())) {
-			return new SuccessMessageVO("0", "삭제 권한이 없습니다.");
+		QnaVO outVO = service.selectOneQnaArticle(inVO);
+		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
+			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
+	        return new SuccessMessageVO("0", errorMessage);
 		}
 
 		int flag = service.deleteQnaArticle(inVO);
-		String message = (flag == 1) ? "삭제 되었습니다." : "삭제 실패.";
+		String message = (flag == 1) ?
+				messageSource.getMessage("success.delete", null, Locale.getDefault()) :
+			    messageSource.getMessage("error.delete", null, Locale.getDefault());
 
-		SuccessMessageVO messageVO = new SuccessMessageVO(String.valueOf(flag), message);
-		return messageVO;
+		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
 }

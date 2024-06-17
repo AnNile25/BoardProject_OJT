@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded",function(){
 	const moveToRegBTN = document.querySelector("#moveToReg");//등록 버튼
 	const rows = document.querySelectorAll("#boardTable>tbody>tr");
 	
+	// 에러 메시지 처리
+    const errorMessage = '${errorMessage}';
+	if (errorMessage && errorMessage.trim() !== '') {
+	    alert(errorMessage);
+	}
+	
 	// boardTable 이벤트
 	rows.forEach(function(row) {
 		row.addEventListener('click', function(e) {
@@ -36,22 +42,15 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	moveToRegBTN.addEventListener("click", function(e) {
 		console.log("moveToRegBTN click");
-		
-		const memberId = '${sessionScope.member.memberId}';
-		console.log(memberId);
-		if (eUtil.isEmpty(memberId) == true) {
-			alert("로그인 후 작성 가능합니다.");
-			return;
-		}
 		window.location.href = "${CP}/qna/moveToReg"
 	});
 	
 });//--DOMContentLoaded
-	
+	/* 
 function fn_search(){
 	$("#listForm").submit();
 	return false;
-}
+} */
 
 </script>
 </head>
@@ -125,12 +124,12 @@ function fn_search(){
 		    <a href="${CP}/qna/retrieveQnaArticle?page=${paging.page + 1}">Next</a>
 		    <a href="${CP}/qna/retrieveQnaArticle?page=${paging.maxPage}">Last</a>
 		</c:if>
-    
+    <%-- 
 	    <!-- 검색[s] -->
 		<div class="card-header py-3">
 		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paramVO.searchKeyword }" style="width:200px; height:40px; margin-top:10px;" placeholder="검색어를 입력하세요." />
 			<a href="#" onclick="fn_search();" class="btn btn-primary">검색</a>
-		</div>
+		</div> --%>
     </form>
 </div>
 

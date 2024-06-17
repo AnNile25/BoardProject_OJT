@@ -146,8 +146,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                     read_cnt,
                     mod_dt
                 FROM 
-                    board
-                <include refid="searchKeyWord" />
+                    board    ]]>
+                <include refid="searchKeyWord" /> <![CDATA[
                 ORDER BY 
                     mod_dt DESC
                 ) 
@@ -155,7 +155,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         )
         WHERE rnum > #{start}
     ]]>
-    </select>
-    
+    </select>    
 		
 </mapper>

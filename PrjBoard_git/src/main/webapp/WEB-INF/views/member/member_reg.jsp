@@ -15,7 +15,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     console.log("DOMContentLoaded");    
 
-    const registerForm = document.querySelector("#registerForm");
     const saveMemberBTN = document.querySelector("#saveMember");
     
     const memberIdInput = document.querySelector("#memberId");
@@ -33,94 +32,17 @@ document.addEventListener("DOMContentLoaded", function(){
     let isNickNameChecked = false;
     let isEmailChecked = false;
 
-    // 특수 문자 및 전화번호 8자리 검증을 위한 정규식
-    const memberIdRegex = /^[a-zA-Z0-9]+$/;
-    const telRegex = /^\d{8}$/;
-    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
-
     memberIdCheckBtn.addEventListener("click", function() {
         const memberId = memberIdInput.value;
-        if (eUtil.isEmpty(memberId)) {
-            alert("아이디를 입력하세요.");
-            return;
-        }
-        if (!memberIdRegex.test(memberId)) {
-            alert("아이디는 영어와 숫자만 입력 가능합니다.");
-            return;
-        }
         $.ajax({
             type: "POST",
             url: "${CP}/member/checkIdDuplicate",
             async: true,
             dataType: "json",
-            data: { "memberId": memberId },
+            data: { memberId: memberId },
             success: function(data) {
-                if (data) {
-                    alert("아이디가 중복되었습니다.");
-                    isMemberIdChecked = false;
-                } else {
-                    alert("사용 가능한 아이디입니다.");
-                    isMemberIdChecked = true;
-                }
-            },
-            error: function(data) {
-                console.log("error:", data);
-            }
-        });
-    });
-    
-    nickNameCheckBtn.addEventListener("click", function() {
-        const nickName = nickNameInput.value;
-        if (eUtil.isEmpty(nickName)) {
-            alert("닉네임을 입력하세요.");
-            return;
-        }
-        if (specialCharRegex.test(nickName)) {
-            alert("닉네임에 특수 문자는 허용되지 않습니다.");
-            return;
-        }
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/checkNickNameDuplicate",
-            async: true,
-            dataType: "json",
-            data: { "nickName": nickName },
-            success: function(data) {
-                if (data) {
-                    alert("닉네임이 중복되었습니다.");
-                    isNickNameChecked = false;
-                } else {
-                    alert("사용 가능한 닉네임입니다.");
-                    isNickNameChecked = true;
-                }
-            },
-            error: function(data) {
-                console.log("error:", data);
-            }
-        });
-    });
-    
-    emailCheckBtn.addEventListener("click", function() {
-        const email = emailInput.value;
-        if (eUtil.isEmpty(email)) {
-            alert("이메일을 입력하세요.");
-            return;
-        }
-        
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/checkEmailDuplicate",
-            async: true,
-            dataType: "json",
-            data: { "email": email },
-            success: function(data) {
-                if (data) {
-                    alert("이메일이 중복되었습니다.");
-                    isEmailChecked = false;
-                } else {
-                    alert("사용 가능한 이메일입니다.");
-                    isEmailChecked = true;
-                }
+                alert(data.msgContents);
+                isMemberIdChecked = data.msgId === "1";
             },
             error: function(data) {
                 console.log("error:", data);
@@ -128,7 +50,42 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     });
 
-    /* 저장 이벤트 */
+    nickNameCheckBtn.addEventListener("click", function() {
+        const nickName = nickNameInput.value;
+        $.ajax({
+            type: "POST",
+            url: "${CP}/member/checkNickNameDuplicate",
+            async: true,
+            dataType: "json",
+            data: { nickName: nickName },
+            success: function(data) {
+                alert(data.msgContents);
+                isNickNameChecked = data.msgId === "1";
+            },
+            error: function(data) {
+                console.log("error:", data);
+            }
+        });
+    });
+
+    emailCheckBtn.addEventListener("click", function() {
+        const email = emailInput.value;
+        $.ajax({
+            type: "POST",
+            url: "${CP}/member/checkEmailDuplicate",
+            async: true,
+            dataType: "json",
+            data: { email: email },
+            success: function(data) {
+                alert(data.msgContents);
+                isEmailChecked = data.msgId === "1";
+            },
+            error: function(data) {
+                console.log("error:", data);
+            }
+        });
+    });
+
     saveMemberBTN.addEventListener("click", function(e){
         console.log("saveMemberBTN click");
 
@@ -140,36 +97,19 @@ document.addEventListener("DOMContentLoaded", function(){
         const email = emailInput.value;
 
         if (eUtil.isEmpty(memberId) || eUtil.isEmpty(memberName) || eUtil.isEmpty(password) ||
-            eUtil.isEmpty(nickName) || eUtil.isEmpty(tel) || eUtil.isEmpty(email)) {
-            alert("모든 필드를 입력하세요.");
-            return;
-        }
-
-        if (!memberIdRegex.test(memberId)) {
-            alert("아이디는 영어와 숫자만 입력 가능합니다.");
-            return;
-        }
-
-        if (!telRegex.test(tel)) {
-            alert("전화번호는 8자리 숫자만 입력 가능합니다.");
-            return;
-        }
-
-        if (specialCharRegex.test(nickName)) {
-            alert("닉네임에 특수 문자는 허용되지 않습니다.");
-            return;
+                eUtil.isEmpty(nickName) || eUtil.isEmpty(tel) || eUtil.isEmpty(email)) {
+                alert("모든 필드를 입력하세요.");
+                return;
         }
 
         if (!isMemberIdChecked) {
             alert("아이디 중복 체크를 해주세요.");
             return;
         }
-
         if (!isNickNameChecked) {
             alert("닉네임 중복 체크를 해주세요.");
             return;
         }
-
         if (!isEmailChecked) {
             alert("이메일 중복 체크를 해주세요.");
             return;
@@ -210,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 console.log("complete:", data);
             }
         });
+
     });
 });
 </script>

@@ -3,6 +3,7 @@ package com.gaea.work.reply;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -44,15 +45,13 @@ public class ReplyController {
 	@PostMapping(value = "/saveReply", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO saveReply(ReplyVO inVO, HttpSession session) throws SQLException {
-		if (!checkService.isLoggedIn(session))	 {
-			return new SuccessMessageVO("0", "로그인 후 이용가능합니다.");
-		}
 		inVO.setMemberId(session.getAttribute("memberId").toString());
 		int flag = service.saveReply(inVO);
-		
-		String message = (flag == 1) ? "등록 되었습니다." : "등록 실패.";
-		SuccessMessageVO messageVO = new SuccessMessageVO(String.valueOf(flag), message);
-		return messageVO;
+		String message = (flag == 1) ? 
+				messageSource.getMessage("success.save", null, Locale.getDefault()):
+				messageSource.getMessage("error.save", null, Locale.getDefault());
+
+		return  new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
 }

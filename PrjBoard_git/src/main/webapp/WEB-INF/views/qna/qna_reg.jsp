@@ -132,8 +132,7 @@ document.addEventListener("DOMContentLoaded",function(){
         </div>
         <div class="form-group">
             <label for="memberId">등록자</label>
-            <input type="text" class="form-control" id="memberId" name="memberId" value=${sessionScope.member.memberId} readonly="readonly">
-            <input type="text" class="form-control" id="nickName" name="nickName" value=${sessionScope.member.nickName} readonly="readonly">        
+            <input type="text" class="form-control" id="memberId" name="memberId" value=${sessionScope.memberId } readonly="readonly">        
         </div>
         <div class="form-group">
             <label for="content">내용</label>

@@ -12,6 +12,9 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	MemberDao dao;
 	
+	@Autowired
+    MemberValidationService validationService;
+	
 	public MemberServiceImpl() {}
 
 	@Override
@@ -31,6 +34,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int joinMember(MemberVO inVO) throws SQLException {
+		validationService.validateMember(inVO);
 		return dao.saveMember(inVO);
 	}
 
@@ -38,27 +42,5 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> retrieveMember(MemberVO inVO) throws SQLException {
 		return dao.retrieveMember(inVO);
 	}
-	
-	// 중복 체크
-	@Override
-    public boolean isIdDuplicate(String memberId) throws SQLException {
-        MemberVO vo = new MemberVO();
-        vo.setMemberId(memberId);
-        return dao.idDuplicateCheck(vo) > 0;
-    }
-
-    @Override
-    public boolean isNickNameDuplicate(String nickName) throws SQLException {
-        MemberVO vo = new MemberVO();
-        vo.setNickName(nickName);
-        return dao.nickNameDuplicateCheck(vo) > 0;
-    }
-
-    @Override
-    public boolean isEmailDuplicate(String email) throws SQLException {
-        MemberVO vo = new MemberVO();
-        vo.setEmail(email);
-        return dao.emailDuplicateCheck(vo) > 0;
-    }
 
 }

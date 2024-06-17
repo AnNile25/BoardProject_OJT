@@ -18,11 +18,4 @@ public interface MemberService {
 	
 	List<MemberVO> retrieveMember(MemberVO inVO) throws SQLException;
 	
-	// 중복체크
-	boolean isIdDuplicate(String memberId) throws SQLException;
-	
-	boolean isNickNameDuplicate(String nickName) throws SQLException;
-	
-	boolean isEmailDuplicate(String email) throws SQLException;	
-	
 }

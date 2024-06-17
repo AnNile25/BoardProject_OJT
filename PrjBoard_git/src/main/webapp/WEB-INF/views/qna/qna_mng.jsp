@@ -34,15 +34,19 @@ document.addEventListener("DOMContentLoaded",function(){
 	const memberId = document.querySelector("#memberId").innerText.trim();
 	const content 	= document.querySelector("#content").value; 
 	
-	const sessionMemberId = '${sessionScope.member.memberId}';
+	const sessionMemberId = '${sessionScope.memberId}';
 	
 	const moveToListBTN = document.querySelector("#moveToList");
 	const moveToModBTN 	 = document.querySelector("#moveToMod");
 	const deleteArticleBTN 	 = document.querySelector("#deleteArticle");
-	
-	// reply
 	const replySaveBTN = document.querySelector("#replySave");
 	
+	const errorMessage = '${errorMessage}';
+	console.log("errorMessage: " + errorMessage);
+	if (errorMessage && errorMessage.trim() !== '') {
+        alert(errorMessage);
+    }
+		
 	console.log("memberId:" + memberId);
 	console.log("sessionMemberId:" + sessionMemberId);
 	
@@ -57,21 +61,17 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	moveToModBTN.addEventListener("click", function(e){
 		console.log("moveToModBTN click");
-		if (memberId != sessionMemberId) {
-			alert("수정권한이 없습니다.");
-			return;
-		} else if (memberId == sessionMemberId) {
-			window.location.href = "/qna/moveToMod?boardSeq=" + boardSeq;
-		}
+		if (errorMessage && errorMessage.trim() !== '') {
+	        alert(errorMessage);
+	        return;
+	    } else {
+	        const boardSeq = document.querySelector("#boardSeq").value;
+	        window.location.href = "/qna/moveToMod?boardSeq=" + boardSeq;
+	    }	
 	});
 	
 	deleteArticleBTN.addEventListener("click", function(e){
 		console.log("deleteArticleBTN click");
-		
-		if (memberId !== sessionMemberId) {
-            alert("삭제 권한이 없습니다.");
-            return;
-        }
 		
 		if(window.confirm('삭제 하시겠습니까?')==false){
             return;
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded",function(){
         		console.log("success data.msgContents:"+data.msgContents);
                 if("1" == data.msgId){
                    alert(data.msgContents);
-                   moveToList();     
+                   moveToList();
                 }else{
                     alert(data.msgContents);
                 }
@@ -156,11 +156,8 @@ document.addEventListener("DOMContentLoaded",function(){
                 "boardSeq": boardSeq  
             },
             success:function(data){//통신 성공
-                console.log("success data:"+data);
-                console.log("data.length:"+data.length);
-                
-                let replyDiv = '';
-                document.getElementById("replySaveArea").innerHTML = "";                
+            	let replyDiv = '';
+                document.getElementById("replySaveArea").innerHTML = "";
                 if(0==data.length){
                 	console.log("댓글이 없습니다.");
                 	return;
