@@ -1,12 +1,15 @@
 package com.gaea.work.qna;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public interface QnaDao {
+	
+	 void deleteByCreatedDateBefore(Date date);
 	
 	int qnaCount() throws SQLException;
 	

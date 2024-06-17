@@ -1,6 +1,7 @@
 package com.gaea.work.qna;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -70,6 +71,12 @@ public class QnaDaoImpl implements QnaDao {
 	@Override
 	public int qnaCount() throws SQLException {
 		return sqlSessionTemplate.selectOne(NAMESPACE+DOT+"qnaCount");
+	}
+
+	@Override
+	public void deleteByCreatedDateBefore(Date date) {
+		sqlSessionTemplate.delete(NAMESPACE+DOT+"deleteByCreatedDateBefore", date);
+		
 	}
 
 }

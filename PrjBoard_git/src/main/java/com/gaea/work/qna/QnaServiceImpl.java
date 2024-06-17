@@ -1,6 +1,9 @@
 package com.gaea.work.qna;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +91,13 @@ public class QnaServiceImpl implements QnaService {
         pageVO.setEndPage(endPage);
         pageVO.setStartRow(startRow);
         return pageVO;
+    }
+
+    @Override
+    public void deleteOldQna() {
+        LocalDate sevenDaysAgo = LocalDate.now().minusDays(7);
+        Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        dao.deleteByCreatedDateBefore(thresholdDate);
     }
 
 }

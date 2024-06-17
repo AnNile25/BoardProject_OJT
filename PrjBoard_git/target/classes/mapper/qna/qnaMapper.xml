@@ -5,6 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.gaea.work.qna">
 
+	<delete id="deleteByCreatedDateBefore">
+		<![CDATA[
+		DELETE FROM board WHERE reg_dt < #{date}
+		 ]]>
+	</delete>
+
 	<sql id="searchKeyWord" >
 		<where>
 			<if test="searchKeyword != null and searchKeyword != ''">

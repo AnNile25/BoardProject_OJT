@@ -7,6 +7,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 public interface QnaService {
 	
+	void deleteOldQna();
+	
 	public PageVO pagingParam(int page) throws SQLException;
 	
 	public List<QnaVO> pagingList(int page) throws SQLException;

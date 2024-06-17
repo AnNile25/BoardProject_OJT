@@ -1,0 +1,38 @@
+<!-- applicationContext.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.gaea.work" />
+
+    <!-- Quartz Scheduler -->
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="deleteOldQnaJobDetail" />
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="deleteOldQnaTrigger" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- Job Detail -->
+    <bean id="deleteOldQnaJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="jobClass" value="com.gaea.work.quartz.DeleteOldQnaJob" />
+        <property name="durability" value="true" />
+    </bean>
+
+    <!-- Cron Trigger -->
+    <bean id="deleteOldQnaTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="deleteOldQnaJobDetail" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
+    </bean>
+
+</beans>
