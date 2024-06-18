@@ -23,33 +23,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="qnaCount" resultType="int">
         SELECT COUNT(*) FROM board
     </select>
-	
-	<select id="pagingList" parameterType="java.util.HashMap" resultType="QnaVO">
-	    <![CDATA[
-	    SELECT * FROM (
-	        SELECT iq.*, ROWNUM AS rnum
-	        FROM (
-	            SELECT
-	                board_seq,
-	                member_id,
-	                title,
-	                content,
-	                like_cnt,
-	                read_cnt,
-	                reg_dt,
-	                DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
-                      ,TO_CHAR(mod_dt,'HH24:MI')
-                      ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt
-	            FROM
-	                board
-	            ORDER BY mod_dt DESC
-	        ) iq
-	        WHERE ROWNUM <= #{end}
-	    )
-	    WHERE rnum >= #{start}
-	    ]]>
-	</select>
-
+    
+    <select id="retrieveArticle" parameterType="com.gaea.work.cmn.PagingVO" resultType="QnaVO">
+		SELECT * FROM (
+		    SELECT iq.*, ROWNUM AS rnum
+		    FROM (
+		        SELECT
+		            board_seq,
+		            member_id,
+		            title,
+		            content,
+		            like_cnt,
+		            read_cnt,
+		            reg_dt,
+		            DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
+		                  ,TO_CHAR(mod_dt,'HH24:MI')
+		                  ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt
+		        FROM
+		            board
+		        ORDER BY mod_dt DESC
+		    ) iq
+		)
+		WHERE rnum BETWEEN #{startRow} AND #{endRow}
+	</select>    
 
 	<update id="updateLikeCnt" parameterType="QnaVO">
 	    <![CDATA[
@@ -126,41 +122,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteArticle" parameterType="QnaVO">
 		DELETE FROM board WHERE board_seq = #{boardSeq}
 	</delete>
-	
-	<!-- 전체 게시물 조회 -->
-    <select id="retrieveArticle" parameterType="QnaVO" resultType="QnaVO">
-    <![CDATA[
-        SELECT * FROM (
-            SELECT 
-                board_seq as boardSeq,
-                member_id as memberId,
-                title,
-                content,
-                like_cnt as likeCnt,
-                read_cnt as readCnt,
-                DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
-                      ,TO_CHAR(mod_dt,'HH24:MI')
-                      ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt,
-                ROWNUM as rnum
-            FROM 
-                (SELECT 
-                    board_seq,
-                    member_id,
-                    title,
-                    content,
-                    like_cnt,
-                    read_cnt,
-                    mod_dt
-                FROM 
-                    board    ]]>
-                <include refid="searchKeyWord" /> <![CDATA[
-                ORDER BY 
-                    mod_dt DESC
-                ) 
-            WHERE ROWNUM <= #{limit}
-        )
-        WHERE rnum > #{start}
-    ]]>
-    </select>    
 		
 </mapper>

@@ -5,13 +5,13 @@ import java.util.List;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import com.gaea.work.cmn.PagingVO;
+
 public interface QnaService {
 	
+	int qnaQnaArticleCount() throws SQLException;
+	
 	void deleteOldQnaArticle();
-	
-	public PageVO pagingParam(int page) throws SQLException;
-	
-	public List<QnaVO> pagingList(int page) throws SQLException;
 	
 	public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
 	
@@ -24,6 +24,6 @@ public interface QnaService {
 	 
 	public int saveQnaArticle(QnaVO inVO) throws SQLException;
 	 
-	public List<QnaVO> retrieveQnaArticle(QnaVO inVO) throws SQLException;
+	public List<QnaVO> retrieveQnaArticle(PagingVO pagingVO) throws SQLException;
 
 }

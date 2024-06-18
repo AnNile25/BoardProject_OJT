@@ -110,20 +110,26 @@ function fn_search(){
 	    </table>
 	    
 	    <!-- 페이징 -->
-		<c:if test="${paging.page > 1}">
-		    <a href="${CP}/qna/retrieveQnaArticle?page=1">First</a>
-		    <a href="${CP}/qna/retrieveQnaArticle?page=${paging.page - 1}">Prev</a>
-		</c:if>
+	    <div style="display: block; text-align: center;">		
+			<c:if test="${paging.startPage != 1 }">
+				<a href="/qna/retrieveQnaArticle?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+			</c:if>
+			<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				<c:choose>
+					<c:when test="${p == paging.nowPage }">
+						<b>${p }</b>
+					</c:when>
+					<c:when test="${p != paging.nowPage }">
+						<a href="/qna/retrieveQnaArticle?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${paging.endPage != paging.lastPage}">
+				<a href="/qna/retrieveQnaArticle?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+			</c:if>
+		</div>
 		
-		<!-- 페이지 네비게이션 -->
-		<c:forEach var="i" begin="${paging.startPage}" end="${paging.endPage}">
-		    <a href="${CP}/qna/retrieveQnaArticle?page=${i}" class="<c:if test='${i == paging.page}'>active</c:if>">${i}</a>
-		</c:forEach>
 		
-		<c:if test="${paging.page < paging.maxPage}">
-		    <a href="${CP}/qna/retrieveQnaArticle?page=${paging.page + 1}">Next</a>
-		    <a href="${CP}/qna/retrieveQnaArticle?page=${paging.maxPage}">Last</a>
-		</c:if>
     <%-- 
 	    <!-- 검색[s] -->
 		<div class="card-header py-3">

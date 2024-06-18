@@ -7,9 +7,11 @@ import java.util.Map;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 
+import com.gaea.work.cmn.PagingVO;
+
 public interface QnaDao {
 	
-	 void deleteByCreatedDateBefore(Date date);
+	void deleteByCreatedDateBefore(Date date);
 	
 	int qnaCount() throws SQLException;
 	
@@ -38,6 +40,6 @@ public interface QnaDao {
 	
 	int saveArticle(QnaVO inVO) throws SQLException;
 	
-	List<QnaVO> retrieveArticle(QnaVO inVO) throws SQLException;
+	List<QnaVO> retrieveArticle(PagingVO pagingVO) throws SQLException;
 
 }

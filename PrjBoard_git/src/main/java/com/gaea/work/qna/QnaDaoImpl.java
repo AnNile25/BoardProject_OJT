@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.gaea.work.cmn.PagingVO;
+
 @Repository
 public class QnaDaoImpl implements QnaDao {
 	final String NAMESPACE = "com.gaea.work.qna";
@@ -39,8 +41,8 @@ public class QnaDaoImpl implements QnaDao {
 	}
 
 	@Override
-	public List<QnaVO> retrieveArticle(QnaVO inVO) throws SQLException {
-		return sqlSessionTemplate.selectList(NAMESPACE+DOT+"retrieveArticle", inVO);
+	public List<QnaVO> retrieveArticle(PagingVO pagingVO) throws SQLException {
+		return sqlSessionTemplate.selectList(NAMESPACE+DOT+"retrieveArticle", pagingVO);
 	}
 
 	@Override

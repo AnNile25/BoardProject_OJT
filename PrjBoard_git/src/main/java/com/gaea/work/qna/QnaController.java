@@ -1,7 +1,6 @@
 package com.gaea.work.qna;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gaea.work.cmn.PagingVO;
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.member.MemberVO;
@@ -42,14 +42,21 @@ public class QnaController  {
 	}
 	
 	@GetMapping("/retrieveQnaArticle")
-	public String retrieveQnaArticle(QnaVO inVO, @RequestParam(value = "page", required = false, defaultValue = "1") int page, Model model) throws SQLException {
-	    List<QnaVO> list = service.pagingList(page);
-	    PageVO pageVO = service.pagingParam(page);
-
-	    model.addAttribute("list", list);
-	    model.addAttribute("paging", pageVO);
-	    model.addAttribute("paramVO", inVO);
-
+	public String retrieveQnaArticle(PagingVO pagingVO, Model model, 
+			@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10")String cntPerPage) throws SQLException {
+		int total = service.qnaQnaArticleCount();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+	    model.addAttribute("paging", pagingVO);
+	    model.addAttribute("list", service.retrieveQnaArticle(pagingVO));
 	    return "qna/qna_list";
 	}
 

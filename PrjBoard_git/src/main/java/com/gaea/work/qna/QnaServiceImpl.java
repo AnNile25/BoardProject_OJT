@@ -4,25 +4,20 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.gaea.work.cmn.PagingVO;
+
 @Service
 public class QnaServiceImpl implements QnaService {
+	
     @Autowired
     QnaDao dao;
     
-    @Autowired
-    PageVO pageVO;
-    
-    final int PAGE_LIMIT = 10;
-    final int BLOCK_LIMIT = 5;
-
     public QnaServiceImpl() {}
 
     @Override
@@ -47,50 +42,14 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public List<QnaVO> retrieveQnaArticle(QnaVO inVO) throws SQLException {
-        return dao.retrieveArticle(inVO);
+    public List<QnaVO> retrieveQnaArticle(PagingVO pagingVO) throws SQLException {
+        return dao.retrieveArticle(pagingVO);
     }
+
 
     @Override
     public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
         return dao.selectOneArticle(inVO);
-    }
-
-    @Override
-    public List<QnaVO> pagingList(int page) throws SQLException {
-        if (page <= 0) {
-            page = 1;
-        }
-        int startRow = (page - 1) * PAGE_LIMIT + 1;
-        int endRow = page * PAGE_LIMIT;
-
-        Map<String, Integer> pagingParams = new HashMap<>();
-        pagingParams.put("start", startRow);
-        pagingParams.put("end", endRow);
-
-        return dao.pagingList(pagingParams);
-    }
-
-    @Override
-    public PageVO pagingParam(int page) throws SQLException {
-        if (page <= 0) {
-            page = 1;
-        }
-        int qnaCount = dao.qnaCount();
-        int maxPage = (int) (Math.ceil((double) qnaCount / PAGE_LIMIT));
-        int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
-        int endPage = startPage + BLOCK_LIMIT - 1;
-        if (endPage > maxPage) {
-            endPage = maxPage;
-        }
-        int startRow = (page - 1) * PAGE_LIMIT + 1;
-        PageVO pageVO = new PageVO();
-        pageVO.setPage(page);
-        pageVO.setMaxPage(maxPage);
-        pageVO.setStartPage(startPage);
-        pageVO.setEndPage(endPage);
-        pageVO.setStartRow(startRow);
-        return pageVO;
     }
 
     @Override
@@ -99,5 +58,10 @@ public class QnaServiceImpl implements QnaService {
         Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
         dao.deleteByCreatedDateBefore(thresholdDate);
     }
+
+	@Override
+	public int qnaQnaArticleCount() throws SQLException {
+		return dao.qnaCount();
+	}
 
 }
