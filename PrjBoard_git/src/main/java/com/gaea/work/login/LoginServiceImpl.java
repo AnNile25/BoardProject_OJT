@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.member.MemberService;
 import com.gaea.work.member.MemberVO;
 import com.google.gson.Gson;
 
@@ -16,14 +16,12 @@ import com.google.gson.Gson;
 public class LoginServiceImpl implements LoginService {
     @Autowired
     LoginDao dao;
+    
+    @Autowired
+    MemberService memberService;
 
     public LoginServiceImpl() {
     }
-
-	@Override
-	public MemberVO doSelectOne(MemberVO inVO) throws SQLException, EmptyResultDataAccessException {
-		return dao.selectOneMember(inVO);
-	}
 
 	@Override
     public int loginCheck(MemberVO inVO) throws SQLException {
@@ -70,7 +68,7 @@ public class LoginServiceImpl implements LoginService {
                 case 20:
                     return createJsonMessage("20", "비번을 확인 하세요.");
                 case 30:
-                    MemberVO outVO = doSelectOne(member);
+                    MemberVO outVO = memberService.selectOneMember(member);
                     message.setMsgId("30");
                     message.setMsgContents(outVO.getMemberName() + "님 반갑습니다.");
                     session.setAttribute("memberId", outVO.getMemberId());

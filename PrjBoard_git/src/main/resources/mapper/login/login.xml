@@ -4,33 +4,31 @@
 
  	<!-- idCheck -->    
     <select id="idCheck" parameterType="MemberVO" resultType="int">
-        SELECT COUNT(*) AS cnt
-		FROM member
-		WHERE member_id = #{memberId}
-    
+        SELECT 
+		    CASE 
+		        WHEN EXISTS (
+		            SELECT 1
+		            FROM member
+		            WHERE member_id = #{memberId}
+		        ) THEN 1
+		        ELSE 0
+		    END AS idExists
+		FROM dual
     </select>
     
     <!-- idPassCheck -->    
     <select id="idPassCheck" parameterType="MemberVO" resultType="int">
-        SELECT COUNT(*) AS cnt
-		FROM member
-		WHERE member_id = #{memberId}
-		AND password = #{password}
+        SELECT 
+		    CASE 
+		        WHEN EXISTS (
+		            SELECT 1
+		            FROM member
+		            WHERE member_id = #{memberId}
+		            AND password = #{password}
+		        ) THEN 1
+		        ELSE 0
+		    END AS idExists
+		FROM dual
     </select>
-    
-    <!-- login -->
-    <select id="selectOneMember" parameterType="MemberVO" resultType="MemberVO">
-        SELECT             
-             member_id  AS memberId,       
-             member_name AS memberName,
-             password,      
-             tel,       
-             nick_name AS nickName,         
-             email,         
-             TO_CHAR(join_dt,'yyyy-mm-dd HH24:MI:SS') AS joinDt     
-         FROM               
-             member          
-         WHERE member_id = #{memberId}     
-    </select> 
     
 </mapper>
