@@ -17,6 +17,12 @@
 			<a href="<c:url value='/qna/retrieveQnaArticle'/>">Q&A 게시판</a>
 			<a href="<c:url value='/login/loginView'/>">로그인</a>
 			<a href="<c:url value='/member/moveToReg'/>">회원가입</a>
+			<c:if test="${not empty sessionScope.memberId}">
+                <a href="<c:url value='/member/personalMemberInfo'/>">내 정보</a>
+            </c:if>
+            <c:if test="${not empty sessionScope.memberId}">
+                <a href="<c:url value='/login/logout'/>">로그아웃</a>
+            </c:if>
 		</li>
 	</ul> 
 </div>

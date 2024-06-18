@@ -12,6 +12,7 @@
 
 </style>
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
+<script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
 </head>
 <script type="text/javascript">
@@ -19,23 +20,139 @@ document.addEventListener("DOMContentLoaded",function(){
 	console.log("DOMContentLoaded");
 	
 	const moveToListBTN = document.querySelector("#moveToList");
-	const moveToModBTN 	= document.querySelector("#moveToMod");
+	const updateMemberBTN 	= document.querySelector("#updateMember");
 	const withdrawalMemberBTN = document.querySelector("#withdrawalMember");
 	
-	const memberId = document.querySelector("#memberId").value;
+	const memberId = document.querySelector("#memberId").innerText;
+    const memberNameInput = document.querySelector("#memberName");
+    const passwordInput = document.querySelector("#password");
+    const telInput = document.querySelector("#tel");
+    const nickNameInput = document.querySelector("#nickName");
+    const emailInput = document.querySelector("#email");
+    const addressInput = document.querySelector("#address");
 	
-	function moveToList(){
-    	window.location.href = "/member/retrieveMember";
-    }
+	const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
+	 let isNickNameChecked = false;
+	 let initialNickName = nickNameInput.value;
 	
+	 /* 게시글 목록 조회 */
 	moveToListBTN.addEventListener("click", function(e){
 		console.log("moveToListBTN click");
-		moveToList()
+		window.location.href = "/qna/retrieveQnaArticle";
+	});
+	 
+	withdrawalMemberBTN.addEventListener("click", function(e){
+		console.log("withdrawalMemberBTN click");
+		if(window.confirm('탈퇴 하시겠습니까?')==false){
+            return;
+        }
+		$.ajax({
+    		type: "GET",
+    		url:"/member/withdrawalMember",
+    		async:"true",
+    		dataType:"json",
+    		data:{
+    			"memberId": memberId
+    		},
+    		success:function(data){
+        		console.log("success data.msgId:"+data.msgId);
+        		console.log("success data.msgContents:"+data.msgContents);
+                if("1" == data.msgId){
+                   alert(data.msgContents);
+                   window.location.href = "/login/loginView";
+                }else{
+                    alert(data.msgContents);
+                }
+        	},
+        	error:function(data){
+        		console.log("error:"+data);
+        	}
+    	});
 	});
 	
-	moveToModBTN.addEventListener("click", function(e){
-		console.log("moveToModBTN click");
-		window.location.href = "/member/moveToMod?memberId=" + memberId;
+	 /* 닉네임 중복 체크 */
+	nickNameCheckBtn.addEventListener("click", function() {
+		const nickName = nickNameInput.value;
+        if (nickName === initialNickName) {
+            alert("닉네임이 변경되지 않았습니다.");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "${CP}/member/checkNickNameDuplicate",
+            async: true,
+            dataType: "json",
+            data: { nickName: nickName },
+            success: function(data) {
+                alert(data.msgContents);
+                isNickNameChecked = data.msgId === "1";
+                if (isNickNameChecked) {
+                    initialNickName = nickName;
+                }
+            },
+            error: function(data) {
+                console.log("error:", data);
+            }
+        });
+    });
+	
+	 /* 회원정보 수정 */
+	updateMemberBTN.addEventListener("click", function(e){
+		const memberId = document.querySelector("#memberId").innerText;
+        const memberName = memberNameInput.value;
+        const password = passwordInput.value;
+        const tel = telInput.value;
+        const nickName = nickNameInput.value;
+        const email = emailInput.value;
+        const address = addressInput.value;
+
+        if (eUtil.isEmpty(memberName) || eUtil.isEmpty(password) || eUtil.isEmpty(tel) ||
+                eUtil.isEmpty(nickName) || eUtil.isEmpty(email) || eUtil.isEmpty(address)) {
+                alert("모든 필드를 입력하세요.");
+                return;
+        }
+        if (nickName !== initialNickName && !isNickNameChecked) {
+            alert("닉네임 중복 체크를 해주세요.");
+            return;
+        }
+		if(window.confirm('수정사항을 저장하시겠습니까?')==false){
+            return;
+        }
+		$.ajax({
+    		type: "POST",
+    		url:"/member/updateMember",
+    		async:"true",
+    		dataType:"json",
+    		data:{
+    			"memberId": memberId,
+    			"memberName": memberName,
+    			"password": password,
+    			"tel": tel,
+    			"nickName": nickName,
+    			"email": email,
+    			"address": address
+    		},
+    		success:function(data){
+        		console.log("success data.msgId:"+data.msgId);
+        		console.log("success data.msgContents:"+data.msgContents);
+                if("1" == data.msgId){
+                   alert(data.msgContents);
+                   return;
+                }else{
+                    alert(data.msgContents);
+                }
+        	},
+        	error:function(data){
+        		console.log("error:"+data);
+        	},
+            complete:function(data){
+                console.log("complete:"+data);
+            }
+    	});
+	});
+	
+	withdrawalMemberBTN.addEventListener("click", function(e){
+		
 	});
 	
 });//-- DOMContentLoaded
@@ -46,8 +163,8 @@ document.addEventListener("DOMContentLoaded",function(){
     <!-- 버튼 -->
     <div class="row justify-content-end">
       <div class="col-auto">
-        <input type="button" value="목록" class="button" id="moveToList">
-        <input type="button" value="수정" class="button" id="moveToMod">
+        <input type="button" value="게시판" class="button" id="moveToList">
+        <input type="button" value="저장" class="button" id="updateMember">
         <input type="button" value="탈퇴" class="button" id="withdrawalMember">
       </div>
     </div>
@@ -55,32 +172,38 @@ document.addEventListener("DOMContentLoaded",function(){
     <!-- form -->
     <form action="#" name="regFrm" id="regFrm">
       <div class="form-group">
-        <h1 id="memberId" class="form-label">${vo.memberId}</h1>
+        <h1 id="memberId" class="form-label">${memberId}</h1>
       </div>
 
       <div class="form-group">
         <label for="memberName" class="form-label">이름</label>
-        <input type="text" id="memberName" name="memberName" value="${vo.memberName}" class="form-control readonly-input" readonly>
+        <input type="text" id="memberName" name="memberName" value="${vo.memberName}" class="form-control" >
       </div>
 
       <div class="form-group">
         <label for="password" class="form-label">비밀번호</label>
-        <input type="text" id="password" name="password" value="${vo.password}" class="form-control readonly-input" readonly>
+        <input type="text" id="password" name="password" value="${vo.password}" class="form-control" >
       </div>
 
       <div class="form-group">
-        <label for="tel" class="form-label">전화번호</label>
-        <input type="text" id="tel" name="tel" value="010${vo.tel}" class="form-control readonly-input" readonly>
+        <label for="tel" class="form-label">전화번호</label> 
+        <input type="text" id="tel" name="tel" value="${vo.tel}" class="form-control" >
       </div>
 
       <div class="form-group">
         <label for="nickName" class="form-label">닉네임</label>
-        <input type="text" id="nickName" name="nickName" value="${vo.nickName}" class="form-control readonly-input" readonly>
+        <input type="text" id="nickName" name="nickName" value="${vo.nickName}" class="form-control" >
+        <button type="button" id="nickNameCheckBtn">중복확인</button>
       </div>
 
       <div class="form-group">
         <label for="email" class="form-label">이메일</label>
-        <input type="text" id="email" name="email" value="${vo.email}" class="form-control readonly-input" readonly>
+        <input type="text" id="email" name="email" value="${vo.email}" class="form-control" >
+      </div>
+      
+      <div class="form-group">
+        <label for="address" class="form-label">주소</label>
+        <input type="text" id="address" name="address" value="${vo.address}" class="form-control" >
       </div>
     </form>
   </div>

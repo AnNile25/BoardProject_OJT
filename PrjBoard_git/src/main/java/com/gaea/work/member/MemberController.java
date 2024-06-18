@@ -45,7 +45,7 @@ public class MemberController {
 	@ResponseBody
 	public SuccessMessageVO checkIdDuplicate(@RequestParam String memberId) throws SQLException {
 	    // 유효성 검사
-	    String validationMessage = validationService.validateField(memberId, "error.id.required", "^[a-zA-Z0-9]*$", "error.id.invalid", null);
+	    String validationMessage = validationService.validateField(memberId, "error.id.required", "^[a-zA-Z0-9]{1,20}$", "error.id.invalid", null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
@@ -60,7 +60,7 @@ public class MemberController {
 	@ResponseBody
 	public SuccessMessageVO checkNickNameDuplicate(@RequestParam String nickName) throws SQLException {
 	    // 유효성 검사
-	    String validationMessage = validationService.validateField(nickName, "error.nickname.required", "^[가-힣a-zA-Z0-9]*$", "error.nickname.invalid", null);
+	    String validationMessage = validationService.validateField(nickName, "error.nickname.required", "^[가-힣a-zA-Z0-9]{1,15}$", "error.nickname.invalid", null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
@@ -86,28 +86,23 @@ public class MemberController {
 	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
-	/* 회원 수정 페이지 이동 */
-	@GetMapping(value = "/moveToMod")
-	public String moveToMod(MemberVO inVO, HttpSession session, Model model) throws SQLException {
-		MemberVO outVO = service.selectOneMember(inVO);
-		model.addAttribute("vo", outVO);
-		model.addAttribute("memberId", outVO.getMemberId());
-		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
-			model.addAttribute("errorMessage",  messageSource.getMessage("error.permission", null, Locale.getDefault()));
-			return "member/member_mng";
-		}
-		return "member/member_mod";
-	}
-
 	@GetMapping(value = "/moveToReg")
 	public String moveToReg() throws SQLException {
 		return "member/member_reg";
 	}
 
 	@GetMapping(value = "/personalMemberInfo")
-	public String personalMemberInfo(MemberVO inVO, Model model) throws SQLException {
+	public String personalMemberInfo(Model model, HttpSession session) throws SQLException {
+		MemberVO inVO = new MemberVO();
+		
+		if (!sessionService.checkAndSetMemberId(session, inVO)) {
+			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
+	        return errorMessage;
+	    }
+		
 		MemberVO outVO = service.selectOneMember(inVO);
 		model.addAttribute("vo", outVO);
+		model.addAttribute("memberId", outVO.memberId);
 
 		return "member/member_mng";
 	}
@@ -132,20 +127,15 @@ public class MemberController {
 		}
 
 		int flag = service.withdrawalMember(inVO);
-		String message = (flag == 1) ?
-				messageSource.getMessage("success.delete", null, Locale.getDefault()) :
-			    messageSource.getMessage("error.delete", null, Locale.getDefault());
+		String message;
+		if (flag == 1) {
+	        session.invalidate();
+	        message = messageSource.getMessage("success.delete", null, Locale.getDefault());
+	    } else {
+	        message = messageSource.getMessage("error.delete", null, Locale.getDefault());
+	    }
 
 		return new SuccessMessageVO(String.valueOf(flag), message);
-//		String sessionMemberId = (String) session.getAttribute("memberId");
-//		if (sessionMemberId == null || !sessionMemberId.equals( inVO.getMemberId())) {
-//			return new SuccessMessageVO("0", "삭제 권한이 없습니다.");
-//		}
-//		
-//		int flag = service.withdrawalMember(inVO);
-//		String message = (flag == 1) ? "삭제 되었습니다." : "삭제 실패.";
-//		SuccessMessageVO messageVO = new SuccessMessageVO(String.valueOf(flag), message);
-//		return messageVO;
 	}
 
 	@PostMapping(value = "/updateMember", produces = "application/json;charset=UTF-8")

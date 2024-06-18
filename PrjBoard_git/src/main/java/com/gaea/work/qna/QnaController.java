@@ -74,7 +74,7 @@ public class QnaController  {
 
 	@PostMapping(value = "/updateQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateQnaArticle(QnaVO inVO, HttpSession sesion) throws SQLException {
+	public SuccessMessageVO updateQnaArticle(QnaVO inVO) throws SQLException {
 		int flag = service.updateQnaArticle(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("success.update", null, Locale.getDefault()):

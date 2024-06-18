@@ -20,6 +20,7 @@ public class MemberVO {
 	public String nickName;   //닉네임
 	public String email;	  //이메일
 	public String joinDt;	  //가입일
+	public String address;
 	
 	public String no;
 	

@@ -17,23 +17,24 @@ public class MemberValidationService {
     MessageSource messageSource;
     
     public String validateMember(MemberVO inVO) throws SQLException {
-        String errorMessage = validateField(inVO.getMemberId(), "error.id.required", "^[a-zA-Z0-9]*$", "error.id.invalid", this::isIdDuplicate);
+        String errorMessage = validateField(inVO.getMemberId(), "error.id.required", "^[a-zA-Z0-9]{1,20}$", "error.id.invalid", this::isIdDuplicate);
         if (errorMessage != null) return createJsonMessage("0", messageSource.getMessage(errorMessage, null, null));
 
-        errorMessage = validateField(inVO.getMemberName(), "error.name.required", "^[가-힣a-zA-Z]*$", "error.name.invalid", null);
+        errorMessage = validateField(inVO.getMemberName(), "error.name.required", "^[가-힣a-zA-Z]{1,15}$", "error.name.invalid", null);
         if (errorMessage != null) return createJsonMessage("0", messageSource.getMessage(errorMessage, null, null));
 
-        errorMessage = validateField(inVO.getPassword(), "error.password.required", null, null, null);
+        errorMessage = validateField(inVO.getPassword(), "error.password.required", "^.{1,20}$", "error.password.length", null);
         if (errorMessage != null) return createJsonMessage("0", messageSource.getMessage(errorMessage, null, null));
 
         errorMessage = validateField(String.valueOf(inVO.getTel()), "error.tel.required", "^\\d{8}$", "error.tel.invalid", null);
         if (errorMessage != null) return createJsonMessage("0", messageSource.getMessage(errorMessage, null, null));
 
-        errorMessage = validateField(inVO.getNickName(), "error.nickname.required", "^[가-힣a-zA-Z0-9]*$", "error.nickname.invalid", this::isNickNameDuplicate);
+        errorMessage = validateField(inVO.getNickName(), "error.nickname.required", "^[가-힣a-zA-Z0-9]{1,10}$", "error.nickname.invalid", this::isNickNameDuplicate);
         if (errorMessage != null) return createJsonMessage("0", messageSource.getMessage(errorMessage, null, null));
 
-        errorMessage = validateField(inVO.getEmail(), "error.email.required", null, null, this::isEmailDuplicate);
+        errorMessage = validateField(inVO.getEmail(), "error.email.required", "^[a-zA-Z0-9@.]{1,50}$", "error.email.invalid", this::isEmailDuplicate);
         if (errorMessage != null) return createJsonMessage("0", messageSource.getMessage(errorMessage, null, null));
+
 
         return createJsonMessage("1", messageSource.getMessage("success.validation", null, null));
     }

@@ -94,7 +94,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    tel,
 		    nick_name,
 		    email,
-		    join_dt
+		    join_dt,
+		    address
 		FROM
 		    member
 		WHERE
@@ -114,7 +115,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    password 	= #{password},
 		    tel 		= #{tel},
 		    nick_name 	= #{nickName},
-		    email 		= #{email}
+		    email 		= #{email},
+		    address = #{address}
 		WHERE
 		    member_id 	= #{memberId}
 	</update>
@@ -128,7 +130,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    tel,
 		    nick_name,
 		    email,
-		    join_dt
+		    join_dt,
+		    address
 		) VALUES (
 		    #{memberId},
 		    #{memberName},
@@ -136,7 +139,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    #{tel},
 		    #{nickName},
 		    #{email},
-		    SYSDATE
+		    SYSDATE,
+		     #{address}
 		)
 	</insert>
 	
