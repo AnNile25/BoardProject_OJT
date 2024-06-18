@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.member.MemberVO;
+import com.gaea.work.validation.QnaValidationService;
 
 @Controller
 @RequestMapping("qna")
@@ -30,6 +31,9 @@ public class QnaController  {
 	
 	@Autowired
 	SessionCheckService sessionService;
+	
+	@Autowired
+	QnaValidationService validationService;
 	
 	@Autowired
 	MessageSource messageSource;
@@ -75,6 +79,10 @@ public class QnaController  {
 	@PostMapping(value = "/updateQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO updateQnaArticle(QnaVO inVO) throws SQLException {
+		SuccessMessageVO validationMessage = validationService.validateQna(inVO);
+		if ("0".equals(validationMessage.getMsgId())) {
+	        return validationMessage;
+	    }
 		int flag = service.updateQnaArticle(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("success.update", null, Locale.getDefault()):
@@ -98,6 +106,11 @@ public class QnaController  {
 	@ResponseBody
 	public SuccessMessageVO saveQnaArticle(QnaVO inVO, @RequestParam String memberId) throws SQLException {
 		inVO.setMemberId(memberId);
+		
+		SuccessMessageVO validationResult = validationService.validateQna(inVO);
+		if (validationResult != null && "0".equals(validationResult.getMsgId())) {
+	        return validationResult;
+	    }
 
 		int flag = service.saveQnaArticle(inVO);
 		String message = (flag == 1) ? 

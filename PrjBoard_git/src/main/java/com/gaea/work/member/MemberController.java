@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.login.SessionCheckService;
+import com.gaea.work.validation.MemberValidationService;
 
 @Controller
 @RequestMapping("member")
@@ -44,13 +45,11 @@ public class MemberController {
 	@PostMapping(value = "/checkIdDuplicate", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO checkIdDuplicate(@RequestParam String memberId) throws SQLException {
-	    // 유효성 검사
 	    String validationMessage = validationService.validateField(memberId, "error.id.required", "^[a-zA-Z0-9]{1,20}$", "error.id.invalid", null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
-	    // 중복 체크
 	    boolean isDuplicate = validationService.isIdDuplicate(memberId);
 	    String message = isDuplicate ? "error.id.duplicate" : "success.id.available";
 	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
@@ -92,18 +91,13 @@ public class MemberController {
 	}
 
 	@GetMapping(value = "/personalMemberInfo")
-	public String personalMemberInfo(Model model, HttpSession session) throws SQLException {
-		MemberVO inVO = new MemberVO();
-		
+	public String personalMemberInfo(MemberVO inVO, Model model, HttpSession session) throws SQLException {
 		if (!sessionService.checkAndSetMemberId(session, inVO)) {
-			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
-	        return errorMessage;
-	    }
-		
+			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
+			return "login/login";
+		}
 		MemberVO outVO = service.selectOneMember(inVO);
 		model.addAttribute("vo", outVO);
-		model.addAttribute("memberId", outVO.memberId);
-
 		return "member/member_mng";
 	}
 
@@ -140,7 +134,7 @@ public class MemberController {
 
 	@PostMapping(value = "/updateMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateMember(MemberVO inVO) throws SQLException {
+	public SuccessMessageVO updateMember(MemberVO inVO) throws SQLException {	    
 		int flag = service.updateMember(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("success.update", null, Locale.getDefault()):
@@ -150,20 +144,20 @@ public class MemberController {
 	
 	@PostMapping(value = "/joinMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String joinMember(MemberVO inVO) throws SQLException {
+	public SuccessMessageVO joinMember(MemberVO inVO) throws SQLException {
 	    logger.info("회원가입 시도:" + inVO);
 
-	    // Validation
-	    String validationResult = validationService.validateMember(inVO);
-	    if (!validationResult.contains("\"msgId\":\"1\"")) {
+	    SuccessMessageVO validationResult = validationService.validateMember(inVO);
+	    if (validationResult != null && "0".equals(validationResult.getMsgId())) {
 	        logger.info("회원가입 실패 - 유효성 검사 실패: " + validationResult);
 	        return validationResult;
 	    }
 
 	    int flag = service.joinMember(inVO);
-	    String message = (flag == 1) ? "success.join" : "error.join";
-	    String result = validationService.createJsonMessage(String.valueOf(flag), messageSource.getMessage(message, null, null));
-
+	    String message = (flag == 1) ? 
+	    		messageSource.getMessage("success.join", null, Locale.getDefault()):
+				messageSource.getMessage("error.join", null, Locale.getDefault());
+	    SuccessMessageVO result = new SuccessMessageVO(String.valueOf(flag), message);
 	    logger.info("회원가입 결과: " + result);
 	    return result;
 	}

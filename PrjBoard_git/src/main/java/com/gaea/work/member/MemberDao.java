@@ -11,7 +11,7 @@ public interface MemberDao {
 
     int emailDuplicateCheck(MemberVO inVO) throws SQLException;
 	
-	// 기본 CRUD	
+	// CRUD	
 	int updateMember(MemberVO inVO) throws SQLException;
 	
 	int deleteMember(MemberVO inVO) throws SQLException;

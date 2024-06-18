@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const telInput = document.querySelector("#tel");
     const nickNameInput = document.querySelector("#nickName");
     const emailInput = document.querySelector("#email");
+    const addressInput = document.querySelector("#address");
     
     const memberIdCheckBtn = document.querySelector("#memberIdCheckBtn");
     const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
@@ -95,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const tel = telInput.value;
         const nickName = nickNameInput.value;
         const email = emailInput.value;
+        const address = addressInput.value;
 
         if (eUtil.isEmpty(memberId) || eUtil.isEmpty(memberName) || eUtil.isEmpty(password) ||
                 eUtil.isEmpty(nickName) || eUtil.isEmpty(tel) || eUtil.isEmpty(email)) {
@@ -130,7 +132,8 @@ document.addEventListener("DOMContentLoaded", function(){
                 "password": password,
                 "tel": tel,
                 "nickName": nickName,
-                "email": email
+                "email": email,
+                "address": address
             },
             success: function(data) {
                 console.log("data.msgId:", data.msgId);
@@ -202,6 +205,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 <label for="email">이메일</label>
                 <input type="email" id="email" name="email" class="form-control" />
                 <button type="button" id="emailCheckBtn">중복확인</button>
+            </div>
+            <div class="form-group">
+                <label for="address">주소</label>
+                <input type="text" id="address" name="address" class="form-control" />
             </div>
             <div class="form-group">
                 <button type="button" class="button" id="saveMember">가입하기</button>

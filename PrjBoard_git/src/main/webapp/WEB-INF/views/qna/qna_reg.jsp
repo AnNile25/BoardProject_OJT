@@ -30,19 +30,7 @@ document.addEventListener("DOMContentLoaded",function(){
 		console.log("memberId:"+memberId);
 		console.log("title:"+title);
 		console.log("content:"+content);
-		
-		if(eUtil.isEmpty(title) == true){
-			alert("제목을 입력하세요.")
-			regForm.title.focus();
-			return;
-		}
-		
-		if(eUtil.isEmpty(content) == true){
-            alert("내용을 입력하세요.")
-            regForm.content.focus();
-            return;
-        }
-		
+				
 		if(window.confirm("등록 하시겠습니까?")==false){
 			return;
 		}

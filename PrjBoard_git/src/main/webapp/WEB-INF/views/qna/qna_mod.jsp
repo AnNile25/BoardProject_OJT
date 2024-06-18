@@ -53,19 +53,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 		const title 	= document.querySelector("#title").value;
 		const content 	= document.querySelector("#content").value; 
-		
-		if(eUtil.isEmpty(title) == true){
-            alert('제목을 입력 하세요.');
-            regForm.title.focus();
-            return;  
-        }
-		
-		if (eUtil.isEmpty(content) == true) {
-            alert('내용을 입력 하세요.');
-            regForm.content.focus();
-            return;
-        }
-		
+				
 		if(window.confirm('수정 하시겠습니까?')==false){
             return;
         }

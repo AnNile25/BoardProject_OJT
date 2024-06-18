@@ -28,13 +28,9 @@ document.addEventListener("DOMContentLoaded",function(){
     const passwordInput = document.querySelector("#password");
     const telInput = document.querySelector("#tel");
     const nickNameInput = document.querySelector("#nickName");
-    const emailInput = document.querySelector("#email");
+    const emailInput = document.querySelector("#email"); 
     const addressInput = document.querySelector("#address");
-	
-	const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
-	 let isNickNameChecked = false;
-	 let initialNickName = nickNameInput.value;
-	
+    
 	 /* 게시글 목록 조회 */
 	moveToListBTN.addEventListener("click", function(e){
 		console.log("moveToListBTN click");
@@ -70,51 +66,19 @@ document.addEventListener("DOMContentLoaded",function(){
     	});
 	});
 	
-	 /* 닉네임 중복 체크 */
-	nickNameCheckBtn.addEventListener("click", function() {
-		const nickName = nickNameInput.value;
-        if (nickName === initialNickName) {
-            alert("닉네임이 변경되지 않았습니다.");
-            return;
-        }
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/checkNickNameDuplicate",
-            async: true,
-            dataType: "json",
-            data: { nickName: nickName },
-            success: function(data) {
-                alert(data.msgContents);
-                isNickNameChecked = data.msgId === "1";
-                if (isNickNameChecked) {
-                    initialNickName = nickName;
-                }
-            },
-            error: function(data) {
-                console.log("error:", data);
-            }
-        });
-    });
-	
 	 /* 회원정보 수정 */
 	updateMemberBTN.addEventListener("click", function(e){
 		const memberId = document.querySelector("#memberId").innerText;
         const memberName = memberNameInput.value;
         const password = passwordInput.value;
         const tel = telInput.value;
-        const nickName = nickNameInput.value;
-        const email = emailInput.value;
         const address = addressInput.value;
 
-        if (eUtil.isEmpty(memberName) || eUtil.isEmpty(password) || eUtil.isEmpty(tel) ||
-                eUtil.isEmpty(nickName) || eUtil.isEmpty(email) || eUtil.isEmpty(address)) {
+        if (eUtil.isEmpty(memberName) || eUtil.isEmpty(password) || eUtil.isEmpty(tel) |  eUtil.isEmpty(address)) {
                 alert("모든 필드를 입력하세요.");
                 return;
         }
-        if (nickName !== initialNickName && !isNickNameChecked) {
-            alert("닉네임 중복 체크를 해주세요.");
-            return;
-        }
+        
 		if(window.confirm('수정사항을 저장하시겠습니까?')==false){
             return;
         }
@@ -128,8 +92,6 @@ document.addEventListener("DOMContentLoaded",function(){
     			"memberName": memberName,
     			"password": password,
     			"tel": tel,
-    			"nickName": nickName,
-    			"email": email,
     			"address": address
     		},
     		success:function(data){
@@ -149,10 +111,6 @@ document.addEventListener("DOMContentLoaded",function(){
                 console.log("complete:"+data);
             }
     	});
-	});
-	
-	withdrawalMemberBTN.addEventListener("click", function(e){
-		
 	});
 	
 });//-- DOMContentLoaded
@@ -189,18 +147,17 @@ document.addEventListener("DOMContentLoaded",function(){
         <label for="tel" class="form-label">전화번호</label> 
         <input type="text" id="tel" name="tel" value="${vo.tel}" class="form-control" >
       </div>
-
+      
       <div class="form-group">
-        <label for="nickName" class="form-label">닉네임</label>
-        <input type="text" id="nickName" name="nickName" value="${vo.nickName}" class="form-control" >
-        <button type="button" id="nickNameCheckBtn">중복확인</button>
-      </div>
-
-      <div class="form-group">
-        <label for="email" class="form-label">이메일</label>
-        <input type="text" id="email" name="email" value="${vo.email}" class="form-control" >
+        <label for="nickName" class="form-label">닉네임</label> 
+       <input type="text" id="nickName" name="nickName" value="${vo.nickName}" class="form-control"  readonly>
       </div>
       
+      <div class="form-group">
+        <label for="email" class="form-label">전화번호</label> 
+       <input type="text" id="email" name="email" value="${vo.email}" class="form-control" readonly >
+      </div>
+
       <div class="form-group">
         <label for="address" class="form-label">주소</label>
         <input type="text" id="address" name="address" value="${vo.address}" class="form-control" >

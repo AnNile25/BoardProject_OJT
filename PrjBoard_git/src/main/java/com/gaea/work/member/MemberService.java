@@ -7,7 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 public interface MemberService {	
 		
-	// 기본 CRUD	
 	int updateMember(MemberVO inVO) throws SQLException;
 	
 	int withdrawalMember(MemberVO inVO) throws SQLException;
