@@ -19,7 +19,7 @@
 document.addEventListener("DOMContentLoaded",function(){
 	console.log("DOMContentLoaded"); 
 	
-	const moveToRegBTN = document.querySelector("#moveToReg");//등록 버튼
+	const viewQnaArticleRegBTN = document.querySelector("#viewQnaArticleReg");//등록 버튼
 	const rows = document.querySelectorAll("#boardTable>tbody>tr");
 	
 	// 에러 메시지 처리
@@ -36,13 +36,13 @@ document.addEventListener("DOMContentLoaded",function(){
 			const boardSeq = cells[7].innerText; //게시글 seq 받기
 			console.log('boardSeq:' + boardSeq);
 		    
-			window.location.href = "/qna/selectOneQna?boardSeq=" + boardSeq;
+			window.location.href = "/qna/viewQnaArticleDetail?boardSeq=" + boardSeq;
 		});
 	});
 	
-	moveToRegBTN.addEventListener("click", function(e) {
-		console.log("moveToRegBTN click");
-		window.location.href = "${CP}/qna/moveToReg"
+	viewQnaArticleRegBTN.addEventListener("click", function(e) {
+		console.log("viewQnaArticleRegBTN click");
+		window.location.href = "${CP}/qna/viewQnaArticleReg"
 	});
 	
 });//--DOMContentLoaded
@@ -68,7 +68,7 @@ function fn_search(){
 	    
 	    <!-- 버튼 -->
 		<div style="margin-bottom:10px">
-			<input type="button" value="글쓰기" class="button" id="moveToReg">
+			<input type="button" value="글쓰기" class="button" id="viewQnaArticleReg">
 		</div>
 	    
 	    <!-- 게시글 table -->

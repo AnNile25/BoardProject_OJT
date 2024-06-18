@@ -7,11 +7,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 public interface MemberService {	
 		
-	int updateMember(MemberVO inVO) throws SQLException;
+	int updateMemberInfo(MemberVO inVO) throws SQLException;
 	
 	int withdrawalMember(MemberVO inVO) throws SQLException;
 	
-	MemberVO selectOneMember(MemberVO inVO) throws SQLException, EmptyResultDataAccessException;
+	MemberVO viewMemberDetail(MemberVO inVO) throws SQLException, EmptyResultDataAccessException;
 	
 	int joinMember(MemberVO inVO) throws SQLException;
 	

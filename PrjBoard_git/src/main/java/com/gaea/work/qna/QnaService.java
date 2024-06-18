@@ -7,20 +7,20 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 public interface QnaService {
 	
-	void deleteOldQna();
+	void deleteOldQnaArticle();
 	
 	public PageVO pagingParam(int page) throws SQLException;
 	
 	public List<QnaVO> pagingList(int page) throws SQLException;
 	
-	public QnaVO moveToMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
+	public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
 	
-	// 기본 CRUD	
+	// CRUD	
 	public int updateQnaArticle(QnaVO inVO) throws SQLException;
 	 
 	public int deleteQnaArticle(QnaVO inVO) throws SQLException;
 	 
-	public QnaVO selectOneQnaArticle(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
+	public QnaVO viewQnaArticleDetail(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
 	 
 	public int saveQnaArticle(QnaVO inVO) throws SQLException;
 	 

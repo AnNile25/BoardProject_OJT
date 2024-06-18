@@ -16,7 +16,7 @@ public class DeleteOldQnaJob implements Job {
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		service.deleteOldQna();
+		service.deleteOldQnaArticle();
 	}
 
 }

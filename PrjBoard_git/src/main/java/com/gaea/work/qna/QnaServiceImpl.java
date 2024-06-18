@@ -36,7 +36,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public QnaVO selectOneQnaArticle(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
+    public QnaVO viewQnaArticleDetail(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
     	dao.updateReadCnt(inVO);
         return dao.selectOneArticle(inVO);
     }
@@ -52,7 +52,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public QnaVO moveToMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
+    public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
         return dao.selectOneArticle(inVO);
     }
 
@@ -94,7 +94,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public void deleteOldQna() {
+    public void deleteOldQnaArticle() {
         LocalDate sevenDaysAgo = LocalDate.now().minusDays(7);
         Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
         dao.deleteByCreatedDateBefore(thresholdDate);

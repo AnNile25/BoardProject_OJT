@@ -15,7 +15,7 @@
 document.addEventListener("DOMContentLoaded",function(){
 	console.log("DOMContentLoaded");
 	
-	const moveToListBTN	 = document.querySelector("#moveToList");
+	const retrieveQnaArticleBTN	 = document.querySelector("#retrieveQnaArticle");
 	const saveArticleBTN =  document.querySelector("#saveArticle");
 	const regForm        = document.querySelector("#regFrm");
 	
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 
                 if('1'==data.msgId){
                 	alert(data.msgContents);
-                	moveToListFun();
+                	retrieveQnaArticleFun();
                 }else{
                 	alert(data.msgContents);
                 }
@@ -68,12 +68,12 @@ document.addEventListener("DOMContentLoaded",function(){
 	});
 	
 	/* 목록 이벤트 */
-	moveToListBTN.addEventListener("click", function(e){
-		console.log("moveToListBTN click");
-		moveToListFun();
+	retrieveQnaArticleBTN.addEventListener("click", function(e){
+		console.log("retrieveQnaArticleBTN click");
+		retrieveQnaArticleFun();
 	});
 	
-	function moveToListFun(){
+	function retrieveQnaArticleFun(){
 		window.location.href = "/qna/retrieveQnaArticle";
 	}
 });
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded",function(){
     <!-- 버튼 -->
     <div class="row justify-content-end">
         <div class="col-auto" style="margin-bottom: 10px;">
-            <input type="button" value="목록" class="button" id="moveToList">
+            <input type="button" value="목록" class="button" id="retrieveQnaArticle">
             <input type="button" value="등록" class="button" id="saveArticle">
         </div>
     </div>

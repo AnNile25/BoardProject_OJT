@@ -30,21 +30,21 @@
 document.addEventListener("DOMContentLoaded",function(){ 
 	console.log("DOMContentLoaded");
 	
-	const moveToListBTN 	= document.querySelector("#moveToList");
+	const retrieveQnaArticleBTN 	= document.querySelector("#retrieveQnaArticle");
 	const updateArticleBTN 	= document.querySelector("#updateArticle");
 	const deleteArticleBTN 	= document.querySelector("#deleteArticle");
 	
 	const boardSeq = document.querySelector("#boardSeq").value;
 	const regForm       = document.querySelector("#regFrm");
 	
-	function moveToList(){
+	function retrieveQnaArticle(){
     	window.location.href = "/qna/retrieveQnaArticle";
     }
 	
 	/* 목록으로 돌아가기 */
-	moveToListBTN.addEventListener("click", function(e){
-		console.log("moveToListBTN click");
-		moveToList()
+	retrieveQnaArticleBTN.addEventListener("click", function(e){
+		console.log("retrieveQnaArticleBTN click");
+		retrieveQnaArticle()
 	});
 	
 	/* 수정 이벤트 */
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded",function(){
         		console.log("success data.msgContents:"+data.msgContents);
                 if("1" == data.msgId){
                    alert(data.msgContents);
-                   moveToList();     
+                   retrieveQnaArticle();     
                 }else{
                     alert(data.msgContents);
                 }
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded",function(){
         		console.log("success data.msgContents:"+data.msgContents);
                 if("1" == data.msgId){
                    alert(data.msgContents);
-                   moveToList();     
+                   retrieveQnaArticle();     
                 }else{
                     alert(data.msgContents);
                 }
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	    <!-- 버튼 -->
 	    <div class="row justify-content-end">
 	        <div class="col-auto">
-	            <input type="button" value="목록" class="button" id="moveToList">
+	            <input type="button" value="목록" class="button" id="retrieveQnaArticle">
 	            <input type="button" value="수정" class="button" id="updateArticle">
 	            <input type="button" value="삭제" class="button" id="deleteArticle">
 	        </div>

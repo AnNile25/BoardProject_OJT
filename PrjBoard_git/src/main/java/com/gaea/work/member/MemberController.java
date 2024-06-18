@@ -42,9 +42,9 @@ public class MemberController {
 	public MemberController() {
 	}
 	
-	@PostMapping(value = "/checkIdDuplicate", produces = "application/json;charset=UTF-8")
+	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO checkIdDuplicate(@RequestParam String memberId) throws SQLException {
+	public SuccessMessageVO checkMemberIdDuplicate(@RequestParam String memberId) throws SQLException {
 	    String validationMessage = validationService.validateField(memberId, "error.id.required", "^[a-zA-Z0-9]{1,20}$", "error.id.invalid", null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
@@ -85,8 +85,8 @@ public class MemberController {
 	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
-	@GetMapping(value = "/moveToReg")
-	public String moveToReg() throws SQLException {
+	@GetMapping(value = "/viewJoinMember")
+	public String viewJoinMember() throws SQLException {
 		return "member/member_reg";
 	}
 
@@ -96,7 +96,7 @@ public class MemberController {
 			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
-		MemberVO outVO = service.selectOneMember(inVO);
+		MemberVO outVO = service.viewMemberDetail(inVO);
 		model.addAttribute("vo", outVO);
 		return "member/member_mng";
 	}
@@ -114,7 +114,7 @@ public class MemberController {
 	@GetMapping(value = "/withdrawalMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO withdrawalMember(MemberVO inVO, HttpSession session) throws SQLException {
-		MemberVO outVO = service.selectOneMember(inVO);
+		MemberVO outVO = service.viewMemberDetail(inVO);
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
 			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
 	        return new SuccessMessageVO("0", errorMessage);
@@ -132,10 +132,10 @@ public class MemberController {
 		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
-	@PostMapping(value = "/updateMember", produces = "application/json;charset=UTF-8")
+	@PostMapping(value = "/updateMemberInfo", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateMember(MemberVO inVO) throws SQLException {	    
-		int flag = service.updateMember(inVO);
+	public SuccessMessageVO updateMemberInfo(MemberVO inVO) throws SQLException {	    
+		int flag = service.updateMemberInfo(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("success.update", null, Locale.getDefault()):
 			    messageSource.getMessage("error.update", null, Locale.getDefault());

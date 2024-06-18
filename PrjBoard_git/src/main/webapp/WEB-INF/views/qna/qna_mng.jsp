@@ -36,8 +36,8 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	const sessionMemberId = '${sessionScope.memberId}';
 	
-	const moveToListBTN = document.querySelector("#moveToList");
-	const moveToModBTN 	 = document.querySelector("#moveToMod");
+	const retrieveQnaArticleBTN = document.querySelector("#retrieveQnaArticle");
+	const viewQnaArticleModBTN 	 = document.querySelector("#viewQnaArticleMod");
 	const deleteArticleBTN 	 = document.querySelector("#deleteArticle");
 	const replySaveBTN = document.querySelector("#replySave");
 	
@@ -50,23 +50,23 @@ document.addEventListener("DOMContentLoaded",function(){
 	console.log("memberId:" + memberId);
 	console.log("sessionMemberId:" + sessionMemberId);
 	
-	function moveToList(){
+	function retrieveQnaArticle(){
     	window.location.href = "/qna/retrieveQnaArticle";
     }
 	 
-	moveToListBTN.addEventListener("click", function(e){
-		console.log("moveToListBTN click");
-		moveToList()
+	retrieveQnaArticleBTN.addEventListener("click", function(e){
+		console.log("retrieveQnaArticleBTN click");
+		retrieveQnaArticle()
 	});
 	
-	moveToModBTN.addEventListener("click", function(e){
-		console.log("moveToModBTN click");
+	viewQnaArticleModBTN.addEventListener("click", function(e){
+		console.log("viewQnaArticleModBTN click");
 		if (errorMessage && errorMessage.trim() !== '') {
 	        alert(errorMessage);
 	        return;
 	    } else {
 	        const boardSeq = document.querySelector("#boardSeq").value;
-	        window.location.href = "/qna/moveToMod?boardSeq=" + boardSeq;
+	        window.location.href = "/qna/viewQnaArticleMod?boardSeq=" + boardSeq;
 	    }	
 	});
 	
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded",function(){
         		console.log("success data.msgContents:"+data.msgContents);
                 if("1" == data.msgId){
                    alert(data.msgContents);
-                   moveToList();
+                   retrieveQnaArticle();
                 }else{
                     alert(data.msgContents);
                 }
@@ -129,16 +129,16 @@ document.addEventListener("DOMContentLoaded",function(){
                 
                 if("1"==data.msgId){
                 	alert(data.msgContents);
-                	replyRetrieve();//댓글 조회
+                	replyRetrieve();
                 	document.querySelector('#replyContent').value = ''; //등록 댓글 초기화
                 }else{
                 	alert(data.msgContents);
                 }
             },
-            error:function(data){//실패시 처리
+            error:function(data){
                 console.log("error:"+data);
             },
-            complete:function(data){//성공/실패와 관계없이 수행!
+            complete:function(data){
                 console.log("complete:"+data);
             }
         });
@@ -151,11 +151,11 @@ document.addEventListener("DOMContentLoaded",function(){
             type: "GET",
             url:"/reply/retrieveReply",
             asyn:"true",
-            dataType:"json", //return type
+            dataType:"json",
             data:{
                 "boardSeq": boardSeq  
             },
-            success:function(data){//통신 성공
+            success:function(data){
             	let replyDiv = '';
                 document.getElementById("replySaveArea").innerHTML = "";
                 if(0==data.length){
@@ -172,10 +172,10 @@ document.addEventListener("DOMContentLoaded",function(){
                 }
             document.getElementById("replySaveArea").innerHTML = replyDiv;
 	    	},
-	        error:function(data){//실패시 처리
+	        error:function(data){
 	            console.log("error:"+data);
 	        },
-	        complete:function(data){//성공/실패와 관계없이 수행!
+	        complete:function(data){
 	            console.log("complete:"+data);
 	        }
 		});
@@ -191,8 +191,8 @@ document.addEventListener("DOMContentLoaded",function(){
 		<!-- 버튼 -->
 	    <div class="row justify-content-end">
 	        <div class="col-auto">
-	            <input type="button" value="목록" class="button" id="moveToList">
-	            <input type="button" value="수정" class="button" id="moveToMod" >
+	            <input type="button" value="목록" class="button" id="retrieveQnaArticle">
+	            <input type="button" value="수정" class="button" id="viewQnaArticleMod" >
 	            <input type="button" value="삭제" class="button" id="deleteArticle" >
 	        </div>
 	    </div>

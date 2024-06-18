@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
 	public MemberServiceImpl() {}
 
 	@Override
-	public int updateMember(MemberVO inVO) throws SQLException {
+	public int updateMemberInfo(MemberVO inVO) throws SQLException {
 		return dao.updateMember(inVO);
 	}
 
@@ -30,7 +30,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO selectOneMember(MemberVO inVO) throws SQLException, EmptyResultDataAccessException {
+	public MemberVO viewMemberDetail(MemberVO inVO) throws SQLException, EmptyResultDataAccessException {
 		return dao.selectOneMember(inVO);
 	}
 	

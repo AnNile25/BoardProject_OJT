@@ -19,7 +19,7 @@
 document.addEventListener("DOMContentLoaded",function(){ 
 	console.log("DOMContentLoaded");
 	
-	const moveToListBTN = document.querySelector("#moveToList");
+	const retrieveQnaArticleBTN = document.querySelector("#retrieveQnaArticle");
 	const updateMemberBTN 	= document.querySelector("#updateMember");
 	const withdrawalMemberBTN = document.querySelector("#withdrawalMember");
 	
@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded",function(){
     const addressInput = document.querySelector("#address");
     
 	 /* 게시글 목록 조회 */
-	moveToListBTN.addEventListener("click", function(e){
-		console.log("moveToListBTN click");
+	retrieveQnaArticleBTN.addEventListener("click", function(e){
+		console.log("retrieveQnaArticleBTN click");
 		window.location.href = "/qna/retrieveQnaArticle";
 	});
 	 
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded",function(){
         }
 		$.ajax({
     		type: "POST",
-    		url:"/member/updateMember",
+    		url:"/member/updateMemberInfo",
     		async:"true",
     		dataType:"json",
     		data:{
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded",function(){
     <!-- 버튼 -->
     <div class="row justify-content-end">
       <div class="col-auto">
-        <input type="button" value="게시판" class="button" id="moveToList">
+        <input type="button" value="게시판" class="button" id="retrieveQnaArticle">
         <input type="button" value="저장" class="button" id="updateMember">
         <input type="button" value="탈퇴" class="button" id="withdrawalMember">
       </div>

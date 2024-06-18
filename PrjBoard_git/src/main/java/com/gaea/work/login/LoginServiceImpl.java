@@ -68,7 +68,7 @@ public class LoginServiceImpl implements LoginService {
                 case 20:
                     return createJsonMessage("20", "비번을 확인 하세요.");
                 case 30:
-                    MemberVO outVO = memberService.selectOneMember(member);
+                    MemberVO outVO = memberService.viewMemberDetail(member);
                     message.setMsgId("30");
                     message.setMsgContents(outVO.getMemberName() + "님 반갑습니다.");
                     session.setAttribute("memberId", outVO.getMemberId());

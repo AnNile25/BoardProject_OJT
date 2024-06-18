@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const memberId = memberIdInput.value;
         $.ajax({
             type: "POST",
-            url: "${CP}/member/checkIdDuplicate",
+            url: "${CP}/member/checkMemberIdDuplicate",
             async: true,
             dataType: "json",
             data: { memberId: memberId },
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const address = addressInput.value;
 
         if (eUtil.isEmpty(memberId) || eUtil.isEmpty(memberName) || eUtil.isEmpty(password) ||
-                eUtil.isEmpty(nickName) || eUtil.isEmpty(tel) || eUtil.isEmpty(email)) {
+                eUtil.isEmpty(nickName) || eUtil.isEmpty(tel) || eUtil.isEmpty(email) || eUtil.isEmpty(address)) {
                 alert("모든 필드를 입력하세요.");
                 return;
         }

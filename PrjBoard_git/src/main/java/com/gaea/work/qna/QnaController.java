@@ -53,9 +53,9 @@ public class QnaController  {
 	    return "qna/qna_list";
 	}
 
-	@GetMapping(value = "/moveToMod")
-	public String moveToMod(QnaVO inVO, Model model, HttpSession session) throws SQLException, EmptyResultDataAccessException {
-		QnaVO outVO = service.selectOneQnaArticle(inVO);
+	@GetMapping(value = "/viewQnaArticleMod")
+	public String viewQnaArticleMod(QnaVO inVO, Model model, HttpSession session) throws SQLException, EmptyResultDataAccessException {
+		QnaVO outVO = service.viewQnaArticleDetail(inVO);
 		model.addAttribute("vo", outVO);
 		model.addAttribute("memberId", outVO.getMemberId());
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
@@ -65,8 +65,8 @@ public class QnaController  {
 		return "qna/qna_mod";
 	}
 
-	@GetMapping(value = "/moveToReg")
-	public String moveToReg(Model model, MemberVO inVO, HttpSession session) throws SQLException {
+	@GetMapping(value = "/viewQnaArticleReg")
+	public String viewQnaArticleReg(Model model, MemberVO inVO, HttpSession session) throws SQLException {
 		if (!sessionService.isLoggedIn(session)) {
 			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
 			return "login/login";
@@ -90,14 +90,14 @@ public class QnaController  {
 		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
-	@GetMapping(value = "/selectOneQna")
-	public String selectOneQna(QnaVO inVO, Model model, HttpSession session) throws SQLException {
+	@GetMapping(value = "/viewQnaArticleDetail")
+	public String viewQnaArticleDetail(QnaVO inVO, Model model, HttpSession session) throws SQLException {
 		if (!sessionService.checkAndSetMemberId(session, inVO)) {
 			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
 		
-		QnaVO outVO = service.selectOneQnaArticle(inVO);
+		QnaVO outVO = service.viewQnaArticleDetail(inVO);
 		model.addAttribute("vo", outVO);
 		return"qna/qna_mng";
 	}
@@ -123,7 +123,7 @@ public class QnaController  {
 	@GetMapping(value ="/deleteQnaArticle",produces = "application/json;charset=UTF-8" )
 	@ResponseBody
 	public SuccessMessageVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
-		QnaVO outVO = service.selectOneQnaArticle(inVO);
+		QnaVO outVO = service.viewQnaArticleDetail(inVO);
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
 			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
 	        return new SuccessMessageVO("0", errorMessage);
