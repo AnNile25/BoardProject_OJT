@@ -53,11 +53,11 @@ public class LoginServiceImpl implements LoginService {
         SuccessMessageVO message = new SuccessMessageVO();
 
         try {
-            if (member.getMemberId() == null || member.getMemberId().isEmpty()) { // id null check
+            if (member.getMemberId() == null || member.getMemberId().isEmpty()) { 
                 return createJsonMessage("1", "아이디를 입력 하세요.");
             }
             
-            if (member.getPassword() == null || member.getPassword().isEmpty()) { // pass null check
+            if (member.getPassword() == null || member.getPassword().isEmpty()) {
                 return createJsonMessage("2", "비밀번호를 입력 하세요.");
             }
 

@@ -45,15 +45,7 @@ public class QnaController  {
 	public String retrieveQnaArticle(PagingVO pagingVO, Model model, 
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
 			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10")String cntPerPage) throws SQLException {
-		int total = service.qnaQnaArticleCount();
-		if (nowPage == null && cntPerPage == null) {
-			nowPage = "1";
-			cntPerPage = "5";
-		} else if (nowPage == null) {
-			nowPage = "1";
-		} else if (cntPerPage == null) { 
-			cntPerPage = "5";
-		}
+		int total = service.countQnaArticle();
 		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 	    model.addAttribute("paging", pagingVO);
 	    model.addAttribute("list", service.retrieveQnaArticle(pagingVO));

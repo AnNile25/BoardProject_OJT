@@ -9,7 +9,7 @@ import com.gaea.work.cmn.PagingVO;
 
 public interface QnaService {
 	
-	int qnaQnaArticleCount() throws SQLException;
+	int countQnaArticle() throws SQLException;
 	
 	void deleteOldQnaArticle();
 	

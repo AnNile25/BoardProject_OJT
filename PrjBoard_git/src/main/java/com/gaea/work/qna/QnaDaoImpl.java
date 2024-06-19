@@ -76,8 +76,8 @@ public class QnaDaoImpl implements QnaDao {
 	}
 
 	@Override
-	public void deleteByCreatedDateBefore(Date date) {
-		sqlSessionTemplate.delete(NAMESPACE+DOT+"deleteByCreatedDateBefore", date);
+	public int deleteByCreatedDateBefore(Date date) {
+		return sqlSessionTemplate.delete(NAMESPACE+DOT+"deleteByCreatedDateBefore", date);
 		
 	}
 

@@ -11,7 +11,7 @@ import com.gaea.work.cmn.PagingVO;
 
 public interface QnaDao {
 	
-	void deleteByCreatedDateBefore(Date date);
+	int deleteByCreatedDateBefore(Date date);
 	
 	int qnaCount() throws SQLException;
 	

@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.gaea.work.qna">
 
-	<delete id="deleteByCreatedDateBefore">
+	<delete id="deleteByCreatedDateBefore" parameterType="java.util.Date">
 		<![CDATA[
 		DELETE FROM board WHERE reg_dt < #{date}
 		 ]]>
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT COUNT(*) FROM board
     </select>
     
-    <select id="retrieveArticle" parameterType="com.gaea.work.cmn.PagingVO" resultType="QnaVO">
+    <select id="retrieveArticle" parameterType="PagingVO" resultType="QnaVO">
 		SELECT * FROM (
 		    SELECT iq.*, ROWNUM AS rnum
 		    FROM (

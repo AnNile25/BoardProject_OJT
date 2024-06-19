@@ -10,8 +10,8 @@
         <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
     <typeAliases>
+        <typeAlias type="com.gaea.work.cmn.PagingVO" alias="PagingVO"/>
         <typeAlias type="com.gaea.work.qna.QnaVO" alias="QnaVO"/>
-        <typeAlias type="com.gaea.work.qna.PageVO" alias="PageVO"/>
         <typeAlias type="com.gaea.work.member.MemberVO" alias="MemberVO"/>
         <typeAlias type="com.gaea.work.reply.ReplyVO" alias="ReplyVO"/>
     </typeAliases>

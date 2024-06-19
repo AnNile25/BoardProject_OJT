@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gaea.work.cmn.PagingVO;
 
@@ -53,6 +54,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
+    @Transactional
     public void deleteOldQnaArticle() {
         LocalDate sevenDaysAgo = LocalDate.now().minusDays(7);
         Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -60,7 +62,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
 	@Override
-	public int qnaQnaArticleCount() throws SQLException {
+	public int countQnaArticle() throws SQLException {
 		return dao.qnaCount();
 	}
 
