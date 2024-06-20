@@ -11,7 +11,7 @@ public interface QnaService {
 	
 	int countQnaArticle() throws SQLException;
 	
-	int deleteOldQnaArticle();
+	void deleteOldQnaArticle();
 	
 	public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
 	

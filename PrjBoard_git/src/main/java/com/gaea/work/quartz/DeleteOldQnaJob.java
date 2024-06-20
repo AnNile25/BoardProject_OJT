@@ -17,13 +17,18 @@ public class DeleteOldQnaJob implements Job {
 	
 	@Autowired
 	QnaService service;
-
+	
+	@Autowired
+	public void setQnaService(QnaService service) {
+	    this.service = service;
+	}
+	
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 		logger.info("DeleteOldQnaJob start.");
 		try {
-            int deletedCount = service.deleteOldQnaArticle();
-            logger.info("DeleteOldQnaJob 성공: 삭제된 개수 = {}", deletedCount);
+			service.deleteOldQnaArticle();
+			logger.info("DeleteOldQnaJob 성공");
         } catch (Exception e) {
             logger.error("DeleteOldQnaJob 실패", e);
         }

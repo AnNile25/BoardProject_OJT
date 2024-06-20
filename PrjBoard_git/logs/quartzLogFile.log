@@ -1,0 +1,176 @@
+2024-06-20 16:59:40,042 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 16:59:40,062 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 16:59:50,013 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 16:59:50,014 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:00:00,013 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:00:00,013 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:00:10,016 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:00:10,017 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:00:20,006 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:00:20,008 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:00:30,003 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:00:30,005 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:00:40,022 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:00:40,025 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:15:00,058 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:15:00,087 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:15:10,017 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:25) - DeleteOldQnaJob start.
+2024-06-20 17:15:10,017 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:27) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:16:00,046 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:23) - DeleteOldQnaJob start.
+2024-06-20 17:16:00,058 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:25) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:16:10,021 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:23) - DeleteOldQnaJob start.
+2024-06-20 17:16:10,023 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:25) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:21:10,014 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:21:10,026 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:33) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:30) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:21:20,012 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:21:20,014 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:33) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:30) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:21:30,009 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:21:30,010 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:33) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:30) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:25:50,037 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:25:50,061 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:35) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:30) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:26:00,008 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:26:00,009 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:35) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:30) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:27:50,102 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:28:00,022 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:28:10,014 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:28:20,019 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:28:30,014 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:28:40,017 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:28:50,011 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:29:00,012 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:29:10,093 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:29:10,107 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:58) - DeleteOldQnaJob 성공
+2024-06-20 17:29:10,107 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:59) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:29:20,017 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:29:20,019 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:58) - DeleteOldQnaJob 성공
+2024-06-20 17:29:20,020 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:59) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:30:30,086 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:30:30,104 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:58) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:30:40,016 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:30:40,020 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:58) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:31:20,021 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:31:20,034 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:58) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:31:30,018 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:31:30,019 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:58) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:31:40,085 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:54) - DeleteOldQnaJob start.
+2024-06-20 17:31:40,086 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:61) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:58) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:37:10,246 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:37:10,259 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:30) - QnaService is null
+2024-06-20 17:37:10,259 ERROR com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:38) - DeleteOldQnaJob 실패
+java.lang.NullPointerException: null
+	at com.gaea.work.quartz.DeleteOldQnaJob.execute(DeleteOldQnaJob.java:35) ~[classes/:?]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202) ~[quartz-2.3.2.jar:?]
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573) ~[quartz-2.3.2.jar:?]
+2024-06-20 17:39:20,052 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:39:20,073 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:39:21,987 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
+2024-06-20 17:39:30,016 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:39:30,019 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:39:30,036 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
+2024-06-20 17:41:30,318 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:41:30,329 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:41:33,130 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
+2024-06-20 17:41:40,004 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:41:40,006 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:41:40,021 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
+2024-06-20 17:41:50,005 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:41:50,005 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:41:50,026 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
+2024-06-20 17:42:00,017 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:42:00,018 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:42:00,061 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
+2024-06-20 17:43:00,048 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-20 17:43:00,060 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:32) - QnaService is not null
+2024-06-20 17:43:02,796 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공

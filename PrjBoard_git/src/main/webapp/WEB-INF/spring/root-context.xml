@@ -82,6 +82,6 @@
 			value="${jdbc.removeAbandonedTimeout}"></property>
 	</bean>
 	
-	<import resource="applicationContext-quartz.xml"/>
+	 <import resource="applicationContext-quartz.xml"/>
 
 </beans>

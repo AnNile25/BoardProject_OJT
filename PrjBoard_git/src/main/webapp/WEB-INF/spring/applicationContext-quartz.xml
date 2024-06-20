@@ -11,6 +11,7 @@
 
     <!-- Quartz Scheduler -->
     <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    	<property name="jobFactory" ref="jobFactory" />
         <property name="jobDetails">
             <list>
                 <ref bean="deleteOldQnaJobDetail" />
@@ -22,6 +23,8 @@
             </list>
         </property>
     </bean>
+        
+    <bean id="jobFactory" class="org.springframework.scheduling.quartz.SpringBeanJobFactory" />    
 
     <!-- Job Detail -->
     <bean id="deleteOldQnaJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
