@@ -55,10 +55,10 @@ public class QnaServiceImpl implements QnaService {
 
     @Override
     @Transactional
-    public void deleteOldQnaArticle() {
+    public int deleteOldQnaArticle() {
         LocalDate sevenDaysAgo = LocalDate.now().minusDays(7);
         Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        dao.deleteByCreatedDateBefore(thresholdDate);
+        return dao.deleteByCreatedDateBefore(thresholdDate);
     }
 
 	@Override
