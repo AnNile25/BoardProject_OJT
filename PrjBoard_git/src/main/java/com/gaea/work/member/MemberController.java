@@ -45,13 +45,13 @@ public class MemberController {
 	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO checkMemberIdDuplicate(@RequestParam String memberId) throws SQLException {
-	    String validationMessage = validationService.validateField(memberId, "error.id.required", "^[a-zA-Z0-9]{1,20}$", "error.id.invalid", null);
+	    String validationMessage = validationService.validateField(memberId, "memberId.required", "^[a-zA-Z0-9]{1,20}$", "memberId.invalid.error", null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
 	    boolean isDuplicate = validationService.isIdDuplicate(memberId);
-	    String message = isDuplicate ? "error.id.duplicate" : "success.id.available";
+	    String message = isDuplicate ? "memberId.duplicate" : "memberId.available";
 	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
@@ -59,14 +59,14 @@ public class MemberController {
 	@ResponseBody
 	public SuccessMessageVO checkNickNameDuplicate(@RequestParam String nickName) throws SQLException {
 	    // 유효성 검사
-	    String validationMessage = validationService.validateField(nickName, "error.nickname.required", "^[가-힣a-zA-Z0-9]{1,15}$", "error.nickname.invalid", null);
+	    String validationMessage = validationService.validateField(nickName, "nickName.required", "^[가-힣a-zA-Z0-9]{1,15}$", "nickName.invalid.error", null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
 	    // 중복 체크
 	    boolean isDuplicate = validationService.isNickNameDuplicate(nickName);
-	    String message = isDuplicate ? "error.nickname.duplicate" : "success.nickname.available";
+	    String message = isDuplicate ? "nickName.duplicate" : "nickName.available";
 	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
@@ -74,14 +74,14 @@ public class MemberController {
 	@ResponseBody
 	public SuccessMessageVO checkEmailDuplicate(@RequestParam String email) throws SQLException {
 	    // 유효성 검사
-	    String validationMessage = validationService.validateField(email, "error.email.required", null, null, null);
+	    String validationMessage = validationService.validateField(email, "email.required", null, null, null);
 	    if (validationMessage != null) {
 	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
 	    // 중복 체크
 	    boolean isDuplicate = validationService.isEmailDuplicate(email);
-	    String message = isDuplicate ? "error.email.duplicate" : "success.email.available";
+	    String message = isDuplicate ? "email.duplicate" : "email.available";
 	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
@@ -93,7 +93,7 @@ public class MemberController {
 	@GetMapping(value = "/personalMemberInfo")
 	public String personalMemberInfo(MemberVO inVO, Model model, HttpSession session) throws SQLException {
 		if (!sessionService.checkAndSetMemberId(session, inVO)) {
-			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
+			model.addAttribute("errorMessage", messageSource.getMessage("login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
 		MemberVO outVO = service.viewMemberDetail(inVO);
@@ -116,7 +116,7 @@ public class MemberController {
 	public SuccessMessageVO withdrawalMember(MemberVO inVO, HttpSession session) throws SQLException {
 		MemberVO outVO = service.viewMemberDetail(inVO);
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
-			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
+			String errorMessage = messageSource.getMessage("login.permission.error", null, Locale.getDefault());
 	        return new SuccessMessageVO("0", errorMessage);
 		}
 
@@ -124,9 +124,9 @@ public class MemberController {
 		String message;
 		if (flag == 1) {
 	        session.invalidate();
-	        message = messageSource.getMessage("success.delete", null, Locale.getDefault());
+	        message = messageSource.getMessage("delete.success", null, Locale.getDefault());
 	    } else {
-	        message = messageSource.getMessage("error.delete", null, Locale.getDefault());
+	        message = messageSource.getMessage("delete.error", null, Locale.getDefault());
 	    }
 
 		return new SuccessMessageVO(String.valueOf(flag), message);
@@ -137,8 +137,8 @@ public class MemberController {
 	public SuccessMessageVO updateMemberInfo(MemberVO inVO) throws SQLException {	    
 		int flag = service.updateMemberInfo(inVO);
 		String message = (flag == 1) ? 
-				messageSource.getMessage("success.update", null, Locale.getDefault()):
-			    messageSource.getMessage("error.update", null, Locale.getDefault());
+				messageSource.getMessage("update.success", null, Locale.getDefault()):
+			    messageSource.getMessage("update.error", null, Locale.getDefault());
 		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 	
@@ -155,8 +155,8 @@ public class MemberController {
 
 	    int flag = service.joinMember(inVO);
 	    String message = (flag == 1) ? 
-	    		messageSource.getMessage("success.join", null, Locale.getDefault()):
-				messageSource.getMessage("error.join", null, Locale.getDefault());
+	    		messageSource.getMessage("memberJoin.success", null, Locale.getDefault()):
+				messageSource.getMessage("memberJoin.error", null, Locale.getDefault());
 	    SuccessMessageVO result = new SuccessMessageVO(String.valueOf(flag), message);
 	    logger.info("회원가입 결과: " + result);
 	    return result;

@@ -23,13 +23,13 @@ public class QnaValidationService {
     public SuccessMessageVO validateQna(QnaVO inVO) throws SQLException {
         String errorMessage;
         
-        errorMessage = validateField(inVO.getTitle(), "validation.title.required", 30, "error.title.invalid");
+        errorMessage = validateField(inVO.getTitle(), "title.required", 30, "tite.invalid.error");
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        errorMessage = validateField(inVO.getContent(), "validation.content.required", 500, "error.content.invalid");
+        errorMessage = validateField(inVO.getContent(), "content.required", 500, "content.invalid.error");
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        return new SuccessMessageVO("1", messageSource.getMessage("success.validation", null, Locale.getDefault()));
+        return new SuccessMessageVO("1", messageSource.getMessage("validation.succes", null, Locale.getDefault()));
     }
     
     public String validateField(String field, String emptyMessage, int maxLength, String lengthErrorMessage) throws SQLException {

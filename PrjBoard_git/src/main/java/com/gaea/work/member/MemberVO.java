@@ -16,7 +16,7 @@ public class MemberVO {
 	public String memberId  ; //아이디
 	public String memberName; //이름
 	public String password  ; //비번
-	public int    tel;		  //번호
+	public String tel;		  //번호
 	public String nickName;   //닉네임
 	public String email;	  //이메일
 	public String joinDt;	  //가입일

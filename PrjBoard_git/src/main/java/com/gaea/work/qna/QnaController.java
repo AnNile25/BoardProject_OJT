@@ -58,7 +58,7 @@ public class QnaController  {
 		model.addAttribute("vo", outVO);
 		model.addAttribute("memberId", outVO.getMemberId());
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
-			model.addAttribute("errorMessage",  messageSource.getMessage("error.permission", null, Locale.getDefault()));
+			model.addAttribute("errorMessage",  messageSource.getMessage("login.permission.error", null, Locale.getDefault()));
 			return "qna/qna_mng";
 		}
 		return "qna/qna_mod";
@@ -67,7 +67,7 @@ public class QnaController  {
 	@GetMapping(value = "/viewQnaArticleReg")
 	public String viewQnaArticleReg(Model model, MemberVO inVO, HttpSession session) throws SQLException {
 		if (!sessionService.isLoggedIn(session)) {
-			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
+			model.addAttribute("errorMessage", messageSource.getMessage("login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
 		
@@ -84,15 +84,15 @@ public class QnaController  {
 	    }
 		int flag = service.updateQnaArticle(inVO);
 		String message = (flag == 1) ? 
-				messageSource.getMessage("success.update", null, Locale.getDefault()):
-			    messageSource.getMessage("error.update", null, Locale.getDefault());
+				messageSource.getMessage("update.success", null, Locale.getDefault()):
+			    messageSource.getMessage("update.error", null, Locale.getDefault());
 		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 
 	@GetMapping(value = "/viewQnaArticleDetail")
 	public String viewQnaArticleDetail(QnaVO inVO, Model model, HttpSession session) throws SQLException {
 		if (!sessionService.checkAndSetMemberId(session, inVO)) {
-			model.addAttribute("errorMessage", messageSource.getMessage("error.login.required", null, Locale.getDefault()));
+			model.addAttribute("errorMessage", messageSource.getMessage("login.required", null, Locale.getDefault()));
 			return "login/login";
 		}
 		
@@ -113,8 +113,8 @@ public class QnaController  {
 
 		int flag = service.saveQnaArticle(inVO);
 		String message = (flag == 1) ? 
-				messageSource.getMessage("success.save", null, Locale.getDefault()):
-				messageSource.getMessage("error.save", null, Locale.getDefault());
+				messageSource.getMessage("save.success", null, Locale.getDefault()):
+				messageSource.getMessage("save.error", null, Locale.getDefault());
 
 		return  new SuccessMessageVO(String.valueOf(flag), message);
 	}
@@ -124,14 +124,14 @@ public class QnaController  {
 	public SuccessMessageVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
 		QnaVO outVO = service.viewQnaArticleDetail(inVO);
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
-			String errorMessage = messageSource.getMessage("error.permission", null, Locale.getDefault());
+			String errorMessage = messageSource.getMessage("login.permission.error", null, Locale.getDefault());
 	        return new SuccessMessageVO("0", errorMessage);
 		}
 
 		int flag = service.deleteQnaArticle(inVO);
 		String message = (flag == 1) ?
-				messageSource.getMessage("success.delete", null, Locale.getDefault()) :
-			    messageSource.getMessage("error.delete", null, Locale.getDefault());
+				messageSource.getMessage("delete.success", null, Locale.getDefault()) :
+			    messageSource.getMessage("delete.error", null, Locale.getDefault());
 
 		return new SuccessMessageVO(String.valueOf(flag), message);
 	}

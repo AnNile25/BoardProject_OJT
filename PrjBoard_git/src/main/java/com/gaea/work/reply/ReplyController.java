@@ -48,8 +48,8 @@ public class ReplyController {
 		inVO.setMemberId(session.getAttribute("memberId").toString());
 		int flag = service.saveReply(inVO);
 		String message = (flag == 1) ? 
-				messageSource.getMessage("success.save", null, Locale.getDefault()):
-				messageSource.getMessage("error.save", null, Locale.getDefault());
+				messageSource.getMessage("save.success", null, Locale.getDefault()):
+				messageSource.getMessage("save.error", null, Locale.getDefault());
 
 		return  new SuccessMessageVO(String.valueOf(flag), message);
 	}

@@ -98,12 +98,6 @@ document.addEventListener("DOMContentLoaded", function(){
         const email = emailInput.value;
         const address = addressInput.value;
 
-        if (eUtil.isEmpty(memberId) || eUtil.isEmpty(memberName) || eUtil.isEmpty(password) ||
-                eUtil.isEmpty(nickName) || eUtil.isEmpty(tel) || eUtil.isEmpty(email) || eUtil.isEmpty(address)) {
-                alert("모든 필드를 입력하세요.");
-                return;
-        }
-
         if (!isMemberIdChecked) {
             alert("아이디 중복 체크를 해주세요.");
             return;

@@ -23,28 +23,25 @@ public class MemberValidationService {
     public SuccessMessageVO validateMember(MemberVO inVO) throws SQLException {
         String errorMessage;
 
-        errorMessage = validateField(inVO.getMemberId(), "error.id.required", "^[a-zA-Z0-9]{1,20}$", "error.id.invalid", this::isIdDuplicate);
+        errorMessage = validateField(inVO.getMemberId(), "memberId.required", "^[a-zA-Z0-9]{1,20}$", "memberId.invalid.error", this::isIdDuplicate);
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        errorMessage = validateField(inVO.getMemberName(), "error.name.required", "^[가-힣a-zA-Z]{1,15}$", "error.name.invalid", null);
+        errorMessage = validateField(inVO.getMemberName(), "memberName.required", "^[가-힣a-zA-Z]{1,15}$", "memberName.invalid.error", null);
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        errorMessage = validateField(inVO.getPassword(), "error.password.required", "^.{1,20}$", "error.password.length", null);
+        errorMessage = validateField(inVO.getPassword(), "password.required", "^.{1,20}$", "password.length.error", null);
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        errorMessage = validateField(String.valueOf(inVO.getTel()), "error.tel.required", "^\\d{8}$", "error.tel.invalid", null);
+        errorMessage = validateField(inVO.getTel(), "tel.required", "^\\d{8}$", "tel.invalid.error", null);
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        errorMessage = validateField(inVO.getNickName(), "error.nickname.required", "^[가-힣a-zA-Z0-9]{1,10}$", "error.nickname.invalid", this::isNickNameDuplicate);
+        errorMessage = validateField(inVO.getNickName(), "nickName.required", "^[가-힣a-zA-Z0-9]{1,10}$", "nickName.invalid.error", this::isNickNameDuplicate);
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        errorMessage = validateField(inVO.getEmail(), "error.email.required", "^[a-zA-Z0-9@.]{1,50}$", "error.email.invalid", this::isEmailDuplicate);
+        errorMessage = validateField(inVO.getEmail(), "email.required", "^[a-zA-Z0-9@.]{1,50}$", "email.invalid.error", this::isEmailDuplicate);
         if (errorMessage != null) return createErrorMessage(errorMessage);
-
-        errorMessage = validateField(inVO.getAddress(), "error.address.required", "^[a-zA-Z0-9@.]{1,34}$", "error.address.invalid", null);
-        if (errorMessage != null) return createErrorMessage(errorMessage);
-
-        return new SuccessMessageVO("1", messageSource.getMessage("success.validation", null, Locale.getDefault()));
+        
+        return new SuccessMessageVO("1", messageSource.getMessage("validation.succes", null, Locale.getDefault()));
     }
 
     public String validateField(String field, String emptyMessage, String regex, String regexErrorMessage, FieldDuplicationChecker duplicationChecker) throws SQLException {
