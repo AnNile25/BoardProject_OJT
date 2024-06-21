@@ -9,6 +9,8 @@ public interface MemberService {
 		
 	int updateMemberInfo(MemberVO inVO) throws SQLException;
 	
+	int changeMemberPassword(MemberVO inVO) throws SQLException;
+	
 	int withdrawalMember(MemberVO inVO) throws SQLException;
 	
 	MemberVO viewMemberDetail(MemberVO inVO) throws SQLException, EmptyResultDataAccessException;

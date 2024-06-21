@@ -14,6 +14,8 @@ public interface MemberDao {
 	// CRUD	
 	int updateMember(MemberVO inVO) throws SQLException;
 	
+	int updateMemberPassword(MemberVO inVO) throws SQLException;
+	
 	int deleteMember(MemberVO inVO) throws SQLException;
 	
 	MemberVO selectOneMember(MemberVO inVO) throws SQLException;

@@ -23,11 +23,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateMemberInfo(MemberVO inVO) throws SQLException {
-		if (inVO.getPassword() != null && !inVO.getPassword().isEmpty()) {
-            String encodedPassword = passwordEncoder.encode(inVO.getPassword());
-            inVO.setPassword(encodedPassword);
-        }
 		return dao.updateMember(inVO);
+	}	
+
+	@Override
+	public int changeMemberPassword(MemberVO inVO) throws SQLException {
+		String encodedPassword = passwordEncoder.encode(inVO.getPassword());
+        inVO.setPassword(encodedPassword);
+		return dao.updateMemberPassword(inVO);
 	}
 
 	@Override
@@ -52,5 +55,6 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> retrieveMember(MemberVO inVO) throws SQLException {
 		return dao.retrieveMember(inVO);
 	}
+
 
 }

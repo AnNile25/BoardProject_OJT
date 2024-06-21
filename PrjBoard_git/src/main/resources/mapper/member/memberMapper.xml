@@ -112,9 +112,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE member
 		SET
 			member_name = #{memberName},
-		    password 	= #{password},
 		    tel 		= #{tel},
 		    address = #{address}
+		WHERE
+		    member_id 	= #{memberId}
+	</update>
+	
+	<update id="updateMemberPassword" parameterType="MemberVO">
+		UPDATE member
+		SET
+			password = #{password}
 		WHERE
 		    member_id 	= #{memberId}
 	</update>

@@ -22,6 +22,11 @@ public class MemberDaoImpl implements MemberDao {
 	public int updateMember(MemberVO inVO) throws SQLException {
 		return sqlSessionTemplate.update(NAMESPACE+DOT+"updateMember", inVO);
 	}
+	
+	@Override
+	public int updateMemberPassword(MemberVO inVO) throws SQLException {
+		return sqlSessionTemplate.update(NAMESPACE+DOT+"updateMemberPassword", inVO);
+	}
 
 	@Override
 	public int deleteMember(MemberVO inVO) throws SQLException {

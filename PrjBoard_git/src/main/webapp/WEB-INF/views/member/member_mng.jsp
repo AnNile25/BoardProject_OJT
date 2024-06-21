@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	const memberId = document.querySelector("#memberId").innerText;
     const memberNameInput = document.querySelector("#memberName");
-    const passwordInput = document.querySelector("#password");
     const telInput = document.querySelector("#tel");
     const nickNameInput = document.querySelector("#nickName");
     const emailInput = document.querySelector("#email"); 
@@ -87,14 +86,8 @@ document.addEventListener("DOMContentLoaded",function(){
 	 /* 회원정보 수정 */
 	updateMemberBTN.addEventListener("click", function(e){
         const memberName = memberNameInput.value;
-        const password = passwordInput.value;
         const tel = telInput.value;
         const address = addressInput.value + " " + document.getElementById("detailAddress").value;
-
-        /* if (eUtil.isEmpty(memberName) || eUtil.isEmpty(password) || eUtil.isEmpty(tel) |  eUtil.isEmpty(address)) {
-                alert("모든 필드를 입력하세요.");
-                return;
-        } */
         
 		if(window.confirm('수정사항을 저장하시겠습니까?')==false){
             return;
@@ -107,19 +100,10 @@ document.addEventListener("DOMContentLoaded",function(){
     		data:{
     			"memberId": memberId,
     			"memberName": memberName,
-    			"password": password,
     			"tel": tel,
     			"address": address
     		},
     		success:function(data){
-        		/* console.log("success data.msgId:"+data.msgId);
-        		console.log("success data.msgContents:"+data.msgContents);
-                if("1" == data.msgId){
-                   alert(data.msgContents);
-                   return;
-                }else{
-                    alert(data.msgContents);
-                } */
     			alert(data.msgContents);
                 if (data.msgId === "1") { // 성공적으로 데이터가 처리되었다면
                     window.location.reload(); // 페이지를 새로 고침
@@ -135,6 +119,12 @@ document.addEventListener("DOMContentLoaded",function(){
 	});
 	 
 });//-- DOMContentLoaded
+	 
+function changeMemberPassword(){
+	let popOption = "width=650px, height=550px, top=300px, left=300px, scrollbars=yes";
+	let openUrl = '/main/popup.do';
+    window.open(openUrl, 'pop', popOption);
+    }
 </script>
 <body>
 <div class="container-main">
@@ -157,11 +147,6 @@ document.addEventListener("DOMContentLoaded",function(){
       <div class="form-group">
         <label for="memberName" class="form-label">이름</label>
         <input type="text" id="memberName" name="memberName" value="${vo.memberName}" class="form-control" >
-      </div>
-
-      <div class="form-group">
-        <label for="password" class="form-label">비밀번호</label>
-        <input type="text" id="password" name="password" value="${vo.password}" class="form-control" >
       </div>
 
       <div class="form-group">
@@ -200,6 +185,8 @@ document.addEventListener("DOMContentLoaded",function(){
     </div>
     </form>
     <div id="list"></div>
+    
+    <input type="button" onClick="changeMemberPassword();" value="비밀번호 변경">
     
   </div>
 </div>

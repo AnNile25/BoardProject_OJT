@@ -175,6 +175,16 @@ public class MemberController {
 		return new SuccessMessageVO(String.valueOf(flag), message);
 	}
 	
+	@PostMapping(value = "/changeMemberPassword", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public SuccessMessageVO changeMemberPassword(MemberVO inVO) throws SQLException {	    
+		int flag = service.changeMemberPassword(inVO);
+		String message = (flag == 1) ? 
+				messageSource.getMessage("update.success", null, Locale.getDefault()):
+			    messageSource.getMessage("update.error", null, Locale.getDefault());
+		return new SuccessMessageVO(String.valueOf(flag), message);
+	}
+	
 	@PostMapping(value = "/joinMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public SuccessMessageVO joinMember(MemberVO inVO) throws SQLException {
