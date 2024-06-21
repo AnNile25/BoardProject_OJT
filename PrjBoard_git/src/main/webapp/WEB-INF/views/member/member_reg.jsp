@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
+<script src="${CP}/resources/js/addressSearchFunction.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function(){
     console.log("DOMContentLoaded");    
@@ -96,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const tel = telInput.value;
         const nickName = nickNameInput.value;
         const email = emailInput.value;
-        const address = addressInput.value;
+        const address = addressInput.value + " " + document.getElementById("detailAddress").value;
 
         if (!isMemberIdChecked) {
             alert("아이디 중복 체크를 해주세요.");
@@ -200,15 +201,31 @@ document.addEventListener("DOMContentLoaded", function(){
                 <input type="email" id="email" name="email" class="form-control" />
                 <button type="button" id="emailCheckBtn">중복확인</button>
             </div>
-            <div class="form-group">
-                <label for="address">주소</label>
-                <input type="text" id="address" name="address" class="form-control" />
-            </div>
+			<div class="form-group">
+			    <label for="address">주소:</label>
+			    <textarea  id="address" name="address" class="form-control" rows="2"></textarea>
+			</div>
             <div class="form-group">
                 <button type="button" class="button" id="saveMember">가입하기</button>
                 <a href="${CP}/main/mainView.do" class="button">취소</a>
             </div>
         </form>
+        
+        <form name="addrForm" id="addrForm" >
+	      <div class="form-group">
+	        <input type="hidden" name="currentPage" value="1">
+	        <input type="hidden" name="countPerPage" value="10">
+	        <input type="hidden" name="resultType" value="json">
+	        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
+	        <input type="text" name="keyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요.">
+	        <input type="button" onClick="getAddrLoc();" value="주소검색">
+	      </div>
+	      <div class="form-group">
+	        <label for="detailAddress">상세 주소:</label>
+	        <input type="text" id="detailAddress" name="detailAddress" placeholder="동, 호수 등 입력" class="form-control">
+	    </div>
+	    </form>
+    	<div id="list"></div>
     </div>
 </div>
 

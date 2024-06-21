@@ -9,11 +9,29 @@
 <meta charset="UTF-8">
 <title>회원 정보</title>
 <style type="text/css">
+#list table {
+    width: 100%;
+    table-layout: fixed; /* 테이블 내 셀의 너비 고정 */
+}
 
+#list td {
+    word-wrap: break-word; /* 긴 단어나 주소도 셀 내에서 줄바꿈 */
+    white-space: normal;   /* 공백 문자가 있는 경우 자연스럽게 줄바꿈 */
+}
+
+textarea.form-control {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box; /* 패딩과 보더가 너비에 포함되도록 설정 */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none; /* 사용자가 크기를 조정하지 못하도록 설정 */
+}
 </style>
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
+<script src="${CP}/resources/js/addressSearchFunction.js"></script>
 </head>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded",function(){ 
@@ -68,16 +86,15 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	 /* 회원정보 수정 */
 	updateMemberBTN.addEventListener("click", function(e){
-		const memberId = document.querySelector("#memberId").innerText;
         const memberName = memberNameInput.value;
         const password = passwordInput.value;
         const tel = telInput.value;
-        const address = addressInput.value;
+        const address = addressInput.value + " " + document.getElementById("detailAddress").value;
 
-        if (eUtil.isEmpty(memberName) || eUtil.isEmpty(password) || eUtil.isEmpty(tel) |  eUtil.isEmpty(address)) {
+        /* if (eUtil.isEmpty(memberName) || eUtil.isEmpty(password) || eUtil.isEmpty(tel) |  eUtil.isEmpty(address)) {
                 alert("모든 필드를 입력하세요.");
                 return;
-        }
+        } */
         
 		if(window.confirm('수정사항을 저장하시겠습니까?')==false){
             return;
@@ -85,7 +102,7 @@ document.addEventListener("DOMContentLoaded",function(){
 		$.ajax({
     		type: "POST",
     		url:"/member/updateMemberInfo",
-    		async:"true",
+    		async:true,
     		dataType:"json",
     		data:{
     			"memberId": memberId,
@@ -95,13 +112,17 @@ document.addEventListener("DOMContentLoaded",function(){
     			"address": address
     		},
     		success:function(data){
-        		console.log("success data.msgId:"+data.msgId);
+        		/* console.log("success data.msgId:"+data.msgId);
         		console.log("success data.msgContents:"+data.msgContents);
                 if("1" == data.msgId){
                    alert(data.msgContents);
                    return;
                 }else{
                     alert(data.msgContents);
+                } */
+    			alert(data.msgContents);
+                if (data.msgId === "1") { // 성공적으로 데이터가 처리되었다면
+                    window.location.reload(); // 페이지를 새로 고침
                 }
         	},
         	error:function(data){
@@ -112,7 +133,7 @@ document.addEventListener("DOMContentLoaded",function(){
             }
     	});
 	});
-	
+	 
 });//-- DOMContentLoaded
 </script>
 <body>
@@ -160,9 +181,26 @@ document.addEventListener("DOMContentLoaded",function(){
 
       <div class="form-group">
         <label for="address" class="form-label">주소</label>
-        <input type="text" id="address" name="address" value="${vo.address}" class="form-control" >
+        <textarea id="address" name="address"  class="form-control"  rows="2">${vo.address }</textarea>
       </div>
     </form>
+    
+    <form name="addrForm" id="addrForm" style="margin-top:20px;">
+      <div class="form-group">
+        <input type="hidden" name="currentPage" value="1">
+        <input type="hidden" name="countPerPage" value="10">
+        <input type="hidden" name="resultType" value="json">
+        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
+        <input type="text" name="keyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요.">
+        <input type="button" onClick="getAddrLoc();" value="주소검색">
+      </div>
+      <div class="form-group">
+        <label for="detailAddress">상세 주소:</label>
+        <input type="text" id="detailAddress" name="detailAddress" placeholder="동, 호수 등 입력" class="form-control">
+    </div>
+    </form>
+    <div id="list"></div>
+    
   </div>
 </div>
 </body>
