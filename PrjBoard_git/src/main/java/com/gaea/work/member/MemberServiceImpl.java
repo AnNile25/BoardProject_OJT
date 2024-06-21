@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gaea.work.validation.MemberValidationService;
@@ -12,15 +13,20 @@ import com.gaea.work.validation.MemberValidationService;
 @Service
 public class MemberServiceImpl implements MemberService {
 	@Autowired
-	MemberDao dao;
-	
+	MemberDao dao;	
 	@Autowired
     MemberValidationService validationService;
+	@Autowired
+    BCryptPasswordEncoder passwordEncoder;
 	
 	public MemberServiceImpl() {}
 
 	@Override
 	public int updateMemberInfo(MemberVO inVO) throws SQLException {
+		if (inVO.getPassword() != null && !inVO.getPassword().isEmpty()) {
+            String encodedPassword = passwordEncoder.encode(inVO.getPassword());
+            inVO.setPassword(encodedPassword);
+        }
 		return dao.updateMember(inVO);
 	}
 
@@ -37,6 +43,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int joinMember(MemberVO inVO) throws SQLException {
 		validationService.validateMember(inVO);
+		String encodedPassword = passwordEncoder.encode(inVO.getPassword());
+        inVO.setPassword(encodedPassword);
 		return dao.saveMember(inVO);
 	}
 
