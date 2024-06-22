@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gaea.work.validation.MemberValidationService;
 
@@ -27,6 +28,7 @@ public class MemberServiceImpl implements MemberService {
 	}	
 
 	@Override
+	@Transactional
 	public int changeMemberPassword(MemberVO inVO) throws SQLException {
 		String encodedPassword = passwordEncoder.encode(inVO.getPassword());
         inVO.setPassword(encodedPassword);
@@ -44,6 +46,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	@Transactional
 	public int joinMember(MemberVO inVO) throws SQLException {
 		validationService.validateMember(inVO);
 		String encodedPassword = passwordEncoder.encode(inVO.getPassword());

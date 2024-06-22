@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.member.MemberService;
@@ -26,6 +27,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
 	@Override
+	@Transactional
     public int loginCheck(MemberVO inVO) throws SQLException {
         int checkStatus = 0;
 

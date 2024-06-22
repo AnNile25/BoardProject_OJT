@@ -14,7 +14,6 @@
 		<aopalliance.version>1.0</aopalliance.version>
 		<aspectjweaver.version>1.9.6</aspectjweaver.version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
-		<javax.mail.version>1.4.7</javax.mail.version>
 		<log4j-core.version>2.17.2</log4j-core.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit.version>4.13.2</junit.version>
@@ -154,13 +153,6 @@
 			<version>${log4j-core.version}</version>
 		</dependency>
 
-		<!-- Mail -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>${javax.mail.version}</version>
-		</dependency>
-
 		<!-- Aspectj -->
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
 		<dependency>
@@ -248,10 +240,6 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.15</version>
 			<exclusions>
-				<exclusion>
-					<groupId>javax.mail</groupId>
-					<artifactId>mail</artifactId>
-				</exclusion>
 				<exclusion>
 					<groupId>javax.jms</groupId>
 					<artifactId>jms</artifactId>
