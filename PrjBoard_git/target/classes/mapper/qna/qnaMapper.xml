@@ -11,17 +11,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 ]]>
 	</delete>
 
-	<sql id="searchKeyWord" >
-		<where>
-			<if test="searchKeyword != null and searchKeyword != ''">
-				 title like '%' || #{searchKeyword} || '%'
-				 OR content like '%' || #{searchKeyword} || '%'
-			</if>
-		</where>
+	<sql id="searchKeyWord">
+	    <where>
+	        <if test="searchKeyword != null and searchKeyword != ''">
+	            AND (
+	                title like '%' || #{searchKeyword} || '%'
+	                OR content like '%' || #{searchKeyword} || '%'
+	            )
+	        </if>
+	        <if test="startDate != null and startDate != ''"><![CDATA[
+	            AND TRUNC(mod_dt) >= TO_DATE(#{startDate}, 'YYYY-MM-DD')]]>
+	        </if>
+	        <if test="endDate != null and endDate != ''"><![CDATA[
+	            AND TRUNC(mod_dt) <= TO_DATE(#{endDate}, 'YYYY-MM-DD')]]>
+	        </if>
+	    </where>
 	</sql>
 	
 	<select id="qnaCount" resultType="int">
-        SELECT COUNT(*) FROM board
+        SELECT COUNT(*) FROM board 
+        <include refid="searchKeyWord"/>
     </select>
     
     <select id="retrieveArticle" parameterType="PagingVO" resultType="QnaVO">
@@ -41,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		                  ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt
 		        FROM
 		            board
+		        <include refid="searchKeyWord"/>
 		        ORDER BY mod_dt DESC
 		    ) iq
 		)

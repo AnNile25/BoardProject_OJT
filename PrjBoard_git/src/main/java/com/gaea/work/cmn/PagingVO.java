@@ -21,6 +21,10 @@ public class PagingVO {
 	int startRow;
 	int endRow;
 	
+	String searchKeyword;
+	String startDate;
+	String endDate;
+	
 	int cntPage = 5; // 화면에서 보여지는 페이지 개수
 	
 	public PagingVO(int totalCnt, int nowPage, int cntPerPage) {

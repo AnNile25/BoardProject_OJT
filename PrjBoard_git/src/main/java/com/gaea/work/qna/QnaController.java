@@ -42,11 +42,18 @@ public class QnaController  {
 	}
 	
 	@GetMapping("/retrieveQnaArticle")
-	public String retrieveQnaArticle(PagingVO pagingVO, Model model, 
+	public String retrieveQnaArticle(PagingVO pagingVO, Model model,
 			@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
-			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10")String cntPerPage) throws SQLException {
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10")String cntPerPage,
+			@RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+			@RequestParam(value = "startDate", required = false) String startDate,
+			@RequestParam(value = "endDate", required = false) String endDate) throws SQLException {
 		int total = service.countQnaArticle();
 		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		pagingVO.setSearchKeyword(searchKeyword); 
+		pagingVO.setStartDate(startDate);
+		pagingVO.setEndDate(endDate);
+		
 	    model.addAttribute("paging", pagingVO);
 	    model.addAttribute("list", service.retrieveQnaArticle(pagingVO));
 	    return "qna/qna_list";

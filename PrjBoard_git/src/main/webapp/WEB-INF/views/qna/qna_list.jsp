@@ -45,19 +45,18 @@ document.addEventListener("DOMContentLoaded",function(){
 		window.location.href = "${CP}/qna/viewQnaArticleReg"
 	});
 	
-});//--DOMContentLoaded
-	/* 
-function fn_search(){
-	$("#listForm").submit();
-	return false;
-} */
-
+	document.querySelector("#searchKeywordBtn").addEventListener("click", function(e) {
+		e.preventDefault();
+        document.querySelector("#listForm").submit();
+    });
+	
+});
 </script>
 </head>
 <body>
 
 <div>
-	<form action="#" method="get" id="listForm">
+	<form action="${CP}/qna/retrieveQnaArticle" method="get" id="listForm">
 	
 		<!-- 제목 -->
 	    <div class="row">
@@ -97,8 +96,7 @@ function fn_search(){
 								<td style="display: none;"><c:out value="${vo.likeCnt}" /></td>
 								<td style="display: none;"><c:out value="${vo.boardSeq}" /></td>
 							</tr>              
-						</c:forEach>
-						<!--// 반복문 -->      
+						</c:forEach> 
 					</c:when>
 					<c:otherwise>
 						<tr>
@@ -108,11 +106,11 @@ function fn_search(){
 				</c:choose>
 			</tbody>
 	    </table>
-	    
-	    <!-- 페이징 -->
+		
+		<!-- 페이징 -->
 	    <div style="display: block; text-align: center;">		
 			<c:if test="${paging.startPage != 1 }">
-				<a href="/qna/retrieveQnaArticle?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+				<a href="${CP}/qna/retrieveQnaArticle?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&searchKeyword=${paging.searchKeyword}&startDate=${paging.startDate}&endDate=${paging.endDate}">&lt;</a>
 			</c:if>
 			<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 				<c:choose>
@@ -120,22 +118,23 @@ function fn_search(){
 						<b>${p }</b>
 					</c:when>
 					<c:when test="${p != paging.nowPage }">
-						<a href="/qna/retrieveQnaArticle?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+						<a href="${CP}/qna/retrieveQnaArticle?nowPage=${p }&cntPerPage=${paging.cntPerPage}&searchKeyword=${paging.searchKeyword}&startDate=${paging.startDate}&endDate=${paging.endDate}">${p }</a>
 					</c:when>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${paging.endPage != paging.lastPage}">
-				<a href="/qna/retrieveQnaArticle?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+				<a href="${CP}/qna/retrieveQnaArticle?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&searchKeyword=${paging.searchKeyword}&startDate=${paging.startDate}&endDate=${paging.endDate}">&gt;</a>
 			</c:if>
 		</div>
 		
-		
-    <%-- 
-	    <!-- 검색[s] -->
+	    <!-- 검색 -->
 		<div class="card-header py-3">
-		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paramVO.searchKeyword }" style="width:200px; height:40px; margin-top:10px;" placeholder="검색어를 입력하세요." />
-			<a href="#" onclick="fn_search();" class="btn btn-primary">검색</a>
-		</div> --%>
+		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paging.searchKeyword }" style="width:200px; height:40px; margin-top:10px;" placeholder="검색어를 입력하세요." />
+		    <input type="date" id="startDate" name="startDate" value="${paging.startDate}" placeholder="시작 날짜">
+            <input type="date" id="endDate" name="endDate" value="${paging.endDate}" placeholder="종료 날짜">
+			<a href="#" id="searchKeywordBtn" class="btn btn-primary">검색</a>
+		</div>
+				
     </form>
 </div>
 
