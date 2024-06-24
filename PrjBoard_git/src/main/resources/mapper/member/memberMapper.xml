@@ -113,6 +113,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET
 			member_name = #{memberName},
 		    tel 		= #{tel},
+		    nick_name = #{nickName},
+		    email = #{email},
 		    address = #{address}
 		WHERE
 		    member_id 	= #{memberId}

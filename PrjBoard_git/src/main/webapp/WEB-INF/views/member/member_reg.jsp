@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function(){
     const telInput = document.querySelector("#tel");
     const nickNameInput = document.querySelector("#nickName");
     const emailInput = document.querySelector("#email");
-    const addressInput = document.querySelector("#address");
     
     const memberIdCheckBtn = document.querySelector("#memberIdCheckBtn");
     const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
@@ -97,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const tel = telInput.value;
         const nickName = nickNameInput.value;
         const email = emailInput.value;
-        const address = addressInput.value + " " + document.getElementById("detailAddress").value;
+        const address = document.getElementById("addressKeyword").value + " " + document.getElementById("detailAddress").value;
 
         if (!isMemberIdChecked) {
             alert("아이디 중복 체크를 해주세요.");
@@ -170,7 +169,6 @@ document.addEventListener("DOMContentLoaded", function(){
     width: 100%;
     table-layout: fixed; /* 테이블 내 셀의 너비 고정 */
 }
-
 #list td {
     word-wrap: break-word; /* 긴 단어나 주소도 셀 내에서 줄바꿈 */
     white-space: normal;   /* 공백 문자가 있는 경우 자연스럽게 줄바꿈 */
@@ -182,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function(){
 <div class="container-main">
     <div class="content">
         <h1>회원가입</h1>
-        <form id="registerForm">
+        <form id="registerForm" name="registerForm">
             <div class="form-group">
                 <label for="memberId">아이디</label>
                 <input type="text" id="memberId" name="memberId" class="form-control" />
@@ -209,32 +207,27 @@ document.addEventListener("DOMContentLoaded", function(){
                 <label for="email">이메일</label>
                 <input type="email" id="email" name="email" class="form-control" />
                 <button type="button" id="emailCheckBtn">중복확인</button>
-            </div>
+            </div>	
+            
 			<div class="form-group">
-			    <label for="address">주소:</label>
-			    <textarea  id="address" name="address" class="form-control" rows="2"></textarea>
-			</div>
+		        <input type="hidden" name="currentPage" value="1">
+		        <input type="hidden" name="countPerPage" value="10">
+		        <input type="hidden" name="resultType" value="json">
+		        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
+		        <label for="keyword">주소:</label>
+		        <input type="text" name="keyword" id="addressKeyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요." >
+		        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
+		      </div>
+		      <div class="form-group">
+		        <label for="detailAddress">상세 주소:</label>
+		        <input type="text" id="detailAddress" name="detailAddress" placeholder="동, 호수 등 입력" class="form-control">
+		    </div>	
+			
             <div class="form-group">
                 <button type="button" class="button" id="saveMember">가입하기</button>
                 <a href="${CP}/main/mainView.do" class="button">취소</a>
             </div>
         </form>
-        
-        <form name="addrForm" id="addrForm" >
-	      <div class="form-group">
-	        <input type="hidden" name="currentPage" value="1">
-	        <input type="hidden" name="countPerPage" value="10">
-	        <input type="hidden" name="resultType" value="json">
-	        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
-	        <label for="keyword">주소 검색:</label>
-	        <input type="text" name="keyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요." >
-	        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
-	      </div>
-	      <div class="form-group">
-	        <label for="detailAddress">상세 주소:</label>
-	        <input type="text" id="detailAddress" name="detailAddress" placeholder="동, 호수 등 입력" class="form-control">
-	    </div>
-	    </form>
     	<div id="list"></div>
     </div>
 </div>

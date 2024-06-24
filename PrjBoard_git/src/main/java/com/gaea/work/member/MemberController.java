@@ -164,7 +164,7 @@ public class MemberController {
 
 	@PostMapping(value = "/updateMemberInfo", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateMemberInfo(MemberVO inVO) throws SQLException {	    
+	public SuccessMessageVO updateMemberInfo(MemberVO inVO) throws SQLException {
 		int flag = service.updateMemberInfo(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("update.success", null, Locale.getDefault()):

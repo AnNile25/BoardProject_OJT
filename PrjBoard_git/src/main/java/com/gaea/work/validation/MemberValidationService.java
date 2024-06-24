@@ -52,7 +52,7 @@ public class MemberValidationService {
             return regexErrorMessage;
         }
         if (duplicationChecker != null && duplicationChecker.isDuplicate(field)) {
-            return "error.duplicate";
+            return "duplicate.error";
         }
         return null;
     }

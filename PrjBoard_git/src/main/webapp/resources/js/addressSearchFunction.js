@@ -1,12 +1,12 @@
 function getAddrLoc(){
-    if (!checkSearchedWord(document.addrForm.keyword)) {
+    if (!checkSearchedWord(document.registerForm.keyword)) {
         return;
     }
 
     $.ajax({
         url: "/member/getAddrApi.do",
         type: "post",
-        data: $("#addrForm").serialize(),
+        data: $("#registerForm").serialize(),
         dataType: "json",
         success: function(jsonStr){
             $("#list").html("");
@@ -38,7 +38,7 @@ function makeListJson(jsonStr){
 }
 
 function selectAddress(address) {
-    document.getElementById("address").value = address;
+    document.getElementById("addressKeyword").value = address;
 }
 
 function checkSearchedWord(obj){

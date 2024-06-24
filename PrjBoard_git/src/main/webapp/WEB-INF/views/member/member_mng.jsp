@@ -27,6 +27,19 @@ textarea.form-control {
     border-radius: 4px;
     resize: none; /* 사용자가 크기를 조정하지 못하도록 설정 */
 }
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  flex: 0 0 100px;
+  margin-right: 10px;
+  text-align: right;
+}
+.form-group input, .form-group textarea {
+  flex: 1;
+}
 </style>
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
@@ -46,7 +59,60 @@ document.addEventListener("DOMContentLoaded",function(){
     const telInput = document.querySelector("#tel");
     const nickNameInput = document.querySelector("#nickName");
     const emailInput = document.querySelector("#email"); 
-    const addressInput = document.querySelector("#address");
+    
+    const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
+    const emailCheckBtn = document.querySelector("#emailCheckBtn");
+    
+    let originalNickName = nickNameInput.value;
+    let originalEmail = emailInput.value;
+    let isNickNameChecked = false;
+    let isEmailChecked = false;
+    
+    nickNameCheckBtn.addEventListener("click", function() {
+        const nickName = nickNameInput.value;
+        if (nickName !== originalNickName) {
+	        $.ajax({
+	            type: "POST",
+	            url: "${CP}/member/checkNickNameDuplicate",
+	            async: true,
+	            dataType: "json",
+	            data: { nickName: nickName },
+	            success: function(data) {
+	                alert(data.msgContents);
+	                isNickNameChecked = data.msgId === "1";
+	            },
+	            error: function(data) {
+	                console.log("error:", data);
+	            }
+	        });
+        } else {
+            alert("닉네임이 변경되지 않았습니다.");
+            isNickNameChecked = true;
+        }
+    });
+
+    emailCheckBtn.addEventListener("click", function() {
+        const email = emailInput.value;
+        if (email !== originalEmail) {
+	        $.ajax({
+	            type: "POST",
+	            url: "${CP}/member/checkEmailDuplicate",
+	            async: true,
+	            dataType: "json",
+	            data: { email: email },
+	            success: function(data) {
+	                alert(data.msgContents);
+	                isEmailChecked = data.msgId === "1";
+	            },
+	            error: function(data) {
+	                console.log("error:", data);
+	            }
+	        });
+        } else {
+            alert("이메일이 변경되지 않았습니다.");
+            isEmailChecked = true;
+        }
+    });
     
 	 /* 게시글 목록 조회 */
 	retrieveQnaArticleBTN.addEventListener("click", function(e){
@@ -86,9 +152,22 @@ document.addEventListener("DOMContentLoaded",function(){
 	 /* 회원정보 수정 */
 	updateMemberBTN.addEventListener("click", function(e){
         const memberName = memberNameInput.value;
+        const nickName = nickNameInput.value;
+        const email = emailInput.value;
         const tel = telInput.value;
-        const address = addressInput.value + " " + document.getElementById("detailAddress").value;
-        
+        const address = document.getElementById("addressKeyword").value + " " + document.getElementById("detailAddress").value;
+        if(eUtil.isEmpty(memberName) || eUtil.isEmpty(nickName) || eUtil.isEmpty(email) || eUtil.isEmpty(tel)) {
+        	alert("주소 외에 모든 필드는 필수 입력 사항입니다.");
+        	return;
+        }
+        if (!isNickNameChecked && nickName !== originalNickName) {
+            alert("닉네임 중복 체크를 해주세요.");
+            return;
+        }
+        if (!isEmailChecked && email !== originalEmail) {
+            alert("이메일 중복 체크를 해주세요.");
+            return;
+        }
 		if(window.confirm('수정사항을 저장하시겠습니까?')==false){
             return;
         }
@@ -101,6 +180,8 @@ document.addEventListener("DOMContentLoaded",function(){
     			"memberId": memberId,
     			"memberName": memberName,
     			"tel": tel,
+    			"nickName": nickName,
+    			"email": email,
     			"address": address
     		},
     		success:function(data){
@@ -139,7 +220,7 @@ function changeMemberPassword(){
     </div>
 
     <!-- form -->
-    <form action="#" name="regFrm" id="regFrm">
+    <form action="#" name="registerForm" id="registerForm">
       <div class="form-group">
         <h1 id="memberId" class="form-label">${memberId}</h1>
       </div>
@@ -156,33 +237,29 @@ function changeMemberPassword(){
       
       <div class="form-group">
         <label for="nickName" class="form-label">닉네임</label> 
-       <input type="text" id="nickName" name="nickName" value="${vo.nickName}" class="form-control"  readonly>
+       <input type="text" id="nickName" name="nickName" value="${vo.nickName}" class="form-control" >
+       <button type="button" id="nickNameCheckBtn">중복확인</button>
       </div>
       
       <div class="form-group">
-        <label for="email" class="form-label">전화번호</label> 
-       <input type="text" id="email" name="email" value="${vo.email}" class="form-control" readonly >
+        <label for="email" class="form-label">이메일</label> 
+       <input type="text" id="email" name="email" value="${vo.email}" class="form-control" >
+       <button type="button" id="emailCheckBtn">중복확인</button>
       </div>
-
-      <div class="form-group">
-        <label for="address" class="form-label">주소</label>
-        <textarea id="address" name="address"  class="form-control"  rows="2">${vo.address }</textarea>
-      </div>
-    </form>
-    
-    <form name="addrForm" id="addrForm" style="margin-top:20px;">
-      <div class="form-group">
-        <input type="hidden" name="currentPage" value="1">
-        <input type="hidden" name="countPerPage" value="10">
-        <input type="hidden" name="resultType" value="json">
-        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
-        <input type="text" name="keyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요.">
-        <input type="button" onClick="getAddrLoc();" value="주소검색">
-      </div>
-      <div class="form-group">
-        <label for="detailAddress">상세 주소:</label>
-        <input type="text" id="detailAddress" name="detailAddress" placeholder="동, 호수 등 입력" class="form-control">
-    </div>
+      <br>
+       <div class="form-group">
+	        <input type="hidden" name="currentPage" value="1">
+	        <input type="hidden" name="countPerPage" value="10">
+	        <input type="hidden" name="resultType" value="json">
+	        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
+	        <label for="changeAddress">주소</label>
+	        <input type="text" name="keyword"  id="addressKeyword" onkeydown="enterSearch();" placeholder="변경할 주소를 입력하세요." value="${vo.address}">
+	        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
+	    </div>
+	    <div class="form-group">
+			<label for="detailAddress">  </label>
+			<input type="text" id="detailAddress" name="detailAddress" placeholder="수정할 상세주소를 입력하세요." class="form-control">
+	    </div>
     </form>
     <div id="list"></div>
     

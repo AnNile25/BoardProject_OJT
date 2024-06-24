@@ -68,7 +68,16 @@ document.addEventListener("DOMContentLoaded",function(){
 	    <!-- 버튼 -->
 		<div style="margin-bottom:10px">
 			<input type="button" value="글쓰기" class="button" id="viewQnaArticleReg">
+		</div>		
+		
+	    <!-- 검색 -->
+		<div class="card-header py-3" style="text-align: center;">
+		    <input type="date" id="startDate" name="startDate" value="${paging.startDate}" placeholder="시작 날짜">~
+            <input type="date" id="endDate" name="endDate" value="${paging.endDate}" placeholder="종료 날짜">
+		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paging.searchKeyword }" style="width:200px; margin-top:10px;" placeholder="검색어를 입력하세요." />
+			<a href="#" id="searchKeywordBtn" class="btn btn-primary">검색</a>
 		</div>
+		<br>
 	    
 	    <!-- 게시글 table -->
 	    <table class="table" id="boardTable">
@@ -133,15 +142,7 @@ document.addEventListener("DOMContentLoaded",function(){
 		        <a href="${baseUrl}&nowPage=${paging.endPage+1 }">&gt;</a>
 		    </c:if>
 		</div>
-		
-	    <!-- 검색 -->
-		<div class="card-header py-3">
-		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paging.searchKeyword }" style="width:200px; height:40px; margin-top:10px;" placeholder="검색어를 입력하세요." />
-		    <input type="date" id="startDate" name="startDate" value="${paging.startDate}" placeholder="시작 날짜">~
-            <input type="date" id="endDate" name="endDate" value="${paging.endDate}" placeholder="종료 날짜">
-			<a href="#" id="searchKeywordBtn" class="btn btn-primary">검색</a>
-		</div>
-				
+						
     </form>
 </div>
 
