@@ -65,9 +65,9 @@ public class LoginServiceImpl implements LoginService {
 	            case 20:
 	                return createJsonMessage("20", "비밀번호를 확인 하세요.");
 	            case 30:
-	                MemberVO outVO = memberService.viewMemberDetail(member);
-	                session.setAttribute("memberId", outVO.getMemberId());
-	                return createJsonMessage("30", outVO.getMemberName() + "님 반갑습니다.");
+	                MemberVO storedMember = memberService.viewMemberDetail(member);
+	                session.setAttribute("memberId", storedMember.getMemberId());
+	                return createJsonMessage("30", storedMember.getMemberName() + "님 반갑습니다.");
 	            default:
 	                return createJsonMessage("99", "오류가 발생 했습니다.");
             }

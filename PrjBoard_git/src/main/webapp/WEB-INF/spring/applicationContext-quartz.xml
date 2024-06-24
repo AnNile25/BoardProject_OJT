@@ -7,8 +7,6 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.gaea.work" />
-
     <!-- Quartz Scheduler -->
     <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
     	<property name="jobFactory" ref="jobFactory" />
@@ -23,7 +21,8 @@
             </list>
         </property>
     </bean>
-        
+    
+    <!-- job Factory -->
     <bean id="jobFactory" class="org.springframework.scheduling.quartz.SpringBeanJobFactory" />    
 
     <!-- Job Detail -->

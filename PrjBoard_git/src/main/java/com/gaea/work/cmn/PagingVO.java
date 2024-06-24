@@ -21,6 +21,7 @@ public class PagingVO {
 	int startRow;
 	int endRow;
 	
+	// 검색어
 	String searchKeyword;
 	String startDate;
 	String endDate;

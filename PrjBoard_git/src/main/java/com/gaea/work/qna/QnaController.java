@@ -1,6 +1,7 @@
 package com.gaea.work.qna;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -20,21 +21,20 @@ import com.gaea.work.cmn.PagingVO;
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.member.MemberVO;
+import com.gaea.work.reply.ReplyService;
 import com.gaea.work.validation.QnaValidationService;
 
 @Controller
 @RequestMapping("qna")
 public class QnaController  {
-
 	@Autowired
 	QnaService service;
-	
+	@Autowired
+	ReplyService replyService;
 	@Autowired
 	SessionCheckService sessionService;
-	
 	@Autowired
 	QnaValidationService validationService;
-	
 	@Autowired
 	MessageSource messageSource;
 
@@ -43,19 +43,31 @@ public class QnaController  {
 	
 	@GetMapping("/retrieveQnaArticle")
 	public String retrieveQnaArticle(PagingVO pagingVO, Model model,
-			@RequestParam(value = "nowPage", required = false, defaultValue = "1") String nowPage,
-			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10")String cntPerPage,
+			@RequestParam(value = "nowPage", required = false, defaultValue = "1") int nowPage,
+			@RequestParam(value = "cntPerPage", required = false, defaultValue = "10") int cntPerPage,
 			@RequestParam(value = "searchKeyword", required = false) String searchKeyword,
 			@RequestParam(value = "startDate", required = false) String startDate,
 			@RequestParam(value = "endDate", required = false) String endDate) throws SQLException {
-		int total = service.countQnaArticle();
-		pagingVO = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
-		pagingVO.setSearchKeyword(searchKeyword); 
+		if (nowPage < 1) {
+	        nowPage = 1;
+	    }
+	    if (cntPerPage < 1 || cntPerPage > 100) {
+	        cntPerPage = 10;
+	    }
+		int qnaTotal = service.countQnaArticle();
+		pagingVO = new PagingVO(qnaTotal, nowPage, cntPerPage);
+		pagingVO.setSearchKeyword(searchKeyword);
 		pagingVO.setStartDate(startDate);
 		pagingVO.setEndDate(endDate);
 		
+		List<QnaVO> qnaList = service.retrieveQnaArticle(pagingVO);
+		for (QnaVO qna : qnaList) {
+			int replyCount = replyService.countReplyByBoardSeq(qna.getBoardSeq());
+			qna.setReplyCnt(replyCount);
+		}
+		
 	    model.addAttribute("paging", pagingVO);
-	    model.addAttribute("list", service.retrieveQnaArticle(pagingVO));
+	    model.addAttribute("list", qnaList);
 	    return "qna/qna_list";
 	}
 

@@ -34,14 +34,11 @@ public class MemberController {
 	Logger logger = LogManager.getLogger(this.getClass());
 
 	@Autowired
-	MemberService service;
-	
+	MemberService service;	
 	@Autowired
-    MemberValidationService validationService;
-	
+    MemberValidationService validationService;	
 	@Autowired
-	SessionCheckService sessionService;
-	
+	SessionCheckService sessionService;	
 	@Autowired
     MessageSource messageSource;
 

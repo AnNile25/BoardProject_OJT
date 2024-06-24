@@ -24,5 +24,6 @@ public class QnaVO {
 	
 	public String qnaNo;		  //글 번호
 	public String searchKeyword;  //검색 키워드
+	public int replyCnt; // 댓글 수
 	
 }

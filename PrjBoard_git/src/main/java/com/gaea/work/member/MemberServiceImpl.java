@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updateMemberInfo(MemberVO inVO) throws SQLException {
 		return dao.updateMember(inVO);
-	}	
+	}
 
 	@Override
 	@Transactional

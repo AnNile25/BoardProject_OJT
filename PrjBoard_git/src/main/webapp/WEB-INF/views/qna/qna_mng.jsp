@@ -164,11 +164,11 @@ document.addEventListener("DOMContentLoaded",function(){
                 }
                 
                 for(let i=0;i<data.length;i++){
-                	replyDiv += '<span>등록일:'+data[i].modDt+'</span> \n';                	
+                	replyDiv += '<span>'+data[i].memberId+'\n'+data[i].modDt+'</span> \n';
                 	replyDiv += '<div class="mb-3"> \n';
-                	replyDiv += '<input type="hidden" name="replySeq" value="'+data[i].replySeq +'"> \n';                	
+                	replyDiv += '<input type="hidden" name="replySeq" value="'+data[i].replySeq +'"> \n';
                 	replyDiv += '<textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent">'+data[i].content+'</textarea> \n';
-                	replyDiv += '</div> \n';                	
+                	replyDiv += '</div> \n';
                 }
             document.getElementById("replySaveArea").innerHTML = replyDiv;
 	    	},

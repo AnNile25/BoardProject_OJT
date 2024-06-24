@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 public interface ReplyDao {
-	
+	int countReplyByBoardSeq(int boardSeq) throws SQLException;
 	int updateLikeCnt(ReplyVO inVO) throws SQLException;
 	
 	int saveReply(ReplyVO inVO) throws SQLException;

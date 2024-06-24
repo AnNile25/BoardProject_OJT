@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded",function(){
 						<c:forEach var="vo" items="${list}" varStatus="status">
 							<tr>
 								<td><c:out value="${paging.startRow + status.index}"/> </td>
-								<td><c:out value="${vo.title}"/></td>
+								<td><c:out value="${vo.title}"/>  (<c:out value="${vo.replyCnt}"/>)</td>
 								<td><c:out value="${vo.content}"/></td>
 								<td><c:out value="${vo.modDt}"/></td>
 								<td><c:out value="${vo.memberId}" /></td>
@@ -109,28 +109,35 @@ document.addEventListener("DOMContentLoaded",function(){
 		
 		<!-- 페이징 -->
 	    <div style="display: block; text-align: center;">		
+		    <c:url var="baseUrl" value="${CP}/qna/retrieveQnaArticle">
+		        <c:param name="searchKeyword" value="${paging.searchKeyword}" />
+		        <c:param name="startDate" value="${paging.startDate}" />
+		        <c:param name="endDate" value="${paging.endDate}" />
+		        <c:param name="cntPerPage" value="${paging.cntPerPage}" />
+		    </c:url>
+		    
 			<c:if test="${paging.startPage != 1 }">
-				<a href="${CP}/qna/retrieveQnaArticle?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}&searchKeyword=${paging.searchKeyword}&startDate=${paging.startDate}&endDate=${paging.endDate}">&lt;</a>
-			</c:if>
+				<a href="${baseUrl }&nowPage=${paging.startPage-1}">&lt;</a>
+			</c:if>			
 			<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-				<c:choose>
-					<c:when test="${p == paging.nowPage }">
-						<b>${p }</b>
-					</c:when>
-					<c:when test="${p != paging.nowPage }">
-						<a href="${CP}/qna/retrieveQnaArticle?nowPage=${p }&cntPerPage=${paging.cntPerPage}&searchKeyword=${paging.searchKeyword}&startDate=${paging.startDate}&endDate=${paging.endDate}">${p }</a>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${paging.endPage != paging.lastPage}">
-				<a href="${CP}/qna/retrieveQnaArticle?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}&searchKeyword=${paging.searchKeyword}&startDate=${paging.startDate}&endDate=${paging.endDate}">&gt;</a>
-			</c:if>
+		        <c:choose>
+		            <c:when test="${p == paging.nowPage }">
+		                <b>${p }</b>
+		            </c:when>
+		            <c:when test="${p != paging.nowPage }">
+		                <a href="${baseUrl}&nowPage=${p }">${p }</a>
+		            </c:when>
+		        </c:choose>
+		    </c:forEach>		    
+		    <c:if test="${paging.endPage != paging.lastPage}">
+		        <a href="${baseUrl}&nowPage=${paging.endPage+1 }">&gt;</a>
+		    </c:if>
 		</div>
 		
 	    <!-- 검색 -->
 		<div class="card-header py-3">
 		    <input type="text" id="searchKeyword" name="searchKeyword" value="${paging.searchKeyword }" style="width:200px; height:40px; margin-top:10px;" placeholder="검색어를 입력하세요." />
-		    <input type="date" id="startDate" name="startDate" value="${paging.startDate}" placeholder="시작 날짜">
+		    <input type="date" id="startDate" name="startDate" value="${paging.startDate}" placeholder="시작 날짜">~
             <input type="date" id="endDate" name="endDate" value="${paging.endDate}" placeholder="종료 날짜">
 			<a href="#" id="searchKeywordBtn" class="btn btn-primary">검색</a>
 		</div>

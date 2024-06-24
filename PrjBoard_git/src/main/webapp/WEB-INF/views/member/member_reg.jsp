@@ -166,6 +166,15 @@ document.addEventListener("DOMContentLoaded", function(){
 .form-group input, .form-group textarea {
   flex: 1;
 }
+#list table {
+    width: 100%;
+    table-layout: fixed; /* 테이블 내 셀의 너비 고정 */
+}
+
+#list td {
+    word-wrap: break-word; /* 긴 단어나 주소도 셀 내에서 줄바꿈 */
+    white-space: normal;   /* 공백 문자가 있는 경우 자연스럽게 줄바꿈 */
+}
 </style>
 </head>
 <body>
@@ -217,8 +226,9 @@ document.addEventListener("DOMContentLoaded", function(){
 	        <input type="hidden" name="countPerPage" value="10">
 	        <input type="hidden" name="resultType" value="json">
 	        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
-	        <input type="text" name="keyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요.">
-	        <input type="button" onClick="getAddrLoc();" value="주소검색">
+	        <label for="keyword">주소 검색:</label>
+	        <input type="text" name="keyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요." >
+	        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
 	      </div>
 	      <div class="form-group">
 	        <label for="detailAddress">상세 주소:</label>

@@ -44,6 +44,12 @@ public class QnaServiceImpl implements QnaService {
 
     @Override
     public List<QnaVO> retrieveQnaArticle(PagingVO pagingVO) throws SQLException {
+    	if (pagingVO.getNowPage() < 1) {
+            pagingVO.setNowPage(1);
+        }
+        if (pagingVO.getCntPerPage() < 1 || pagingVO.getCntPerPage() > 100) {
+            pagingVO.setCntPerPage(10);
+        }
         return dao.retrieveArticle(pagingVO);
     }
 
