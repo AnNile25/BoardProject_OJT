@@ -264,6 +264,7 @@ document.addEventListener("DOMContentLoaded",function(){
 	            <input type="button" value="목록" class="button" id="retrieveQnaArticle">
 	            <input type="button" value="수정" class="button" id="viewQnaArticleMod" >
 	            <input type="button" value="삭제" class="button" id="deleteArticle" >
+	            <a href="javascript:void(0);" onclick="history.back();" class="button">취소</a>
 	        </div>
 	    </div>
 
