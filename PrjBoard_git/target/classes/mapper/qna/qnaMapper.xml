@@ -132,5 +132,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteArticle" parameterType="QnaVO">
 		DELETE FROM board WHERE board_seq = #{boardSeq}
 	</delete>
+	
+	<delete id="deleteArticleByMemberId" parameterType="String">
+		DELETE FROM board WHERE member_id = #{memberId}
+	</delete>
 		
 </mapper>

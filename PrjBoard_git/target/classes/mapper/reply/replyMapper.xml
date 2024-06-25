@@ -73,5 +73,13 @@
 	<delete id="deleteReply" parameterType="ReplyVO">
 		DELETE FROM reply WHERE reply_seq = #{replySeq}
 	</delete>
+	
+	<delete id="deleteReplyByBoardSeq" parameterType="int">
+	    DELETE FROM reply WHERE board_seq = #{boardSeq}
+	</delete>	
+	
+	<delete id="deleteReplyByMemberId" parameterType="String">
+	    DELETE FROM reply WHERE member_id = #{memberId}
+	</delete>	
 
 </mapper>

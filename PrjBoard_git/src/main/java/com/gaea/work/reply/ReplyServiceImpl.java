@@ -43,4 +43,14 @@ public class ReplyServiceImpl implements ReplyService {
 		return dao.countReplyByBoardSeq(boardSeq);
 	}
 
+	@Override
+	public int deleteReplyByBoardSeq(int boardSeq) throws SQLException {
+		return dao.deleteReplyByBoardSeq(boardSeq);
+	}
+
+	@Override
+	public int deleteReplyByMemberId(String memberId) throws SQLException {
+		return dao.deleteReplyByMemberId(memberId);
+	}
+
 }

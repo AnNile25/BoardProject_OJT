@@ -81,4 +81,9 @@ public class QnaDaoImpl implements QnaDao {
 		
 	}
 
+	@Override
+	public int deleteArticleByMemberId(String memerId) {
+		return sqlSessionTemplate.delete(NAMESPACE+DOT+"deleteArticleByMemberId", memerId);
+	}
+
 }

@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gaea.work.cmn.PagingVO;
+import com.gaea.work.reply.ReplyService;
 
 @Service
 public class QnaServiceImpl implements QnaService {
 	
     @Autowired
     QnaDao dao;
+    @Autowired
+    ReplyService replyService;
     
     public QnaServiceImpl() {}
 
@@ -27,7 +30,9 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public int deleteQnaArticle(QnaVO inVO) throws SQLException {
+    @Transactional
+    public int deleteQnaArticle(QnaVO inVO) throws SQLException {    	
+    	replyService.deleteReplyByBoardSeq(inVO.getBoardSeq()); // 댓글 삭제
         return dao.deleteArticle(inVO);
     }
 
@@ -70,6 +75,11 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public int countQnaArticle() throws SQLException {
 		return dao.qnaCount();
+	}
+
+	@Override
+	public int deleteArticleByMemberId(String  memberId) throws SQLException {
+		return dao.deleteArticleByMemberId(memberId);
 	}
 
 }

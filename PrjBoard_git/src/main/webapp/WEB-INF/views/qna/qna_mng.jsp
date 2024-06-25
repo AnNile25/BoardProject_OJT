@@ -168,8 +168,8 @@ document.addEventListener("DOMContentLoaded",function(){
                 	replyDiv += '<div class="mb-3"> \n';
                 	replyDiv += '<input type="hidden" name="replySeq" value="'+data[i].replySeq +'"> \n';
                 	replyDiv += '<textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent">'+data[i].content+'</textarea> \n';
-                	replyDiv += '<input type="button"  class="button deleteReplyBtn" value="삭제">';
-                	replyDiv += '<input type="button"  class="button updateReplyBtn" value="수정">';
+                	replyDiv += '<input type="button" class="button deleteReplyBtn" value="삭제">';
+                	replyDiv += '<input type="button" class="button updateReplyBtn" value="수정">';
                 	replyDiv += '</div> \n';
                 }
             	document.getElementById("replySaveArea").innerHTML = replyDiv;
@@ -295,8 +295,8 @@ document.addEventListener("DOMContentLoaded",function(){
 				<div class="mb-3">
 		            <input type="hidden" name="replySeq" value="">
 		            <textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent"></textarea>
-		            <input type="button"  class="button deleteReplyBtn" value="삭제">
-		            <input type="button"  class="button updateReplyBtn" value="수정">
+		            <input type="button" class="button deleteReplyBtn" value="삭제">
+		            <input type="button" class="button updateReplyBtn" value="수정">
 		        </div>
 			</div>
 			<!-- 댓글 등록 -->

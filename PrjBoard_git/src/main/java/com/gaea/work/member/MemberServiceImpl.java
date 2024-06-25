@@ -9,12 +9,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gaea.work.qna.QnaService;
+import com.gaea.work.reply.ReplyService;
 import com.gaea.work.validation.MemberValidationService;
 
 @Service
 public class MemberServiceImpl implements MemberService {
 	@Autowired
-	MemberDao dao;	
+	MemberDao dao;
+	@Autowired
+	QnaService qnaService;
+	@Autowired
+	ReplyService replyService;
 	@Autowired
     MemberValidationService validationService;
 	@Autowired
@@ -36,7 +42,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int withdrawalMember(MemberVO inVO) throws SQLException {
+	@Transactional
+	public int withdrawalMember(MemberVO inVO) throws SQLException {		
+		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //게시글 삭제
+		replyService.deleteReplyByMemberId(inVO.getMemberId()); // 댓글 삭제
 		return dao.deleteMember(inVO);
 	}
 

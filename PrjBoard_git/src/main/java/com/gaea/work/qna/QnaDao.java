@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.gaea.work.cmn.PagingVO;
 
 public interface QnaDao {
+	int deleteArticleByMemberId(String memerId);
 	
 	int deleteByCreatedDateBefore(Date date);
 	

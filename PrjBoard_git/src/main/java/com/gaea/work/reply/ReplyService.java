@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ReplyService {
+	int deleteReplyByMemberId(String memberId) throws SQLException;
+	int deleteReplyByBoardSeq(int boardSeq) throws SQLException;
 	int countReplyByBoardSeq(int boardSeq) throws SQLException;
 	
 	int saveReply(ReplyVO inVO) throws SQLException;
