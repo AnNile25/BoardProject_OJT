@@ -10,15 +10,13 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.gaea.work.cmn.PagingVO;
 
 public interface QnaDao {
-	int deleteArticleByMemberId(String memerId);
-	
-	int deleteByCreatedDateBefore(Date date);
-	
+	List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException;
+	int deleteArticleByMemberId(String memerId);	
+	int deleteByCreatedDateBefore(Date date);	
 	int qnaCount() throws SQLException;
-	
-	List<QnaVO> pagingList(Map<String, Integer> pagingParams) throws SQLException;
-	
 	int getSeq()throws SQLException;
+	
+	List<QnaVO> pagingList(Map<String, Integer> pagingParams) throws SQLException;	
 	
 	/**
 	 * 글제목으로 삭제: test only
@@ -28,19 +26,14 @@ public interface QnaDao {
 	 */
 	int deleteAllQna(QnaVO inVO)throws SQLException;
 	
-	int updateReadCnt(QnaVO inVO)throws SQLException;  
-	
+	int updateReadCnt(QnaVO inVO)throws SQLException;  	
 	int updateLikeCnt(QnaVO inVO)throws SQLException;
 	
 	// 기본 CRUD	
-	int updateArticle(QnaVO inVO) throws SQLException;
-	
-	int deleteArticle(QnaVO inVO) throws SQLException;
-	
-	QnaVO selectOneArticle(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;
-	
-	int saveArticle(QnaVO inVO) throws SQLException;
-	
+	int updateArticle(QnaVO inVO) throws SQLException;	
+	int deleteArticle(QnaVO inVO) throws SQLException;	
+	QnaVO selectOneArticle(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;	
+	int saveArticle(QnaVO inVO) throws SQLException;	
 	List<QnaVO> retrieveArticle(PagingVO pagingVO) throws SQLException;
 
 }

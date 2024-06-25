@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gaea.work.qna.QnaService;
+import com.gaea.work.qna.QnaVO;
 import com.gaea.work.reply.ReplyService;
 import com.gaea.work.validation.MemberValidationService;
 
@@ -43,9 +44,14 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public int withdrawalMember(MemberVO inVO) throws SQLException {		
-		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //게시글 삭제
-		replyService.deleteReplyByMemberId(inVO.getMemberId()); // 댓글 삭제
+	public int withdrawalMember(MemberVO inVO) throws SQLException {
+		// 회원이 작성한 모든 게시글의 댓글 삭제
+		List<QnaVO> qnaList = qnaService.getAllAtricleByMemberId(inVO.getMemberId());
+		for (QnaVO qna : qnaList) {
+			replyService.deleteReplyByBoardSeq(qna.getBoardSeq());
+		}
+		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제
+		replyService.deleteReplyByMemberId(inVO.getMemberId()); // 회원 작성한 댓글 삭제
 		return dao.deleteMember(inVO);
 	}
 

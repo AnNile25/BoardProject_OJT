@@ -136,5 +136,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteArticleByMemberId" parameterType="String">
 		DELETE FROM board WHERE member_id = #{memberId}
 	</delete>
+	
+	<select id="getAllAtricleByMemberId" parameterType="String" resultType="QnaVO">
+		SELECT * FROM board WHERE member_id = #{memberId}
+	</select>
 		
 </mapper>

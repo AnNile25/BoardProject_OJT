@@ -82,4 +82,9 @@ public class QnaServiceImpl implements QnaService {
 		return dao.deleteArticleByMemberId(memberId);
 	}
 
+	@Override
+	public List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException {
+		 return dao.getAllAtricleByMemberId(memberId);
+	}
+
 }

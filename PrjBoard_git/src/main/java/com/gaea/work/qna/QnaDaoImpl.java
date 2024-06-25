@@ -86,4 +86,9 @@ public class QnaDaoImpl implements QnaDao {
 		return sqlSessionTemplate.delete(NAMESPACE+DOT+"deleteArticleByMemberId", memerId);
 	}
 
+	@Override
+	public List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException {
+		return sqlSessionTemplate.selectList(NAMESPACE+DOT+"getAllAtricleByMemberId", memberId);
+	}
+
 }
