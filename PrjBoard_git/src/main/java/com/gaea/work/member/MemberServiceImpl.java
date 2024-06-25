@@ -52,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
 		}
 		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제
 		replyService.deleteReplyByMemberId(inVO.getMemberId()); // 회원 작성한 댓글 삭제
-		return dao.deleteMember(inVO);
+		return dao.deleteMember(inVO); // 회원 탈퇴
 	}
 
 	@Override

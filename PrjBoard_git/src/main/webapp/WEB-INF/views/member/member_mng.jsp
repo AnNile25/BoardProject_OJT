@@ -44,47 +44,32 @@ textarea.form-control {
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
 <script src="${CP}/resources/js/addressSearchFunction.js"></script>
 </head>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded",function(){ 
-	console.log("DOMContentLoaded");
+	const memberId = document.querySelector("#memberId").innerText;
 	
 	const retrieveQnaArticleBTN = document.querySelector("#retrieveQnaArticle");
 	const updateMemberBTN 	= document.querySelector("#updateMember");
 	const withdrawalMemberBTN = document.querySelector("#withdrawalMember");
-	
-	const memberId = document.querySelector("#memberId").innerText;
-    const memberNameInput = document.querySelector("#memberName");
-    const telInput = document.querySelector("#tel");
-    const nickNameInput = document.querySelector("#nickName");
-    const emailInput = document.querySelector("#email"); 
     
     const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
     const emailCheckBtn = document.querySelector("#emailCheckBtn");
     
-    let originalNickName = nickNameInput.value;
-    let originalEmail = emailInput.value;
+    let originalNickName = document.querySelector("#nickName").value;
+    let originalEmail = document.querySelector("#email").value;
     let isNickNameChecked = false;
     let isEmailChecked = false;
     
     nickNameCheckBtn.addEventListener("click", function() {
-        const nickName = nickNameInput.value;
+    	const nickName = document.querySelector("#nickName").value;
         if (nickName !== originalNickName) {
-	        $.ajax({
-	            type: "POST",
-	            url: "${CP}/member/checkNickNameDuplicate",
-	            async: true,
-	            dataType: "json",
-	            data: { nickName: nickName },
-	            success: function(data) {
-	                alert(data.msgContents);
-	                isNickNameChecked = data.msgId === "1";
-	            },
-	            error: function(data) {
-	                console.log("error:", data);
-	            }
-	        });
+        	sendAjaxRequest("POST", `${CP}/member/checkNickNameDuplicate`, {nickName: nickName}, function(data) {
+        		 alert(data.msgContents);
+	             isNickNameChecked = data.msgId === "1";
+        	});
         } else {
             alert("닉네임이 변경되지 않았습니다.");
             isNickNameChecked = true;
@@ -92,22 +77,12 @@ document.addEventListener("DOMContentLoaded",function(){
     });
 
     emailCheckBtn.addEventListener("click", function() {
-        const email = emailInput.value;
+    	const email = document.querySelector("#email").value;    	
         if (email !== originalEmail) {
-	        $.ajax({
-	            type: "POST",
-	            url: "${CP}/member/checkEmailDuplicate",
-	            async: true,
-	            dataType: "json",
-	            data: { email: email },
-	            success: function(data) {
-	                alert(data.msgContents);
-	                isEmailChecked = data.msgId === "1";
-	            },
-	            error: function(data) {
-	                console.log("error:", data);
-	            }
-	        });
+        	sendAjaxRequest("POST", `${CP}/member/checkEmailDuplicate`, {email: email}, function(data) {
+	       		 alert(data.msgContents);
+	       		isEmailChecked = data.msgId === "1";
+       		});
         } else {
             alert("이메일이 변경되지 않았습니다.");
             isEmailChecked = true;
@@ -116,46 +91,31 @@ document.addEventListener("DOMContentLoaded",function(){
     
 	 /* 게시글 목록 조회 */
 	retrieveQnaArticleBTN.addEventListener("click", function(e){
-		console.log("retrieveQnaArticleBTN click");
 		window.location.href = "/qna/retrieveQnaArticle";
 	});
 	 
 	withdrawalMemberBTN.addEventListener("click", function(e){
-		console.log("withdrawalMemberBTN click");
 		if(window.confirm('탈퇴 하시겠습니까?')==false){
             return;
         }
-		$.ajax({
-    		type: "GET",
-    		url:"/member/withdrawalMember",
-    		async:"true",
-    		dataType:"json",
-    		data:{
-    			"memberId": memberId
-    		},
-    		success:function(data){
-        		console.log("success data.msgId:"+data.msgId);
-        		console.log("success data.msgContents:"+data.msgContents);
-                if("1" == data.msgId){
-                   alert(data.msgContents);
-                   window.location.href = "/login/loginView";
-                }else{
-                    alert(data.msgContents);
-                }
-        	},
-        	error:function(data){
-        		console.log("error:"+data);
-        	}
-    	});
+		sendAjaxRequest("GET", `${CP}/member/withdrawalMember`, {memberId: memberId}, function(data){
+			alert(data.msgContents);
+			if("1" == data.msgId){
+				window.location.href = "/login/loginView";
+			} else {
+                alert(data.msgContents);
+            }
+		});
 	});
 	
 	 /* 회원정보 수정 */
 	updateMemberBTN.addEventListener("click", function(e){
-        const memberName = memberNameInput.value;
-        const nickName = nickNameInput.value;
-        const email = emailInput.value;
-        const tel = telInput.value;
+		const memberName = document.querySelector("#memberName").value;
+        const nickName = document.querySelector("#nickName").value;
+        const email = document.querySelector("#email").value;
+        const tel = document.querySelector("#tel").value;
         const address = document.getElementById("addressKeyword").value + " " + document.getElementById("detailAddress").value;
+        
         if(eUtil.isEmpty(memberName) || eUtil.isEmpty(nickName) || eUtil.isEmpty(email) || eUtil.isEmpty(tel)) {
         	alert("주소 외에 모든 필드는 필수 입력 사항입니다.");
         	return;
@@ -171,32 +131,19 @@ document.addEventListener("DOMContentLoaded",function(){
 		if(window.confirm('수정사항을 저장하시겠습니까?')==false){
             return;
         }
-		$.ajax({
-    		type: "POST",
-    		url:"/member/updateMemberInfo",
-    		async:true,
-    		dataType:"json",
-    		data:{
-    			"memberId": memberId,
-    			"memberName": memberName,
-    			"tel": tel,
-    			"nickName": nickName,
-    			"email": email,
-    			"address": address
-    		},
-    		success:function(data){
-    			alert(data.msgContents);
-                if (data.msgId === "1") { // 성공적으로 데이터가 처리되었다면
-                    window.location.reload(); // 페이지를 새로 고침
-                }
-        	},
-        	error:function(data){
-        		console.log("error:"+data);
-        	},
-            complete:function(data){
-                console.log("complete:"+data);
+		sendAjaxRequest("POST", `${CP}/member/updateMemberInfo`, {
+			"memberId": memberId,
+			"memberName": memberName,
+			"tel": tel,
+			"nickName": nickName,
+			"email": email,
+			"address": address
+		}, function(data){
+			alert(data.msgContents);
+            if (data.msgId === "1") { 
+                window.location.reload();
             }
-    	});
+		});
 	});
 	 
 });//-- DOMContentLoaded
@@ -251,7 +198,6 @@ function changeMemberPassword(){
 	        <input type="hidden" name="currentPage" value="1">
 	        <input type="hidden" name="countPerPage" value="10">
 	        <input type="hidden" name="resultType" value="json">
-	        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
 	        <label for="changeAddress">주소</label>
 	        <input type="text" name="keyword"  id="addressKeyword" onkeydown="enterSearch();" placeholder="변경할 주소를 입력하세요." value="${vo.address}">
 	        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">

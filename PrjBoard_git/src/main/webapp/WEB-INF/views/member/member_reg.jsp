@@ -11,91 +11,51 @@
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
-<script src="${CP}/resources/js/addressSearchFunction.js"></script>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
+<script src="${CP}/resources/js/addressSearchFunction.js"></script><!-- 주소 찾기 -->
 <script>
 document.addEventListener("DOMContentLoaded", function(){
     console.log("DOMContentLoaded");    
 
-    const saveMemberBTN = document.querySelector("#saveMember");
-    
-    const memberIdInput = document.querySelector("#memberId");
-    const memberNameInput = document.querySelector("#memberName");
-    const passwordInput = document.querySelector("#password");
-    const telInput = document.querySelector("#tel");
-    const nickNameInput = document.querySelector("#nickName");
-    const emailInput = document.querySelector("#email");
-    
-    const memberIdCheckBtn = document.querySelector("#memberIdCheckBtn");
-    const nickNameCheckBtn = document.querySelector("#nickNameCheckBtn");
-    const emailCheckBtn = document.querySelector("#emailCheckBtn");
-    
+    const saveMemberBTN = document.getElementById("saveMember");
+        
     let isMemberIdChecked = false;
     let isNickNameChecked = false;
     let isEmailChecked = false;
-
-    memberIdCheckBtn.addEventListener("click", function() {
-        const memberId = memberIdInput.value;
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/checkMemberIdDuplicate",
-            async: true,
-            dataType: "json",
-            data: { memberId: memberId },
-            success: function(data) {
-                alert(data.msgContents);
-                isMemberIdChecked = data.msgId === "1";
-            },
-            error: function(data) {
-                console.log("error:", data);
-            }
+    
+    document.querySelector("#memberIdCheckBtn").addEventListener("click", function() {
+	    const memberId = document.getElementById("memberId").value;
+        sendAjaxRequest("POST", `${CP}/member/checkMemberIdDuplicate`, { memberId: memberId }, function(data) {
+            alert(data.msgContents);
+            isMemberIdChecked = data.msgId === "1";
         });
     });
 
-    nickNameCheckBtn.addEventListener("click", function() {
-        const nickName = nickNameInput.value;
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/checkNickNameDuplicate",
-            async: true,
-            dataType: "json",
-            data: { nickName: nickName },
-            success: function(data) {
-                alert(data.msgContents);
-                isNickNameChecked = data.msgId === "1";
-            },
-            error: function(data) {
-                console.log("error:", data);
-            }
+    document.querySelector("#nickNameCheckBtn").addEventListener("click", function() {
+	    const nickName = document.getElementById("nickName").value;
+        sendAjaxRequest("POST", `${CP}/member/checkNickNameDuplicate`, { nickName: nickName }, function(data) {
+            alert(data.msgContents);
+            isNickNameChecked = data.msgId === "1";
         });
     });
 
-    emailCheckBtn.addEventListener("click", function() {
-        const email = emailInput.value;
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/checkEmailDuplicate",
-            async: true,
-            dataType: "json",
-            data: { email: email },
-            success: function(data) {
-                alert(data.msgContents);
-                isEmailChecked = data.msgId === "1";
-            },
-            error: function(data) {
-                console.log("error:", data);
-            }
+    document.querySelector("#emailCheckBtn").addEventListener("click", function() {
+	    const email= document.getElementById("email").value;
+        sendAjaxRequest("POST", `${CP}/member/checkEmailDuplicate`, { email: email }, function(data) {
+            alert(data.msgContents);
+            isEmailChecked = data.msgId === "1";
         });
     });
-
+    
     saveMemberBTN.addEventListener("click", function(e){
-        console.log("saveMemberBTN click");
-
-        const memberId = memberIdInput.value;
-        const memberName = memberNameInput.value;
-        const password = passwordInput.value;
-        const tel = telInput.value;
-        const nickName = nickNameInput.value;
-        const email = emailInput.value;
+    	e.preventDefault();
+    	
+    	const memberId = document.getElementById("memberId").value;
+        const memberName = document.getElementById("memberName").value;
+        const password = document.getElementById("password").value;
+        const tel = document.getElementById("tel").value;
+        const nickName = document.getElementById("nickName").value;
+        const email= document.getElementById("email").value;
         const address = document.getElementById("addressKeyword").value + " " + document.getElementById("detailAddress").value;
 
         if (!isMemberIdChecked) {
@@ -114,42 +74,23 @@ document.addEventListener("DOMContentLoaded", function(){
         if(window.confirm("등록 하시겠습니까?") == false){
             return;
         }
-
-        $.ajax({
-            type: "POST",
-            url: "${CP}/member/joinMember",
-            async: true,
-            dataType: "json",
-            data: {
-                "memberId": memberId,
-                "memberName": memberName,
-                "password": password,
-                "tel": tel,
-                "nickName": nickName,
-                "email": email,
-                "address": address
-            },
-            success: function(data) {
-                console.log("data.msgId:", data.msgId);
-                console.log("data.msgContents:", data.msgContents);
-
-                if ('1' == data.msgId) {
-                    alert(data.msgContents);
-                    window.location.href = "${CP}/login/loginView";
-                } else {
-                    alert(data.msgContents);
-                }
-            },
-            error: function(data) {
-                console.log("error:", data);
-            },
-            complete: function(data) {
-                console.log("complete:", data);
-            }
+        
+        sendAjaxRequest("POST", `${CP}/member/joinMember`, {
+        	"memberId": memberId,
+            "memberName": memberName,
+            "password": password,
+            "tel": tel,
+            "nickName": nickName,
+            "email": email,
+            "address": address
+        }, function(data) {
+        	alert(data.msgContents);
+        	 if ('1' == data.msgId) {
+                 window.location.href = `${CP}/login/loginView`;
+             }
         });
-
-    });
-});
+    }); //-- saveMemberBTN
+}); // --DOMContentLoaded
 </script>
 <style>
 .form-group {
@@ -213,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function(){
 		        <input type="hidden" name="currentPage" value="1">
 		        <input type="hidden" name="countPerPage" value="10">
 		        <input type="hidden" name="resultType" value="json">
-		        <input type="hidden" name="confmKey" id="confmKey" value="devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=">
 		        <label for="keyword">주소:</label>
 		        <input type="text" name="keyword" id="addressKeyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요." >
 		        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
