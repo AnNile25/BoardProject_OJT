@@ -70,13 +70,8 @@
 		    reply_seq = #{replySeq}
 	</update>
 	
-	<update id="updateLikeCnt" parameterType="ReplyVO">
-		<![CDATA[
-		UPDATE reply
-		   SET like_cnt = NVL(like_cnt,0)+1
-		 WHERE reply_seq  = #{replySeq}
-		   AND member_id <> #{memberId}
-		]]>
-	</update>
+	<delete id="deleteReply" parameterType="ReplyVO">
+		DELETE FROM reply WHERE reply_seq = #{replySeq}
+	</delete>
 
 </mapper>

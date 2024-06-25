@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,17 +14,12 @@ public class ReplyServiceImpl implements ReplyService {
 	public ReplyServiceImpl() {	}
 
 	@Override
-	public int updateLikeCnt(ReplyVO inVO) throws SQLException {
-		return dao.updateLikeCnt(inVO);
-	}
-
-	@Override
 	public int saveReply(ReplyVO inVO) throws SQLException {
 		return dao.saveReply(inVO);
 	}
 
 	@Override
-	public ReplyVO selectOneReply(ReplyVO inVO) throws SQLException, EmptyResultDataAccessException {
+	public ReplyVO viewReplyDetail(ReplyVO inVO) throws SQLException {
 		return dao.selectOneReply(inVO);
 	}
 

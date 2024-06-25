@@ -168,9 +168,26 @@ document.addEventListener("DOMContentLoaded",function(){
                 	replyDiv += '<div class="mb-3"> \n';
                 	replyDiv += '<input type="hidden" name="replySeq" value="'+data[i].replySeq +'"> \n';
                 	replyDiv += '<textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent">'+data[i].content+'</textarea> \n';
+                	replyDiv += '<input type="button"  class="button deleteReplyBtn" value="삭제">';
+                	replyDiv += '<input type="button"  class="button updateReplyBtn" value="수정">';
                 	replyDiv += '</div> \n';
                 }
-            document.getElementById("replySaveArea").innerHTML = replyDiv;
+            	document.getElementById("replySaveArea").innerHTML = replyDiv;
+            
+	            /* 이벤트 리스너 등록 (댓글 삭제/ 수정) */
+	            document.querySelectorAll(".deleteReplyBtn").forEach(function(button) {
+	            	button.addEventListener("click", function() {
+	            		const replySeq = this.parentElement.querySelector("input[name=replySeq]").value;
+	            		deleteReply(replySeq);
+	            	});
+	            });
+	            document.querySelectorAll(".updateReplyBtn").forEach(function(button) {
+	            	button.addEventListener("click", function() {
+	            		const replySeq = this.parentElement.querySelector("input[name='replySeq']").value;
+                        const content = this.parentElement.querySelector("textarea[name='dyReplyContent']").value;
+	            		updateReply(replySeq, content);
+	            	});
+	            });
 	    	},
 	        error:function(data){
 	            console.log("error:"+data);
@@ -178,9 +195,62 @@ document.addEventListener("DOMContentLoaded",function(){
 	        complete:function(data){
 	            console.log("complete:"+data);
 	        }
-		});
-		
+		});		
 	}//--replyRetrieve()
+	
+	/* deleteReply */
+	function deleteReply(replySeq){
+		if(window.confirm("댓글을 삭제하시겠습니까?") == false) {
+			return;
+		}
+		$.ajax({
+            type:"GET",
+            url: "/reply/deleteReply",
+            asyn:"true",
+            dataType:"json",
+            data:{
+                "replySeq": replySeq
+            },
+            success:function(data){                
+               	alert(data.msgContents);
+                if("1"==data.msgId){
+                	replyRetrieve();
+                }
+            },
+            error:function(data){
+                console.log("error:"+data);
+            }
+        });
+	}
+	/* updateReply */
+	function updateReply(replySeq, content){
+		if(eUtil.isEmpty(content)){
+			alert("댓글을 입력하세요.");
+			return;
+		}
+		if(window.confirm("댓글을 수정하시겠습니까?") == false) {
+			return;
+		}
+		$.ajax({
+            type:"POST",
+            url: "/reply/updateReply",
+            asyn:"true",
+            dataType:"json",
+            data:{
+                "replySeq": replySeq,
+                "content": content
+            },
+            success:function(data){                
+               	alert(data.msgContents);
+                if("1"==data.msgId){
+                	replyRetrieve();
+                }
+            },
+            error:function(data){
+                console.log("error:"+data);
+            }
+        });
+	}
 });//-- DOMContentLoaded
 </script>
 </head>
@@ -225,6 +295,8 @@ document.addEventListener("DOMContentLoaded",function(){
 				<div class="mb-3">
 		            <input type="hidden" name="replySeq" value="">
 		            <textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent"></textarea>
+		            <input type="button"  class="button deleteReplyBtn" value="삭제">
+		            <input type="button"  class="button updateReplyBtn" value="수정">
 		        </div>
 			</div>
 			<!-- 댓글 등록 -->

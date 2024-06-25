@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,17 +15,12 @@ public class ReplyDaoImpl implements ReplyDao {
 	SqlSessionTemplate template;
 
 	@Override
-	public int updateLikeCnt(ReplyVO inVO) throws SQLException {
-		return template.update(NAMESPACE+"updateLikeCnt", inVO);
-	}
-
-	@Override
 	public int saveReply(ReplyVO inVO) throws SQLException {
 		return template.insert(NAMESPACE+"saveReply", inVO);
 	}
 
 	@Override
-	public ReplyVO selectOneReply(ReplyVO inVO) throws SQLException, EmptyResultDataAccessException {
+	public ReplyVO selectOneReply(ReplyVO inVO) throws SQLException {
 		return template.selectOne(NAMESPACE+"selectOneReply", inVO);
 	}
 
