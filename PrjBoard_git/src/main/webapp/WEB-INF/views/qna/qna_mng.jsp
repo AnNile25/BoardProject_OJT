@@ -6,6 +6,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
 <meta charset="UTF-8">
 <title>Board 상세조회</title>
 <style>
@@ -26,7 +27,6 @@
 <script src="${CP}/resources/js/eUtil.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",function(){ 
-	console.log("DOMContentLoaded");
 	replyRetrieve(); // 댓글 조회
 	
 	const boardSeq = document.querySelector("#boardSeq").value;
@@ -46,9 +46,6 @@ document.addEventListener("DOMContentLoaded",function(){
 	if (errorMessage && errorMessage.trim() !== '') {
         alert(errorMessage);
     }
-		
-	console.log("memberId:" + memberId);
-	console.log("sessionMemberId:" + sessionMemberId);
 	
 	function retrieveQnaArticle(){
     	window.location.href = "/qna/retrieveQnaArticle";
@@ -71,34 +68,15 @@ document.addEventListener("DOMContentLoaded",function(){
 	});
 	
 	deleteArticleBTN.addEventListener("click", function(e){
-		console.log("deleteArticleBTN click");
-		
 		if(window.confirm('삭제 하시겠습니까?')==false){
             return;
         }
-		
-		$.ajax({
-    		type: "GET",
-    		url:"/qna/deleteQnaArticle",
-    		async:"true",
-    		dataType:"json",
-    		data:{
-    			"boardSeq": boardSeq
-    		},
-    		success:function(data){
-        		console.log("success data.msgId:"+data.msgId);
-        		console.log("success data.msgContents:"+data.msgContents);
-                if("1" == data.msgId){
-                   alert(data.msgContents);
-                   retrieveQnaArticle();
-                }else{
-                    alert(data.msgContents);
-                }
-        	},
-        	error:function(data){
-        		console.log("error:"+data);
-        	}
-    	});
+		sendAjaxRequest("GET", `${CP}/qna/deleteQnaArticle`, {boardSeq: boardSeq}, function(data){
+			alert(data.msgContents);
+			 if("1" == data.msgId){
+				 retrieveQnaArticle();
+			 }
+		});
 	});
 	
 	/* reply */
@@ -113,89 +91,55 @@ document.addEventListener("DOMContentLoaded",function(){
             document.querySelector('#replyContent').focus();
             return;
         }
-		$.ajax({
-            type:"POST",
-            url: "/reply/saveReply",
-            asyn:"true",
-            dataType:"json",
-            data:{
-                "content": replyContent,
-                "boardSeq": boardSeq,
-                "memberId": memberId
-            },
-            success:function(data){//통신 성공
-                console.log("success msgId:"+data.msgId);
-                console.log("success msgContents:"+data.msgContents);
-                
-                if("1"==data.msgId){
-                	alert(data.msgContents);
-                	replyRetrieve();
-                	document.querySelector('#replyContent').value = ''; //등록 댓글 초기화
-                }else{
-                	alert(data.msgContents);
-                }
-            },
-            error:function(data){
-                console.log("error:"+data);
-            },
-            complete:function(data){
-                console.log("complete:"+data);
-            }
-        });
+		sendAjaxRequest("POST", `${CP}/reply/saveReply`,{
+            content: replyContent,
+            boardSeq: boardSeq,
+            memberId: memberId
+        }, function(data){
+			alert(data.msgContents);
+			 if("1" == data.msgId){
+				replyRetrieve();
+             	document.querySelector('#replyContent').value = ''; //등록 댓글 초기화
+			 }
+		});
 	});//--replySaveBTN
 	
 	function replyRetrieve(){
-		const boardSeq = document.querySelector("#boardSeq").value
-	
-        $.ajax({
-            type: "GET",
-            url:"/reply/retrieveReply",
-            asyn:"true",
-            dataType:"json",
-            data:{
-                "boardSeq": boardSeq  
-            },
-            success:function(data){
-            	let replyDiv = '';
-                document.getElementById("replySaveArea").innerHTML = "";
-                if(0==data.length){
-                	console.log("댓글이 없습니다.");
-                	return;
-                }
-                
-                for(let i=0;i<data.length;i++){
-                	replyDiv += '<span>'+data[i].memberId+'\n'+data[i].modDt+'</span> \n';
-                	replyDiv += '<div class="mb-3"> \n';
-                	replyDiv += '<input type="hidden" name="replySeq" value="'+data[i].replySeq +'"> \n';
-                	replyDiv += '<textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent">'+data[i].content+'</textarea> \n';
-                	replyDiv += '<input type="button" class="button deleteReplyBtn" value="삭제">';
-                	replyDiv += '<input type="button" class="button updateReplyBtn" value="수정">';
-                	replyDiv += '</div> \n';
-                }
-            	document.getElementById("replySaveArea").innerHTML = replyDiv;
-            
-	            /* 이벤트 리스너 등록 (댓글 삭제/ 수정) */
-	            document.querySelectorAll(".deleteReplyBtn").forEach(function(button) {
-	            	button.addEventListener("click", function() {
-	            		const replySeq = this.parentElement.querySelector("input[name=replySeq]").value;
-	            		deleteReply(replySeq);
-	            	});
-	            });
-	            document.querySelectorAll(".updateReplyBtn").forEach(function(button) {
-	            	button.addEventListener("click", function() {
-	            		const replySeq = this.parentElement.querySelector("input[name='replySeq']").value;
-                        const content = this.parentElement.querySelector("textarea[name='dyReplyContent']").value;
-	            		updateReply(replySeq, content);
-	            	});
-	            });
-	    	},
-	        error:function(data){
-	            console.log("error:"+data);
-	        },
-	        complete:function(data){
-	            console.log("complete:"+data);
+	    const boardSeq = document.querySelector("#boardSeq").value
+	    sendAjaxRequest("GET", `${CP}/reply/retrieveReply`, { boardSeq: boardSeq }, function(data) {
+	        let replyDiv = '';
+	        document.getElementById("replySaveArea").innerHTML = "";
+	        if (0 == data.length) {
+	            console.log("댓글이 없습니다.");
+	            return;
 	        }
-		});		
+
+	        for (let i = 0; i < data.length; i++) {
+	            replyDiv += '<span>' + data[i].memberId + '\n' + data[i].modDt + '</span> \n';
+	            replyDiv += '<div class="mb-3"> \n';
+	            replyDiv += '<input type="hidden" name="replySeq" value="' + data[i].replySeq + '"> \n';
+	            replyDiv += '<textarea rows="3" class="form-control dyReplyContent" name="dyReplyContent">' + data[i].content + '</textarea> \n';
+	            replyDiv += '<input type="button" class="button deleteReplyBtn" value="삭제">';
+	            replyDiv += '<input type="button" class="button updateReplyBtn" value="수정">';
+	            replyDiv += '</div> \n';
+	        }
+	        document.getElementById("replySaveArea").innerHTML = replyDiv;
+
+	        /* 이벤트 리스너 등록 (댓글 삭제/ 수정) */
+	        document.querySelectorAll(".deleteReplyBtn").forEach(function(button) {
+	            button.addEventListener("click", function() {
+	                const replySeq = this.parentElement.querySelector("input[name=replySeq]").value;
+	                deleteReply(replySeq);
+	            });
+	        });
+	        document.querySelectorAll(".updateReplyBtn").forEach(function(button) {
+	            button.addEventListener("click", function() {
+	                const replySeq = this.parentElement.querySelector("input[name='replySeq']").value;
+	                const content = this.parentElement.querySelector("textarea[name='dyReplyContent']").value;
+	                updateReply(replySeq, content);
+	            });
+	        });
+	    });
 	}//--replyRetrieve()
 	
 	/* deleteReply */
@@ -203,24 +147,12 @@ document.addEventListener("DOMContentLoaded",function(){
 		if(window.confirm("댓글을 삭제하시겠습니까?") == false) {
 			return;
 		}
-		$.ajax({
-            type:"GET",
-            url: "/reply/deleteReply",
-            asyn:"true",
-            dataType:"json",
-            data:{
-                "replySeq": replySeq
-            },
-            success:function(data){                
-               	alert(data.msgContents);
-                if("1"==data.msgId){
-                	replyRetrieve();
-                }
-            },
-            error:function(data){
-                console.log("error:"+data);
-            }
-        });
+		sendAjaxRequest("GET", `${CP}/reply/deleteReply`,{replySeq: replySeq}, function(data){
+			alert(data.msgContents);
+			 if("1" == data.msgId){
+				replyRetrieve();
+			 }
+		});
 	}
 	/* updateReply */
 	function updateReply(replySeq, content){
@@ -231,25 +163,15 @@ document.addEventListener("DOMContentLoaded",function(){
 		if(window.confirm("댓글을 수정하시겠습니까?") == false) {
 			return;
 		}
-		$.ajax({
-            type:"POST",
-            url: "/reply/updateReply",
-            asyn:"true",
-            dataType:"json",
-            data:{
-                "replySeq": replySeq,
-                "content": content
-            },
-            success:function(data){                
-               	alert(data.msgContents);
-                if("1"==data.msgId){
-                	replyRetrieve();
-                }
-            },
-            error:function(data){
-                console.log("error:"+data);
-            }
-        });
+		sendAjaxRequest("POST", `${CP}/reply/updateReply`,{
+				replySeq: replySeq,
+				content: content
+			}, function(data){
+			alert(data.msgContents);
+			 if("1" == data.msgId){
+				replyRetrieve();
+			 }
+		});
 	}
 });//-- DOMContentLoaded
 </script>

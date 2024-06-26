@@ -11,15 +11,12 @@
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded",function(){
-	console.log("DOMContentLoaded");
-	
 	const loginBTN = document.querySelector("#loginBtn");
 	
 	loginBTN.addEventListener("click", function(e) {
-		console.log("loginBTN click");
-		
 		const memberId = document.querySelector("#memberId").value;		
 		if(eUtil.isEmpty(memberId)==true){
 			 alert('아이디를 입력 하세요.');
@@ -31,41 +28,24 @@ document.addEventListener("DOMContentLoaded",function(){
             alert('비밀번호를 입력 하세요.');
             document.querySelector("#password").focus();
             return;
-        }
-        
+        }        
         if(confirm("로그인 하시겠습니까?")===false) return;
         
-        $.ajax({
-            type: "POST",
-            url:"/login/login.do",
-            async:true,
-            dataType:"json",
-            data:{
-           	 "memberId": memberId,
-           	 "password": password
-            },
-            success:function(data){//통신 성공
-                console.log("data.msgId:"+data.msgId);
-                console.log("data.msgContents:"+data.msgContents);
-                
-                if("10" == data.msgId){
-               	 alert(data.msgContents);
-               	 document.querySelector("#memberId").focus();
-                }else if("20" == data.msgId){
-                    alert(data.msgContents);
-                    document.querySelector("#password").focus();                 
-                }else if("30" == data.msgId){
-               	 alert(data.msgContents);
-               	 window.location.href = "/qna/retrieveQnaArticle";
-                }
-            },
-            error:function(data){//실패시 처리
-                console.log("error:"+data);
-            },
-            complete:function(data){//성공/실패와 관계없이 수행!
-                console.log("complete:"+data);
-            }
-        }); 
+        sendAjaxRequest("POST", `${CP}/login/login.do`, {
+       		memberId: memberId,
+       		password: password
+       	 }, function(data){
+       		 if("10" == data.msgId){
+				alert(data.msgContents);
+				document.querySelector("#memberId").focus();
+           	 }else if("20" == data.msgId){
+                alert(data.msgContents);
+                document.querySelector("#password").focus();                 
+			}else if("30" == data.msgId){
+				alert(data.msgContents);
+	           	window.location.href = "/qna/retrieveQnaArticle";
+	         }
+		});
 	});
 	
 });//--DOMContentLoaded

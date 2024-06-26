@@ -132,12 +132,12 @@ document.addEventListener("DOMContentLoaded",function(){
             return;
         }
 		sendAjaxRequest("POST", `${CP}/member/updateMemberInfo`, {
-			"memberId": memberId,
-			"memberName": memberName,
-			"tel": tel,
-			"nickName": nickName,
-			"email": email,
-			"address": address
+			memberId: memberId,
+			memberName: memberName,
+			tel: tel,
+			nickName: nickName,
+			email: email,
+			address: address
 		}, function(data){
 			alert(data.msgContents);
             if (data.msgId === "1") { 

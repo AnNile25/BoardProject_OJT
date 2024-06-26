@@ -11,60 +11,34 @@
 <link rel="stylesheet" type="text/css" href="${CP}/resources/css/common.css">
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
-	console.log("DOMContentLoaded");
-	
 	const retrieveQnaArticleBTN	 = document.querySelector("#retrieveQnaArticle");
 	const saveArticleBTN =  document.querySelector("#saveArticle");
 	const regForm        = document.querySelector("#regFrm");
 	
 	/* 저장 이벤트 */
 	saveArticleBTN.addEventListener("click", function(e){
-		console.log("saveArticleBTN click");
-		
 		const memberId = document.querySelector("#memberId").value;
 		const title = document.querySelector("#title").value;
 		const content = document.querySelector("#content").value;
 		
-		console.log("memberId:"+memberId);
-		console.log("title:"+title);
-		console.log("content:"+content);
-				
 		if(window.confirm("등록 하시겠습니까?")==false){
 			return;
 		}
-		
-		$.ajax({
-            type: "POST",
-            url:"/qna/saveQnaArticle",
-            async:"true",
-            dataType:"json",
-            data:{
-            	"memberId" : memberId,
-                "title": title,
-                "content": content,
-                "likeCnt": 0,
-                "readCnt": 0
-                },
-            success:function(data){
-                console.log("data.msgId:"+data.msgId);
-                console.log("data.msgContents:"+data.msgContents);
-                
-                if('1'==data.msgId){
-                	alert(data.msgContents);
-                	retrieveQnaArticleFun();
-                }else{
-                	alert(data.msgContents);
-                }
-            },
-            error:function(data){
-                console.log("error:"+data);
-            },
-            complete:function(data){
-                console.log("complete:"+data);
-            }
-        });
+		sendAjaxRequest("POST", `${CP}/qna/saveQnaArticle`, {
+			memberId : memberId,
+	           title: title,
+	           content: content,
+	           likeCnt: 0,
+	           readCnt: 0
+		}, function(data) {
+			alert(data.msgContents);
+			 if('1'==data.msgId){
+				 retrieveQnaArticleFun();
+			 }
+		});
 	});
 	
 	/* 목록 이벤트 */

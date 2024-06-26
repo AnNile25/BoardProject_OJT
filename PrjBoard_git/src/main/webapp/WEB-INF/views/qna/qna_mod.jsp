@@ -6,6 +6,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
 <meta charset="UTF-8">
 <title>Board Modify</title>
 <style>
@@ -28,8 +29,6 @@
 <script src="${CP}/resources/js/eUtil.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded",function(){ 
-	console.log("DOMContentLoaded");
-	
 	const retrieveQnaArticleBTN 	= document.querySelector("#retrieveQnaArticle");
 	const updateArticleBTN 	= document.querySelector("#updateArticle");
 	const deleteArticleBTN 	= document.querySelector("#deleteArticle");
@@ -43,82 +42,43 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	/* 목록으로 돌아가기 */
 	retrieveQnaArticleBTN.addEventListener("click", function(e){
-		console.log("retrieveQnaArticleBTN click");
 		retrieveQnaArticle()
 	});
 	
 	/* 수정 이벤트 */
 	updateArticleBTN.addEventListener("click", function(e){
-		console.log("updateArticleBTN click");
-	
 		const title 	= document.querySelector("#title").value;
 		const content 	= document.querySelector("#content").value; 
 				
 		if(window.confirm('수정 하시겠습니까?')==false){
             return;
         }
-		
-		$.ajax({
-    		type: "POST",
-    		url:"/qna/updateQnaArticle",
-    		async:"true",
-    		dataType:"json",
-    		data:{
-    			"boardSeq": boardSeq,
-    			"title": title,
-    			"content": content
-    		},
-    		success:function(data){
-        		console.log("success data.msgId:"+data.msgId);
-        		console.log("success data.msgContents:"+data.msgContents);
-                if("1" == data.msgId){
-                   alert(data.msgContents);
-                   retrieveQnaArticle();     
-                }else{
-                    alert(data.msgContents);
-                }
-        	},
-        	error:function(data){
-        		console.log("error:"+data);
-        	},
-            complete:function(data){
-                console.log("complete:"+data);
-            }
-    	});
-	});	
+		sendAjaxRequest("POST", `${CP}/qna/updateQnaArticle`, {
+			boardSeq: boardSeq,
+			title: title,
+			content: content
+		}, function(data) {
+			alert(data.msgContents);
+			 if('1'==data.msgId){
+				 retrieveQnaArticle();
+			 }
+		});
+	});//--updateArticleBTN
 	
 	/* 삭제 이벤트 */
 	deleteArticleBTN.addEventListener("click", function(e){
-		console.log("deleteArticleBTN click");
-		
 		if(window.confirm('삭제 하시겠습니까?')==false){
             return;
         }
-		
-		$.ajax({
-    		type: "GET",
-    		url:"/qna/deleteQnaArticle",
-    		async:"true",
-    		dataType:"json",
-    		data:{
-    			"boardSeq": boardSeq
-    		},
-    		success:function(data){
-        		console.log("success data.msgId:"+data.msgId);
-        		console.log("success data.msgContents:"+data.msgContents);
-                if("1" == data.msgId){
-                   alert(data.msgContents);
-                   retrieveQnaArticle();     
-                }else{
-                    alert(data.msgContents);
-                }
-        	},
-        	error:function(data){
-        		console.log("error:"+data);
-        	}
-    	});
-	});	
-});
+		sendAjaxRequest("GET", `${CP}/qna/deleteQnaArticle`, {boardSeq: boardSeq}, function(data) {
+			alert(data.msgContents);
+			 if('1'==data.msgId){
+				 retrieveQnaArticle();
+			 }
+		});
+	});//--deleteArticleBTN
+	
+});//--DOMContentLoaded
 </script>
 </head>
 <body>
