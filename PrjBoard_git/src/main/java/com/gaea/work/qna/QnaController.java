@@ -48,21 +48,23 @@ public class QnaController  {
 			@RequestParam(value = "searchKeyword", required = false) String searchKeyword,
 			@RequestParam(value = "startDate", required = false) String startDate,
 			@RequestParam(value = "endDate", required = false) String endDate) throws SQLException {
+		// 페이징
 		if (nowPage < 1) {
 	        nowPage = 1;
 	    }
 	    if (cntPerPage < 1 || cntPerPage > 100) {
 	        cntPerPage = 10;
 	    }
-		int qnaTotal = service.countQnaArticle();
-		pagingVO = new PagingVO(qnaTotal, nowPage, cntPerPage);
+	    pagingVO.setNowPage(nowPage);
+	    pagingVO.setCntPerPage(cntPerPage);
 		pagingVO.setSearchKeyword(searchKeyword);
 		pagingVO.setStartDate(startDate);
 		pagingVO.setEndDate(endDate);
 		
+		// 댓글 수 보기
 		List<QnaVO> qnaList = service.retrieveQnaArticle(pagingVO);
 		for (QnaVO qna : qnaList) {
-			int replyCount = replyService.countReplyByBoardSeq(qna.getBoardSeq());
+			int replyCount = replyService.countReplyByBoardSeq(qna.getBoardSeq()); 
 			qna.setReplyCnt(replyCount);
 		}
 		

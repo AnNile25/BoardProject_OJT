@@ -71,8 +71,8 @@ public class QnaDaoImpl implements QnaDao {
 	}
 
 	@Override
-	public int qnaCount() throws SQLException {
-		return sqlSessionTemplate.selectOne(NAMESPACE+DOT+"qnaCount");
+	public int qnaCount(PagingVO pagingVO) throws SQLException {
+		return sqlSessionTemplate.selectOne(NAMESPACE+DOT+"qnaCount", pagingVO);
 	}
 
 	@Override

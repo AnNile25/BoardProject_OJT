@@ -55,6 +55,12 @@ public class QnaServiceImpl implements QnaService {
         if (pagingVO.getCntPerPage() < 1 || pagingVO.getCntPerPage() > 100) {
             pagingVO.setCntPerPage(10);
         }
+        // 검색 조건을 반영하여 전체 게시글 수를 계산
+        int totalCnt = dao.qnaCount(pagingVO);
+        pagingVO.setTotalCnt(totalCnt);
+        pagingVO.calculatedLastPage(totalCnt, pagingVO.getCntPerPage());
+        pagingVO.calculatedStartEndPage(pagingVO.getNowPage(), pagingVO.getCntPage());
+        pagingVO.calculatedStartEnd(pagingVO.getNowPage(), pagingVO.getCntPerPage());
         return dao.retrieveArticle(pagingVO);
     }
 
@@ -71,12 +77,7 @@ public class QnaServiceImpl implements QnaService {
         Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
         dao.deleteByCreatedDateBefore(thresholdDate);
     }
-
-	@Override
-	public int countQnaArticle() throws SQLException {
-		return dao.qnaCount();
-	}
-
+    
 	@Override
 	public int deleteArticleByMemberId(String  memberId) throws SQLException {
 		return dao.deleteArticleByMemberId(memberId);

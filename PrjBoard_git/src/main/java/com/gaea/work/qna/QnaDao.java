@@ -13,7 +13,7 @@ public interface QnaDao {
 	List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException;
 	int deleteArticleByMemberId(String memerId);	
 	int deleteByCreatedDateBefore(Date date);	
-	int qnaCount() throws SQLException;
+	int qnaCount(PagingVO pagingVO) throws SQLException;
 	int getSeq()throws SQLException;
 	
 	List<QnaVO> pagingList(Map<String, Integer> pagingParams) throws SQLException;	

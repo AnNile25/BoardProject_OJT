@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    </where>
 	</sql>
 	
-	<select id="qnaCount" resultType="int">
+	<select id="qnaCount" parameterType="PagingVO" resultType="int">
         SELECT COUNT(*) FROM board 
         <include refid="searchKeyWord"/>
     </select>

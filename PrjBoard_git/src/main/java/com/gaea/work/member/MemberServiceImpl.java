@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public int withdrawalMember(MemberVO inVO) throws SQLException {
-		// 회원이 작성한 모든 게시글의 댓글 삭제
+		// 회원이 작성한 게시글의 모든 댓글 삭제
 		List<QnaVO> qnaList = qnaService.getAllAtricleByMemberId(inVO.getMemberId());
 		for (QnaVO qna : qnaList) {
 			replyService.deleteReplyByBoardSeq(qna.getBoardSeq());
