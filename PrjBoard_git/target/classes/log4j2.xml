@@ -3,16 +3,16 @@
     <Appenders>
         <!-- 콘솔 출력 방식 -->
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d %-5p  %C.%M (%F:%L) - %m%n" />
+            <PatternLayout pattern="%d %-5p  %c{1}.%M (%F:%L) - %m%n" />
         </Console>
     
         <!-- 파일 저장 방식 -->
         <File name="memberJoinFile" fileName="C:\Users\dlgks\gaeasoft\ojtpj\git_gaea\PrjBoard_git\logs\joinLogFile.log">
-            <PatternLayout pattern="%d %-5p %C.%M (%F:%L) - %m%n"/>
+            <PatternLayout pattern="%d %-5p %c{1}.%M (%F:%L) - %m%n"/>
         </File>
         
         <File name="quartzFile" fileName="C:\Users\dlgks\gaeasoft\ojtpj\git_gaea\PrjBoard_git\logs\quartzLogFile.log">
-            <PatternLayout pattern="%d %-5p %C.%M (%F:%L) - %m%n"/>
+            <PatternLayout pattern="%d %-5p %c{1}.%M (%F:%L) - %m%n"/>
         </File>
     </Appenders>
     

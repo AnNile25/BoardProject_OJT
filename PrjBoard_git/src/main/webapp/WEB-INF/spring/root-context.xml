@@ -13,7 +13,7 @@
            
      <!-- 비밀번호 암호화 빈 -->
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-           
+          
 	<!-- sqlSessionTemplate -->
 	<bean id="sqlSessionTemplate"	class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
