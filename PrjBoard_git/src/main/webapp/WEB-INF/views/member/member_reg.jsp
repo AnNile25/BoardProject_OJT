@@ -12,8 +12,10 @@
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
 <script src="${CP}/resources/js/sendAjaxRequest.js"></script>
-<script src="${CP}/resources/js/addressSearchFunction.js"></script><!-- 주소 찾기 -->
 <script>
+function openAddressSearchPopup() {
+    window.open("/main/addressSearchPopup", "주소 검색", "width=600,height=400,scrollbars=yes");
+}
 document.addEventListener("DOMContentLoaded", function(){
     console.log("DOMContentLoaded");    
 
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const tel = document.getElementById("tel").value;
         const nickName = document.getElementById("nickName").value;
         const email= document.getElementById("email").value;
-        const address = document.getElementById("addressKeyword").value + " " + document.getElementById("detailAddress").value;
+        const address = document.getElementById("keyword").value + " " + document.getElementById("detailAddress").value;
 
         if (!isMemberIdChecked) {
             alert("아이디 중복 체크를 해주세요.");
@@ -149,19 +151,15 @@ document.addEventListener("DOMContentLoaded", function(){
                 <input type="email" id="email" name="email" class="form-control" />
                 <button type="button" id="emailCheckBtn">중복확인</button>
             </div>	
-            
-			<div class="form-group">
-		        <input type="hidden" name="currentPage" value="1">
-		        <input type="hidden" name="countPerPage" value="10">
-		        <input type="hidden" name="resultType" value="json">
-		        <label for="keyword">주소:</label>
-		        <input type="text" name="keyword" id="addressKeyword" onkeydown="enterSearch();" placeholder="검색할 주소를 입력하세요." >
-		        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
-		      </div>
-		      <div class="form-group">
+            <div class="form-group">
+                <label for="keyword">주소</label>
+                <input type="text" id="keyword" name="keyword" class="form-control" readonly placeholder="주소 검색을 해주세요."/>
+                <input type="button" onClick="openAddressSearchPopup();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
+            </div>
+            <div class="form-group">
 		        <label for="detailAddress">상세 주소:</label>
 		        <input type="text" id="detailAddress" name="detailAddress" placeholder="동, 호수 등 입력" class="form-control">
-		    </div>	
+		    </div>
 			
             <div class="form-group">
                 <button type="button" class="button" id="saveMember">가입하기</button>

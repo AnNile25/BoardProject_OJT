@@ -1,5 +1,7 @@
 package com.gaea.work.main;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,5 +23,10 @@ public class MainController  {
 	@GetMapping(value="/popup.do")
 	public String pop(MemberVO inVO, HttpSession session) {
 		return "main/changePwPop";
+	}
+	
+	@GetMapping(value="/addressSearchPopup")
+	public String addressSearchPopup(HttpServletRequest req, HttpServletResponse response) {
+		return "member/addressSearchPopup";
 	}
 }

@@ -50,9 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		for (QnaVO qna : qnaList) {
 			replyService.deleteReplyByBoardSeq(qna.getBoardSeq());
 		}
-		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제
+		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제	
 		replyService.deleteReplyByMemberId(inVO.getMemberId()); // 회원 작성한 댓글 삭제
-		return dao.deleteMember(inVO); // 회원 탈퇴
+		return dao.deleteMember(inVO); // 회원 탈퇴		
 	}
 
 	@Override

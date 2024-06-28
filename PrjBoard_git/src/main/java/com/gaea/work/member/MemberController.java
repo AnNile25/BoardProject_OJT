@@ -45,7 +45,7 @@ public class MemberController {
 	public MemberController() {
 	}
 	
-    @RequestMapping(value="/getAddrApi.do")
+    @PostMapping(value="/getAddrApi.do")
     public void getAddrApi(HttpServletRequest req, HttpServletResponse response) throws Exception {
         // 요청 변수 설정
         String currentPage = req.getParameter("currentPage");    // 현재 페이지. currentPage : n > 0

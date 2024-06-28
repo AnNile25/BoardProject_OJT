@@ -48,6 +48,9 @@ textarea.form-control {
 <script src="${CP}/resources/js/addressSearchFunction.js"></script>
 </head>
 <script type="text/javascript">
+function openAddressSearchPopup() {
+    window.open("/main/addressSearchPopup", "주소 검색", "width=600,height=400,scrollbars=yes");
+}
 document.addEventListener("DOMContentLoaded",function(){ 
 	const memberId = document.querySelector("#memberId").innerText;
 	
@@ -114,7 +117,7 @@ document.addEventListener("DOMContentLoaded",function(){
         const nickName = document.querySelector("#nickName").value;
         const email = document.querySelector("#email").value;
         const tel = document.querySelector("#tel").value;
-        const address = document.getElementById("addressKeyword").value + " " + document.getElementById("detailAddress").value;
+        const address = document.getElementById("keyword").value;
         
         if(eUtil.isEmpty(memberName) || eUtil.isEmpty(nickName) || eUtil.isEmpty(email) || eUtil.isEmpty(tel)) {
         	alert("주소 외에 모든 필드는 필수 입력 사항입니다.");
@@ -194,20 +197,11 @@ function changeMemberPassword(){
        <button type="button" id="emailCheckBtn">중복확인</button>
       </div>
       <br>
-       <div class="form-group">
-	        <input type="hidden" name="currentPage" value="1">
-	        <input type="hidden" name="countPerPage" value="10">
-	        <input type="hidden" name="resultType" value="json">
-	        <label for="changeAddress">주소</label>
-	        <input type="text" name="keyword"  id="addressKeyword" onkeydown="enterSearch();" placeholder="변경할 주소를 입력하세요." value="${vo.address}">
-	        <input type="button" onClick="getAddrLoc();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
-	    </div>
-	    <div class="form-group">
-			<label for="detailAddress">  </label>
-			<input type="text" id="detailAddress" name="detailAddress" placeholder="수정할 상세주소를 입력하세요." class="form-control">
-	    </div>
-    </form>
-    <div id="list"></div>
+      <div class="form-group">
+           <label for="keyword">주소</label>
+           <input type="text" id="keyword" name="keyword" value="${vo.address }" class="form-control"  placeholder="주소 검색을 해주세요."/>
+           <input type="button" onClick="openAddressSearchPopup();" value="주소검색" style="flex: 0 0 auto; width: 100px;">
+       </div>
     
     <input type="button" onClick="changeMemberPassword();" value="비밀번호 변경">
     
