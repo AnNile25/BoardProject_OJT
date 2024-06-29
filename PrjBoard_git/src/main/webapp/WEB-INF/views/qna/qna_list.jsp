@@ -15,6 +15,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="${CP}/resources/js/jquery-3.7.1.js"></script>
 <script src="${CP}/resources/js/eUtil.js"></script>
+<script src="${CP}/resources/js/sendAjaxRequest.js"></script>
 <script type="text/javascript">
 document.addEventListener("DOMContentLoaded",function(){
 	console.log("DOMContentLoaded"); 
@@ -26,7 +27,9 @@ document.addEventListener("DOMContentLoaded",function(){
     const errorMessage = '${errorMessage}';
 	if (errorMessage && errorMessage.trim() !== '') {
 	    alert(errorMessage);
-	}
+	    history.back(); 
+        return;
+	} 
 	
 	// boardTable 이벤트
 	rows.forEach(function(row) {
@@ -47,14 +50,14 @@ document.addEventListener("DOMContentLoaded",function(){
 	
 	document.querySelector("#searchKeywordBtn").addEventListener("click", function(e) {
 		e.preventDefault();
-        document.querySelector("#listForm").submit();
-    });
+        document.querySelector("#listForm").submit(); 
+	});
 	
 });
 </script>
 </head>
 <body>
-
+<div id="error-message" style="display:none;">${errorMessage}</div>
 <div>
 	<form action="${CP}/qna/retrieveQnaArticle" method="get" id="listForm">
 	

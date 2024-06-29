@@ -1,6 +1,7 @@
 package com.gaea.work.member;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -46,34 +47,50 @@ public class MemberController {
 	}
 	
     @PostMapping(value="/getAddrApi.do")
-    public void getAddrApi(HttpServletRequest req, HttpServletResponse response) throws Exception {
-        // 요청 변수 설정
-        String currentPage = req.getParameter("currentPage");    // 현재 페이지. currentPage : n > 0
-        String countPerPage = req.getParameter("countPerPage");  // 페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100
-        String resultType = req.getParameter("resultType");      // 검색결과형식 설정, json
-        String confmKey = "devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=";
-        String keyword = req.getParameter("keyword");            // 요청 변수 설정 키워드
-
-        // OPEN API 호출 URL 정보 설정
-        String apiUrl = "https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=" + currentPage 
-    							+ "&countPerPage=" + countPerPage 
-    							+ "&keyword=" + URLEncoder.encode(keyword, "UTF-8") 
-    							+ "&confmKey=" + confmKey 
-    							+ "&resultType=" + resultType;
-        URL url = new URL(apiUrl);
-        BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-        StringBuffer sb = new StringBuffer();
-        String tempStr = null;
-
-        while (true) {
-            tempStr = br.readLine();
-            if (tempStr == null) break;
-            sb.append(tempStr);  // 응답결과 JSON 저장
-        }
-        br.close();
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("application/json");
-        response.getWriter().write(sb.toString());  // 응답결과 반환
+    public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
+    	BufferedReader br = null;
+    	try {
+	        // 요청 변수 설정
+	        String currentPage = req.getParameter("currentPage");    // 현재 페이지. currentPage : n > 0
+	        String countPerPage = req.getParameter("countPerPage");  // 페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100
+	        String resultType = req.getParameter("resultType");      // 검색결과형식 설정, json
+	        String confmKey = "devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=";
+	        String keyword = req.getParameter("keyword");            // 요청 변수 설정 키워드
+	
+	        // OPEN API 호출 URL 정보 설정
+	        String apiUrl;
+			apiUrl = "https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=" + currentPage 
+									+ "&countPerPage=" + countPerPage 
+									+ "&keyword=" + URLEncoder.encode(keyword, "UTF-8") 
+									+ "&confmKey=" + confmKey 
+									+ "&resultType=" + resultType;
+			URL url = new URL(apiUrl);
+			br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
+			StringBuffer sb = new StringBuffer();
+			String tempStr = null;
+			while ((tempStr = br.readLine()) != null) {
+	            sb.append(tempStr);  // 응답결과 JSON 저장
+	        }
+			br.close();
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json");
+			response.getWriter().write(sb.toString());  // 응답결과 반환
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+	            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류가 발생했습니다.");
+	        } catch (IOException ioException) {
+	            ioException.printStackTrace();
+	        }
+		} finally {
+	        if (br != null) {
+	            try {
+	                br.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
     }
 	
 	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")

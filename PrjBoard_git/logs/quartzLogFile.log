@@ -176,3 +176,7 @@ java.lang.NullPointerException: null
 2024-06-20 17:43:02,796 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:36) - DeleteOldQnaJob 성공
 2024-06-22 16:42:08,210 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
 2024-06-22 16:42:09,110 INFO  com.gaea.work.quartz.DeleteOldQnaJob.execute (DeleteOldQnaJob.java:31) - DeleteOldQnaJob 성공
+2024-06-29 06:22:38,387 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-29 06:22:38,487 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:31) - DeleteOldQnaJob 성공
+2024-06-30 00:52:16,905 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-06-30 00:52:17,180 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:31) - DeleteOldQnaJob 성공

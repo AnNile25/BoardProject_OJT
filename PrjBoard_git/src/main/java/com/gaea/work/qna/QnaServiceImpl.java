@@ -1,6 +1,8 @@
 package com.gaea.work.qna;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -55,15 +57,32 @@ public class QnaServiceImpl implements QnaService {
         if (pagingVO.getCntPerPage() < 1 || pagingVO.getCntPerPage() > 100) {
             pagingVO.setCntPerPage(10);
         }
+        if (isNotEmpty(pagingVO.getStartDate()) && isNotEmpty(pagingVO.getEndDate())) {
+        	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        	try {
+        		Date startDate = dateFormat.parse(pagingVO.getStartDate());
+        		Date endDate = dateFormat.parse(pagingVO.getEndDate());
+        		if (endDate.before(startDate)) {
+                    throw new IllegalArgumentException("종료 날짜는 시작 날짜보다 이전일 수 없습니다.");
+                }
+        	} catch (ParseException e) {
+        		e.printStackTrace();
+			}
+        }
         // 검색 조건을 반영하여 전체 게시글 수를 계산
         int totalCnt = dao.qnaCount(pagingVO);
         pagingVO.setTotalCnt(totalCnt);
         pagingVO.calculatedLastPage(totalCnt, pagingVO.getCntPerPage());
         pagingVO.calculatedStartEndPage(pagingVO.getNowPage(), pagingVO.getCntPage());
         pagingVO.calculatedStartEnd(pagingVO.getNowPage(), pagingVO.getCntPerPage());
+        pagingVO.setStartDate(pagingVO.getStartDate());
+        pagingVO.setEndDate(pagingVO.getEndDate());
         return dao.retrieveArticle(pagingVO);
     }
 
+    private boolean isNotEmpty(String str) {
+        return str != null && !str.trim().isEmpty();
+    }
 
     @Override
     public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException {
