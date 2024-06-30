@@ -53,7 +53,7 @@ function getAddrLoc(){
             }
         },
         error: function(xhr, status, error){
-            alert("에러발생: " + error);
+            alert("에러가 발생했습니다. " + error);
         }
     });
 }

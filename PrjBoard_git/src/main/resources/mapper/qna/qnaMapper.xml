@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	            AND mod_dt >= TO_DATE(#{startDate}, 'YYYY-MM-DD')]]>
 	        </if>
 	        <if test="endDate != null and endDate != ''"><![CDATA[
-	            AND mod_dt <= TO_DATE(#{endDate}, 'YYYY-MM-DD')]]>
+	            AND mod_dt < (TO_DATE(#{endDate}, 'YYYY-MM-DD') + 1)]]>
 	        </if>
 	    </where>
 	</sql>
