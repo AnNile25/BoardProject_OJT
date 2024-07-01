@@ -29,9 +29,9 @@ function getAddrLoc(){
     if (!checkSearchedWord(document.getElementById("addressKeyword"))) {
         return;
     }
-
+	
     $.ajax({
-        url: "${CP}/member/getAddrApi.do",
+        url: "${CP}/member/getAddrApi",
         type: "post",
         data: { 
             keyword: $("#addressKeyword").val(),
@@ -39,21 +39,18 @@ function getAddrLoc(){
             countPerPage: "10",
             resultType: "json"
         },
-        dataType: "json",
+        dataType: "jsonp",
         success: function(jsonStr){
-            $("#list").html("");
-            var errCode = jsonStr.results.common.errorCode;
-            var errDesc = jsonStr.results.common.errorMessage;
-            if(errCode != "0"){
-                alert(errCode + "=" + errDesc);
-            } else {
-                if(jsonStr != null){
-                    makeListJson(jsonStr);
-                }
-            }
+        	if (jsonStr.results.common.errorCode !== "0") {
+                alert(jsonStr.results.common.errorMessage);
+            } else if (jsonStr.results.juso.length === 0) {
+        		alert("검색 결과가 없습니다.")
+        	} else {
+        	makeListJson(jsonStr);
+        	}
         },
-        error: function(xhr, status, error){
-            alert("에러가 발생했습니다. " + error);
+        error: function(error){
+            alert("검색 중 오류가 발생했습니다.");
         }
     });
 }
@@ -70,7 +67,6 @@ function makeListJson(jsonStr){
 }
 
 function selectAddress(address) {
-	console.log("Selected address: " + address);
 	window.opener.document.getElementById("keyword").value = address;
     window.close();
 }

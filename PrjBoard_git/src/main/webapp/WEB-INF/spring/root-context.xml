@@ -45,7 +45,10 @@
 	<!-- Quartz 설정 파일  -->
 	<import resource="applicationContext-quartz.xml"/>
 	
-	<!-- 트랜잭션 설정 파일  --> 
-	<import resource="transaction-context.xml"/> 
-
+	<!-- 트랜잭션 매니저 설정  -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
 </beans>
