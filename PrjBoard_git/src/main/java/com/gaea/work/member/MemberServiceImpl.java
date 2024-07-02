@@ -44,15 +44,29 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public int withdrawalMember(MemberVO inVO) throws SQLException {
-		// 회원이 작성한 게시글의 모든 댓글 삭제
-		List<QnaVO> qnaList = qnaService.getAllAtricleByMemberId(inVO.getMemberId());
-		for (QnaVO qna : qnaList) {
-			replyService.deleteReplyByBoardSeq(qna.getBoardSeq());
+	public int withdrawalMember(MemberVO inVO) {
+		try {// 회원이 작성한 게시글의 모든 댓글 삭제			
+			List<QnaVO> qnaList = qnaService.getAllAtricleByMemberId(inVO.getMemberId());
+			for (QnaVO qna : qnaList) {
+				replyService.deleteReplyByBoardSeq(qna.getBoardSeq());
+			}
+			
+			try {
+			qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			try {
+			replyService.deleteReplyByMemberId(inVO.getMemberId()); // 회원 작성한 댓글 삭제
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
+			
+			return dao.deleteMember(inVO); // 회원 탈퇴
+		} catch (Exception e) {
+			return 0;
 		}
-		qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제	
-		replyService.deleteReplyByMemberId(inVO.getMemberId()); // 회원 작성한 댓글 삭제
-		return dao.deleteMember(inVO); // 회원 탈퇴		
 	}
 
 	@Override

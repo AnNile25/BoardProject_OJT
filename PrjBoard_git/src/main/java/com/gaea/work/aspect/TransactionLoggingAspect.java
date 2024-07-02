@@ -23,9 +23,9 @@ public class TransactionLoggingAspect {
         logger.info("Starting transaction for method: {}", joinPoint.getSignature().toShortString()); //실행 중인 메서드 이름 반환
     }
     
-    @AfterReturning(value = "cut()", returning = "returnObj")
-    public void logAfterTransaction(JoinPoint joinPoint, Object returnObj) {
-        logger.info("Transaction completed successfully for method: {} return Obj: {}", joinPoint.getSignature().toShortString(), returnObj);
+    @AfterReturning("cut()")
+    public void logAfterTransaction(JoinPoint joinPoint) {
+        logger.info("Transaction completed successfully for method: {}", joinPoint.getSignature().toShortString());
     }
     
     @AfterThrowing(pointcut = "cut()", throwing = "ex")

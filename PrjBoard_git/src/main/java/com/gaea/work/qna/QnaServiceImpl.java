@@ -98,7 +98,6 @@ public class QnaServiceImpl implements QnaService {
     }
     
 	@Override
-	@Transactional
 	public int deleteArticleByMemberId(String  memberId) throws SQLException {
 		return dao.deleteArticleByMemberId(memberId);
 	}

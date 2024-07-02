@@ -51,7 +51,6 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	@Transactional
 	public int deleteReplyByMemberId(String memberId) throws SQLException {
 		return dao.deleteReplyByMemberId(memberId);
 	}
