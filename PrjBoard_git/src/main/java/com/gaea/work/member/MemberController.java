@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -46,8 +47,7 @@ public class MemberController {
 	}
 	
     @PostMapping("/getAddrApi")
-    @ResponseBody
-    public String getAddrApi(HttpServletRequest req) {
+    public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
     	BufferedReader br = null;
     	try {
 	        String currentPage = req.getParameter("currentPage"); 
@@ -57,7 +57,7 @@ public class MemberController {
 	        String keyword = req.getParameter("keyword"); 
 	        String callback = req.getParameter("callback");   	        
 	        String apiUrl = null;
-	        URL url;
+	        URL url = null;
 	        
 	        try {
 				apiUrl = "https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=" + currentPage 
@@ -68,7 +68,7 @@ public class MemberController {
 				url = new URL(apiUrl);
 	        } catch (Exception e) {
 	        	e.printStackTrace();
-	            return "잘못된 요청입니다.";
+	            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "잘못된 요청입니다.");
 			}
 	        
 	        try {
@@ -82,23 +82,29 @@ public class MemberController {
 				
 				String jsonResponse = sb.toString();
 				jsonResponse = callback + "(" + jsonResponse + ")";
-				return jsonResponse;
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+	            response.getWriter().write(jsonResponse); 
 	        } catch (IOException e) {
-	        	e.printStackTrace();
-	            return "오류가 발생했습다.";
-			}
+	            e.printStackTrace();
+	            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "오류가 발생했습니다.");
+	        } finally {
+	            if (br != null) {
+	                try {
+	                    br.close();
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            }
+	        }
     	} catch (Exception e) {
             e.printStackTrace();
-                return "서버 오류가 발생했습니다.";
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            try {
+            	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류가 발생했습니다.");
+            } catch (Exception ex) {
+            	ex.printStackTrace();
             }
-        }	    
+        }
     }
 	
 	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")

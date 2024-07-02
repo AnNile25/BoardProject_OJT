@@ -17,8 +17,6 @@ function openAddressSearchPopup() {
     window.open("/main/addressSearchPopup", "주소 검색", "width=600,height=400,scrollbars=yes");
 }
 document.addEventListener("DOMContentLoaded", function(){
-    console.log("DOMContentLoaded");    
-
     const saveMemberBTN = document.getElementById("saveMember");
         
     let isMemberIdChecked = false;
@@ -72,7 +70,6 @@ document.addEventListener("DOMContentLoaded", function(){
             alert("이메일 중복 체크를 해주세요.");
             return;
         }
-
         if(window.confirm("등록 하시겠습니까?") == false){
             return;
         }
