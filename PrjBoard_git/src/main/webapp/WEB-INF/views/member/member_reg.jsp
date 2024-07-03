@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
     let isNickNameChecked = false;
     let isEmailChecked = false;
     
-    document.querySelector("#memberIdCheckBtn").addEventListener("click", function() {
+    $("#memberIdCheckBtn").click(function() {
 	    const memberId = document.getElementById("memberId").value;
         sendAjaxRequest("POST", `${CP}/member/checkMemberIdDuplicate`, { memberId: memberId }, function(data) {
             alert(data.msgContents);

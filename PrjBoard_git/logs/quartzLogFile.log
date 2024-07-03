@@ -182,3 +182,5 @@ java.lang.NullPointerException: null
 2024-06-30 00:52:17,180 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:31) - DeleteOldQnaJob 성공
 2024-07-02 08:39:06,318 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
 2024-07-02 08:39:06,448 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:31) - DeleteOldQnaJob 성공
+2024-07-03 03:12:42,803 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:28) - DeleteOldQnaJob start.
+2024-07-03 03:12:43,060 INFO  DeleteOldQnaJob.execute (DeleteOldQnaJob.java:31) - DeleteOldQnaJob 성공

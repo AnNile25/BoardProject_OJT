@@ -65,6 +65,7 @@ public class MemberServiceImpl implements MemberService {
 			
 			return dao.deleteMember(inVO); // 회원 탈퇴
 		} catch (Exception e) {
+			e.printStackTrace();
 			return 0;
 		}
 	}
