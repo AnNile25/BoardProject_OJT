@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    <where>
 	        <if test="searchKeyword != null and searchKeyword != ''">
 	            AND (
-	                title like '%' || #{searchKeyword} || '%'
-	                OR content like '%' || #{searchKeyword} || '%'
+					CONTAINS(title, '%${searchKeyword}%') > 0
+					OR CONTAINS(content, '%${searchKeyword}%') > 0
 	            )
 	        </if>
 	        <if test="startDate != null and startDate != ''"><![CDATA[
