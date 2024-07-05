@@ -3,25 +3,21 @@ package com.gaea.work.member;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gaea.work.qna.QnaService;
-import com.gaea.work.qna.QnaVO;
-import com.gaea.work.reply.ReplyService;
 import com.gaea.work.validation.MemberValidationService;
 
 @Service
 public class MemberServiceImpl implements MemberService {
+	Logger logger = LogManager.getLogger(this.getClass());
 	@Autowired
 	MemberDao dao;
-	@Autowired
-	QnaService qnaService;
-	@Autowired
-	ReplyService replyService;
 	@Autowired
     MemberValidationService validationService;
 	@Autowired
@@ -44,30 +40,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public int withdrawalMember(MemberVO inVO) {
-		try {// 회원이 작성한 게시글의 모든 댓글 삭제			
-			List<QnaVO> qnaList = qnaService.getAllAtricleByMemberId(inVO.getMemberId());
-			for (QnaVO qna : qnaList) {
-				replyService.deleteReplyByBoardSeq(qna.getBoardSeq());
-			}
-			
-			try {
-			qnaService.deleteArticleByMemberId(inVO.getMemberId()); //회원 작성한 게시글 삭제	
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			try {
-			replyService.deleteReplyByMemberId(inVO.getMemberId()); // 회원 작성한 댓글 삭제
-			} catch (Exception e) {
-				e.printStackTrace();
-			}			
-			
-			return dao.deleteMember(inVO); // 회원 탈퇴
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
+	public int withdrawalMember(MemberVO inVO) throws SQLException {
+		return  dao.deleteMember(inVO);
 	}
 
 	@Override

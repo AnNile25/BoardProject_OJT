@@ -41,5 +41,5 @@ public class TransactionLoggingAspect {
     	String transactionId = currentTransactionId.get();
         logger.error("Transaction [{}] failed for method: {} with exception: {}", transactionId, joinPoint.getSignature().toShortString(), ex.getMessage());
         currentTransactionId.remove();
-    }    
+    }
 }

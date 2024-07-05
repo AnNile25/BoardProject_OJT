@@ -14,7 +14,10 @@
         <File name="quartzFile" fileName="C:\Users\dlgks\gaeasoft\ojtpj\git_gaea\PrjBoard_git\logs\quartzLogFile.log">
             <PatternLayout pattern="%d %-5p %c{1}.%M (%F:%L) - %m%n"/>
         </File>
-        
+        <!-- 
+        <File name="transactionFile" fileName="C:/Users/dlgks/gaeasoft/ojtpj/git_gaea/PrjBoard_git/logs/transactionLogFile.log">
+            <PatternLayout pattern="%d %-5p %c{1}.%M (%F:%L) - %m%n"/>
+        </File> -->        
         <File name="transactionFile" fileName="C:/Users/dlgks/gaeasoft/ojtpj/git_gaea/PrjBoard_git/logs/transactionLogFile.log">
             <PatternLayout pattern="%d %-5p %c{1}.%M (%F:%L) - %m%n"/>
         </File>

@@ -10,8 +10,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.gaea.work.cmn.PagingVO;
 
 public interface QnaDao {
-	List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException;
-	int deleteArticleByMemberId(String memerId);	
 	int deleteByCreatedDateBefore(Date date);	
 	int qnaCount(PagingVO pagingVO) throws SQLException;
 	int getSeq()throws SQLException;

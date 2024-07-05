@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded",function(){
 		window.location.href = "/qna/retrieveQnaArticle";
 	});
 	 
+	 /* 회원 탈퇴 */
 	withdrawalMemberBTN.addEventListener("click", function(e){
 		if(window.confirm('탈퇴 하시겠습니까?')==false){
             return;

@@ -8,8 +8,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.gaea.work.cmn.PagingVO;
 
 public interface QnaService {
-	public List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException;
-	public int deleteArticleByMemberId(String  memberId) throws SQLException;
 	void deleteOldQnaArticle();
 	
 	public QnaVO viewQnaArticleMod(QnaVO inVO) throws SQLException, EmptyResultDataAccessException;

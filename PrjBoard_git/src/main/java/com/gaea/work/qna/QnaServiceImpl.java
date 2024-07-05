@@ -14,15 +14,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gaea.work.cmn.PagingVO;
-import com.gaea.work.reply.ReplyService;
 
 @Service
 public class QnaServiceImpl implements QnaService {
 	
     @Autowired
     QnaDao dao;
-    @Autowired
-    ReplyService replyService;
     
     public QnaServiceImpl() {}
 
@@ -34,7 +31,6 @@ public class QnaServiceImpl implements QnaService {
     @Override
     @Transactional
     public int deleteQnaArticle(QnaVO inVO) throws SQLException {    	
-    	replyService.deleteReplyByBoardSeq(inVO.getBoardSeq()); // 댓글 삭제
         return dao.deleteArticle(inVO);
     }
 
@@ -96,16 +92,5 @@ public class QnaServiceImpl implements QnaService {
         Date thresholdDate = Date.from(sevenDaysAgo.atStartOfDay(ZoneId.systemDefault()).toInstant());
         dao.deleteByCreatedDateBefore(thresholdDate);
     }
-    
-	@Override
-	public int deleteArticleByMemberId(String  memberId) throws SQLException {
-		return dao.deleteArticleByMemberId(memberId);
-	}
-
-	@Override
-	@Transactional
-	public List<QnaVO> getAllAtricleByMemberId(String memberId) throws SQLException {
-		 return dao.getAllAtricleByMemberId(memberId);
-	}
 
 }

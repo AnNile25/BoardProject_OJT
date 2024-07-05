@@ -43,15 +43,5 @@ public class ReplyDaoImpl implements ReplyDao {
 	public int countReplyByBoardSeq(int boardSeq) throws SQLException {
 		return template.selectOne(NAMESPACE+"countReplyByBoardSeq", boardSeq);
 	}
-
-	@Override
-	public int deleteReplyByBoardSeq(int boardSeq) throws SQLException {
-		return template.delete(NAMESPACE+"deleteReplyByBoardSeq", boardSeq);
-	}
-
-	@Override
-	public int deleteReplyByMemberId(String memberId) throws SQLException {
-		return template.delete(NAMESPACE+"deleteReplyByMemberId", memberId);
-	}
-
+	
 }
