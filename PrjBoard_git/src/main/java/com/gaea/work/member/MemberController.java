@@ -1,10 +1,6 @@
 package com.gaea.work.member;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -48,63 +44,16 @@ public class MemberController {
 	
     @PostMapping("/getAddrApi")
     public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
-    	BufferedReader br = null;
     	try {
-	        String currentPage = req.getParameter("currentPage"); 
-	        String countPerPage = req.getParameter("countPerPage"); 
-	        String resultType = req.getParameter("resultType");  
-	        String confmKey = "devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=";
-	        String keyword = req.getParameter("keyword"); 
-	        String callback = req.getParameter("callback");   	        
-	        String apiUrl = null;
-	        URL url = null;
-	        
-	        try {
-				apiUrl = "https://business.juso.go.kr/addrlink/addrLinkApi.do?currentPage=" + currentPage 
-										+ "&countPerPage=" + countPerPage 
-										+ "&keyword=" + URLEncoder.encode(keyword, "UTF-8") 
-										+ "&confmKey=" + confmKey 
-										+ "&resultType=" + resultType;
-				url = new URL(apiUrl);
-	        } catch (Exception e) {
-	        	e.printStackTrace();
-	            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "잘못된 요청입니다.");
-			}
-	        
-	        try {
-	        	br = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-				StringBuffer sb = new StringBuffer();
-				String tempStr = null;
-				while ((tempStr = br.readLine()) != null) {
-		            sb.append(tempStr);
-		        }
-				br.close();
-				
-				String jsonResponse = sb.toString();
-				jsonResponse = callback + "(" + jsonResponse + ")";
-				response.setContentType("application/json");
-				response.setCharacterEncoding("UTF-8");
-	            response.getWriter().write(jsonResponse); 
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "오류가 발생했습니다.");
-	        } finally {
-	            if (br != null) {
-	                try {
-	                    br.close();
-	                } catch (IOException e) {
-	                    e.printStackTrace();
-	                }
-	            }
-	        }
-    	} catch (Exception e) {
-            e.printStackTrace();
-            try {
-            	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류가 발생했습니다.");
-            } catch (Exception ex) {
-            	ex.printStackTrace();
+			service.getAddrApiUrl(req, response);
+		} catch (IOException e) {
+			logger.error("Failed to process the request", e);
+			try {
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류가 발생했습니다.");
+            } catch (IOException ex) {
+                logger.error("Failed to send error response", ex);
             }
-        }
+		}
     }
 	
 	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")
