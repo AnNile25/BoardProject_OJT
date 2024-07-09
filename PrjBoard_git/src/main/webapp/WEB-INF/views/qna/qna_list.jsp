@@ -53,6 +53,30 @@ document.addEventListener("DOMContentLoaded",function(){
         document.querySelector("#listForm").submit(); 
 	});
 	
+	// 검색 날짜 제한 (max)
+	const today = new Date();
+	const todayStr = today.toISOString().split('T')[0];
+	const sevenDaysAgo = new Date();
+	sevenDaysAgo.setDate(today.getDate() - 7);
+	const sevenDaysAgoStr = sevenDaysAgo.toISOString().split('T')[0];
+    
+    const startDateInput = document.getElementById("startDate");
+    const endDateInput = document.getElementById("endDate");
+    
+    startDateInput.setAttribute("max", todayStr);
+    endDateInput.setAttribute("max", todayStr);
+
+    startDateInput.setAttribute("min", sevenDaysAgoStr);
+    endDateInput.setAttribute("min", sevenDaysAgoStr);
+    
+    startDateInput.addEventListener("change", function() {
+        endDateInput.setAttribute("min", startDateInput.value);
+    });
+    
+    endDateInput.addEventListener("change", function() {
+        startDateInput.setAttribute("max", endDateInput.value);
+    });
+	
 });
 </script>
 </head>
@@ -99,7 +123,7 @@ document.addEventListener("DOMContentLoaded",function(){
 					<c:when test="${ not empty list }">
 						<c:forEach var="vo" items="${list}" varStatus="status">
 							<tr>
-								<td><c:out value="${paging.startRow + status.index}"/> </td>
+								<td><c:out value="${((paging.nowPage-1) * paging.cntPerPage) + status.index + 1}"/> </td>
 								<td><c:out value="${vo.title}"/>  (<c:out value="${vo.replyCnt}"/>)</td>
 								<td><c:out value="${vo.content}"/></td>
 								<td><c:out value="${vo.modDt}"/></td>

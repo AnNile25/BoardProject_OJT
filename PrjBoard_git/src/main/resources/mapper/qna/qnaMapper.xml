@@ -33,29 +33,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="searchKeyWord"/>
     </select>
     
-    <select id="retrieveArticle" parameterType="PagingVO" resultType="QnaVO">
-		SELECT * FROM (
-		    SELECT iq.*, ROWNUM AS rnum
-		    FROM (
-		        SELECT
-		            board_seq,
-		            member_id,
-		            title,
-		            content,
-		            like_cnt,
-		            read_cnt,
-		            reg_dt,
-		            DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
-		                  ,TO_CHAR(mod_dt,'HH24:MI')
-		                  ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt
-		        FROM
-		            board
-		        <include refid="searchKeyWord"/>
-		        ORDER BY mod_dt DESC
-		    ) iq
-		)
-		WHERE rnum BETWEEN #{startRow} AND #{endRow}
-	</select>    
+	<select id="retrieveArticle" parameterType="PagingVO" resultType="QnaVO">
+	    SELECT
+	        board_seq,
+	        member_id,
+	        title,
+	        content,
+	        like_cnt,
+	        read_cnt,
+	        reg_dt,
+	        DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
+	              ,TO_CHAR(mod_dt,'HH24:MI')
+	              ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt
+	    FROM
+	        board
+	    <include refid="searchKeyWord"/>
+	    ORDER BY mod_dt DESC
+	    OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+	</select>
 
 	<update id="updateLikeCnt" parameterType="QnaVO">
 	    <![CDATA[

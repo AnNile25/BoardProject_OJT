@@ -70,7 +70,7 @@ public class QnaServiceImpl implements QnaService {
         pagingVO.setTotalCnt(totalCnt);
         pagingVO.calculatedLastPage(totalCnt, pagingVO.getCntPerPage());
         pagingVO.calculatedStartEndPage(pagingVO.getNowPage(), pagingVO.getCntPage());
-        pagingVO.calculatedStartEnd(pagingVO.getNowPage(), pagingVO.getCntPerPage());
+        pagingVO.calculatedOffsetLimit(pagingVO.getNowPage(), pagingVO.getCntPerPage());
         pagingVO.setStartDate(pagingVO.getStartDate());
         pagingVO.setEndDate(pagingVO.getEndDate());
         return dao.retrieveArticle(pagingVO);

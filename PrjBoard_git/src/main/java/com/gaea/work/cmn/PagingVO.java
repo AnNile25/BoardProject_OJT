@@ -18,8 +18,8 @@ public class PagingVO {
 	int cntPerPage; //  한 페이지 당 글 수
 	int lastPage; // 마지막 페이지
 	
-	int startRow;
-	int endRow;
+	int offset;
+	int limit;
 	
 	// 검색어
 	String searchKeyword;
@@ -34,7 +34,6 @@ public class PagingVO {
 		setTotalCnt(totalCnt);
 		calculatedLastPage(getTotalCnt(), getCntPerPage());
 		calculatedStartEndPage(getNowPage(), cntPage);
-		calculatedStartEnd(getNowPage(), getCntPerPage());
 	}
 	
 	// 마지막 페이지 계산
@@ -54,10 +53,10 @@ public class PagingVO {
 		}
 	}
 	
-	// DB에서 사용될 rowNum 시작/끝 계산
-	public void calculatedStartEnd(int nowPage, int cntPerPage) {
-		setEndRow(nowPage * cntPerPage);
-		setStartRow(getEndRow() - cntPerPage + 1);
+	// DB에서 사용될 offset 계산
+	public void calculatedOffsetLimit(int nowPage, int cntPerPage) {
+		setOffset((nowPage - 1) * cntPerPage);
+		setLimit(cntPerPage);
 	}
 
 }
