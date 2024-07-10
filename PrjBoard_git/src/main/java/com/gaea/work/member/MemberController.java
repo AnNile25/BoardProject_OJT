@@ -1,6 +1,5 @@
 package com.gaea.work.member;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gaea.work.api.AddrApiService;
 import com.gaea.work.cmn.SuccessMessageVO;
 import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.validation.MemberValidationService;
@@ -35,30 +35,18 @@ public class MemberController {
 	@Autowired
     MemberValidationService validationService;	
 	@Autowired
-	SessionCheckService sessionService;	
+	SessionCheckService sessionService;
+	@Autowired
+	 AddrApiService addrApiService;
 	@Autowired
     MessageSource messageSource;
 
 	public MemberController() {
 	}
 	
-    @PostMapping("/getAddrApi")
+	@PostMapping("/getAddrApi")
     public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
-    	try {
-			service.getAddrApiUrl(req, response);
-		} catch (IOException e) {
-	        logger.error("Failed to process the request", e);
-	        try {
-	            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "잘못된 요청입니다: " + e.getMessage());
-	        } catch (IOException ex) {
-	            logger.error("Failed to send error response", ex);
-	            try {
-	                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류가 발생했습니다.");
-	            } catch (IOException ex2) {
-	                logger.error("Failed to send internal server error response", ex2);
-	            }
-	        }
-	    }
+        addrApiService.getAddrApi(req, response);
     }
 	
 	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")
