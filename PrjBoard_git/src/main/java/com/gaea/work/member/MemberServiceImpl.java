@@ -65,16 +65,19 @@ public class MemberServiceImpl implements MemberService {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
             response.getWriter().write(jsonResponse); 
-            } finally {
-	            if (br != null) {
-	                try {
-	                    br.close();
-	                } catch (IOException e) {
-	                	logger.error("BufferedReader close ERROR", e);
-	                }
-	            }
-	        }
-    	}
+    	} catch (IOException e) {
+            logger.error("Error processing the request", e);
+            throw e;
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                	logger.error("BufferedReader close ERROR", e);
+                }
+            }
+        }
+	}
 	
 
 	@Override

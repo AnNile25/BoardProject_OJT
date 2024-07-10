@@ -8,7 +8,7 @@ public interface MemberDao {
     int idDuplicateCheck(MemberVO inVO) throws SQLException;
 
     int nickNameDuplicateCheck(MemberVO inVO) throws SQLException;
-
+  
     int emailDuplicateCheck(MemberVO inVO) throws SQLException;
 	
 	// CRUD	
