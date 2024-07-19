@@ -8,10 +8,10 @@ import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
-@Repository
-public class AddrApiDao {
+@Component
+public class AddrApiUtil {
 	
 	private static final String CONFMN_KEY = "devU01TX0FVVEgyMDI0MDYxMjE3MDc1MTExNDgzODM=";
 	

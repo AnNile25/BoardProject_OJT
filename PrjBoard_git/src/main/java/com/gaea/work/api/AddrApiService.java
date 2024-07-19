@@ -15,11 +15,11 @@ public class AddrApiService {
 	Logger logger = LogManager.getLogger(this.getClass());
 	
 	@Autowired
-	AddrApiDao addrApiDao;
+	AddrApiUtil addrApiUtil;
 	
 	public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
 		try {
-            String jsonResponse = addrApiDao.fetchAddrApiData(req);
+            String jsonResponse = addrApiUtil.fetchAddrApiData(req);
             String callback = req.getParameter("callback");
             jsonResponse = callback + "(" + jsonResponse + ")";
             
