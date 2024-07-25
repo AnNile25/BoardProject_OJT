@@ -42,9 +42,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        like_cnt,
 	        read_cnt,
 	        reg_dt,
-	        DECODE(TO_CHAR(mod_dt,'YYYYMMDD'), TO_CHAR(SYSDATE,'YYYYMMDD')
-	              ,TO_CHAR(mod_dt,'HH24:MI')
-	              ,TO_CHAR(mod_dt,'YYYY-MM-DD')) as modDt
+	        CASE 
+				WHEN TO_CHAR(mod_dt,'YYYYMMDD') = TO_CHAR(SYSDATE,'YYYYMMDD') 
+				THEN TO_CHAR(mod_dt,'HH24:MI')
+				ELSE TO_CHAR(mod_dt,'YYYY-MM-DD')
+			END as modDt
 	    FROM
 	        board
 	    <include refid="searchKeyWord"/>
