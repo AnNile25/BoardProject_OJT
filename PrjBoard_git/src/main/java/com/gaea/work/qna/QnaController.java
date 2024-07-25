@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gaea.work.cmn.PagingVO;
-import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.cmn.ResultVO;
 import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.member.MemberVO;
 import com.gaea.work.reply.ReplyService;
@@ -94,8 +94,8 @@ public class QnaController  {
 
 	@PostMapping(value = "/updateQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateQnaArticle(QnaVO inVO) throws SQLException {
-		SuccessMessageVO validationMessage = validationService.validateQna(inVO);
+	public ResultVO updateQnaArticle(QnaVO inVO) throws SQLException {
+		ResultVO validationMessage = validationService.validateQna(inVO);
 		if ("0".equals(validationMessage.getMsgId())) {
 	        return validationMessage;
 	    }
@@ -103,7 +103,7 @@ public class QnaController  {
 		String message = (flag == 1) ? 
 				messageSource.getMessage("update.success", null, Locale.getDefault()):
 			    messageSource.getMessage("update.error", null, Locale.getDefault());
-		return new SuccessMessageVO(String.valueOf(flag), message);
+		return new ResultVO(String.valueOf(flag), message);
 	}
 
 	@GetMapping(value = "/viewQnaArticleDetail")
@@ -120,10 +120,10 @@ public class QnaController  {
 
 	@PostMapping(value = "/saveQnaArticle", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO saveQnaArticle(QnaVO inVO, @RequestParam String memberId) throws SQLException {
+	public ResultVO saveQnaArticle(QnaVO inVO, @RequestParam String memberId) throws SQLException {
 		inVO.setMemberId(memberId);
 		
-		SuccessMessageVO validationResult = validationService.validateQna(inVO);
+		ResultVO validationResult = validationService.validateQna(inVO);
 		if (validationResult != null && "0".equals(validationResult.getMsgId())) {
 	        return validationResult;
 	    }
@@ -133,16 +133,16 @@ public class QnaController  {
 				messageSource.getMessage("save.success", null, Locale.getDefault()):
 				messageSource.getMessage("save.error", null, Locale.getDefault());
 
-		return  new SuccessMessageVO(String.valueOf(flag), message);
+		return  new ResultVO(String.valueOf(flag), message);
 	}
 
 	@GetMapping(value ="/deleteQnaArticle",produces = "application/json;charset=UTF-8" )
 	@ResponseBody
-	public SuccessMessageVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
+	public ResultVO deleteQnaArticle(QnaVO inVO, HttpSession session) throws SQLException {
 		QnaVO outVO = service.viewQnaArticleDetail(inVO);
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
 			String errorMessage = messageSource.getMessage("login.permission.error", null, Locale.getDefault());
-	        return new SuccessMessageVO("0", errorMessage);
+	        return new ResultVO("0", errorMessage);
 		}
 
 		int flag = service.deleteQnaArticle(inVO);
@@ -150,7 +150,7 @@ public class QnaController  {
 				messageSource.getMessage("delete.success", null, Locale.getDefault()) :
 			    messageSource.getMessage("delete.error", null, Locale.getDefault());
 
-		return new SuccessMessageVO(String.valueOf(flag), message);
+		return new ResultVO(String.valueOf(flag), message);
 	}
 
 }

@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.cmn.ResultVO;
 import com.gaea.work.member.MemberService;
 import com.gaea.work.member.MemberVO;
 import com.google.gson.Gson;
@@ -77,7 +77,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     private String createJsonMessage(String msgId, String msgContents) {
-        SuccessMessageVO message = new SuccessMessageVO();
+        ResultVO message = new ResultVO();
         message.setMsgId(msgId);
         message.setMsgContents(msgContents);
         return new Gson().toJson(message);

@@ -11,9 +11,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SuccessMessageVO {
+public class ResultVO {
 	
 	private String msgId;//메시지ID
 	private String msgContents;//메지시 내용
+	private Object apiData; //api 호출 결과 데이터
+	
+	public ResultVO (String msgId, String msgContents) {
+		this.msgId = msgId;
+		this.msgContents = msgContents;
+	}
 	
 }

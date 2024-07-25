@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
-import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.cmn.ResultVO;
 import com.gaea.work.member.MemberDao;
 import com.gaea.work.member.MemberVO;
 
@@ -20,7 +20,7 @@ public class MemberValidationService {
     @Autowired
     MessageSource messageSource;
 
-    public SuccessMessageVO validateMember(MemberVO inVO) throws SQLException {
+    public ResultVO validateMember(MemberVO inVO) throws SQLException {
         String errorMessage;
 
         errorMessage = validateField(inVO.getMemberId(), "memberId.required", "^[a-zA-Z0-9]{1,20}$", "memberId.invalid.error", this::isIdDuplicate);
@@ -41,7 +41,7 @@ public class MemberValidationService {
         errorMessage = validateField(inVO.getEmail(), "email.required", "^[a-zA-Z0-9@.]{1,50}$", "email.invalid.error", this::isEmailDuplicate);
         if (errorMessage != null) return createErrorMessage(errorMessage);
         
-        return new SuccessMessageVO("1", messageSource.getMessage("validation.succes", null, Locale.getDefault()));
+        return new ResultVO("1", messageSource.getMessage("validation.succes", null, Locale.getDefault()));
     }
 
     public String validateField(String field, String emptyMessage, String regex, String regexErrorMessage, FieldDuplicationChecker duplicationChecker) throws SQLException {
@@ -57,8 +57,8 @@ public class MemberValidationService {
         return null;
     }
 
-    private SuccessMessageVO createErrorMessage(String errorMessage) {
-        return new SuccessMessageVO("0", messageSource.getMessage(errorMessage, null, Locale.getDefault()));
+    private ResultVO createErrorMessage(String errorMessage) {
+        return new ResultVO("0", messageSource.getMessage(errorMessage, null, Locale.getDefault()));
     }
 
     public boolean isIdDuplicate(String memberId) throws SQLException {

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
-import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.cmn.ResultVO;
 import com.gaea.work.qna.QnaDao;
 import com.gaea.work.qna.QnaVO;
 
@@ -20,7 +20,7 @@ public class QnaValidationService {
     @Autowired
     MessageSource messageSource;
     
-    public SuccessMessageVO validateQna(QnaVO inVO) throws SQLException {
+    public ResultVO validateQna(QnaVO inVO) throws SQLException {
         String errorMessage;
         
         errorMessage = validateField(inVO.getTitle(), "title.required", 30, "tite.invalid.error");
@@ -29,7 +29,7 @@ public class QnaValidationService {
         errorMessage = validateField(inVO.getContent(), "content.required", 500, "content.invalid.error");
         if (errorMessage != null) return createErrorMessage(errorMessage);
 
-        return new SuccessMessageVO("1", messageSource.getMessage("validation.succes", null, Locale.getDefault()));
+        return new ResultVO("1", messageSource.getMessage("validation.succes", null, Locale.getDefault()));
     }
     
     public String validateField(String field, String emptyMessage, int maxLength, String lengthErrorMessage) throws SQLException {
@@ -42,7 +42,7 @@ public class QnaValidationService {
         return null;
     }
     
-    private SuccessMessageVO createErrorMessage(String errorMessage) {
-    	return new SuccessMessageVO("0", messageSource.getMessage(errorMessage, null, Locale.getDefault()));
+    private ResultVO createErrorMessage(String errorMessage) {
+    	return new ResultVO("0", messageSource.getMessage(errorMessage, null, Locale.getDefault()));
     }
 }

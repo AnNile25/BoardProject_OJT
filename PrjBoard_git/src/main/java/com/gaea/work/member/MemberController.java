@@ -1,5 +1,6 @@
 package com.gaea.work.member;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
@@ -20,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.gaea.work.api.AddrApiService;
-import com.gaea.work.cmn.SuccessMessageVO;
+import com.gaea.work.api.AddrApiUtil;
+import com.gaea.work.cmn.ResultVO;
 import com.gaea.work.login.SessionCheckService;
 import com.gaea.work.validation.MemberValidationService;
 
@@ -37,8 +38,6 @@ public class MemberController {
 	@Autowired
 	SessionCheckService sessionService;
 	@Autowired
-	 AddrApiService addrApiService;
-	@Autowired
     MessageSource messageSource;
 
 	public MemberController() {
@@ -46,50 +45,73 @@ public class MemberController {
 	
 	@PostMapping("/getAddrApi")
     public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
-        addrApiService.getAddrApi(req, response);
+		try {
+			String callback = req.getParameter("callback");
+			String currentPage = req.getParameter("currentPage");
+			String countPerPage = req.getParameter("countPerPage");
+			String resultType = req.getParameter("resultType");
+			String keyword = req.getParameter("keyword");
+			
+			AddrApiUtil addrApiUtil = new AddrApiUtil();
+			String addrResult = addrApiUtil.fetchAddrApiData(currentPage, countPerPage, resultType, keyword);
+			
+			String jsonResponse = callback + "(" + addrResult + ")";
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(jsonResponse);
+			
+		} catch (IOException e) {
+			 logger.error("Failed to process the request", e);
+			 try {
+				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "서버 오류가 발생했습니다.");
+			} catch (IOException e1) {
+				 logger.error("Failed to send internal server error response", e1);
+			}
+		}	
+		
     }
 	
 	@PostMapping(value = "/checkMemberIdDuplicate", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO checkMemberIdDuplicate(@RequestParam String memberId) throws SQLException {
+	public ResultVO checkMemberIdDuplicate(@RequestParam String memberId) throws SQLException {
 	    String validationMessage = validationService.validateField(memberId, "memberId.required", "^[a-zA-Z0-9]{1,20}$", "memberId.invalid.error", null);
 	    if (validationMessage != null) {
-	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
+	        return new ResultVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
 	    boolean isDuplicate = validationService.isIdDuplicate(memberId);
 	    String message = isDuplicate ? "memberId.duplicate" : "memberId.available";
-	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
+	    return new ResultVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
 	@PostMapping(value = "/checkNickNameDuplicate", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO checkNickNameDuplicate(@RequestParam String nickName) throws SQLException {
+	public ResultVO checkNickNameDuplicate(@RequestParam String nickName) throws SQLException {
 	    // 유효성 검사
 	    String validationMessage = validationService.validateField(nickName, "nickName.required", "^[가-힣a-zA-Z0-9]{1,15}$", "nickName.invalid.error", null);
 	    if (validationMessage != null) {
-	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
+	        return new ResultVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
 	    // 중복 체크
 	    boolean isDuplicate = validationService.isNickNameDuplicate(nickName);
 	    String message = isDuplicate ? "nickName.duplicate" : "nickName.available";
-	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
+	    return new ResultVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
 	@PostMapping(value = "/checkEmailDuplicate", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO checkEmailDuplicate(@RequestParam String email) throws SQLException {
+	public ResultVO checkEmailDuplicate(@RequestParam String email) throws SQLException {
 	    // 유효성 검사
 	    String validationMessage = validationService.validateField(email, "email.required", null, null, null);
 	    if (validationMessage != null) {
-	        return new SuccessMessageVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
+	        return new ResultVO("0", messageSource.getMessage(validationMessage, null, Locale.getDefault()));
 	    }
 
 	    // 중복 체크
 	    boolean isDuplicate = validationService.isEmailDuplicate(email);
 	    String message = isDuplicate ? "email.duplicate" : "email.available";
-	    return new SuccessMessageVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
+	    return new ResultVO(isDuplicate ? "0" : "1", messageSource.getMessage(message, null, Locale.getDefault()));
 	}
 
 	@GetMapping(value = "/viewJoinMember")
@@ -120,11 +142,11 @@ public class MemberController {
 
 	@GetMapping(value = "/withdrawalMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO withdrawalMember(MemberVO inVO, HttpSession session) throws SQLException {
+	public ResultVO withdrawalMember(MemberVO inVO, HttpSession session) throws SQLException {
 		MemberVO outVO = service.viewMemberDetail(inVO);
 		if (!sessionService.isSessionMatched(session, outVO.getMemberId())) {
 			String errorMessage = messageSource.getMessage("login.permission.error", null, Locale.getDefault());
-	        return new SuccessMessageVO("0", errorMessage);
+	        return new ResultVO("0", errorMessage);
 		}
 
 		int flag = service.withdrawalMember(inVO);
@@ -136,35 +158,35 @@ public class MemberController {
 	        message = messageSource.getMessage("delete.error", null, Locale.getDefault());
 	    }
 
-		return new SuccessMessageVO(String.valueOf(flag), message);
+		return new ResultVO(String.valueOf(flag), message);
 	}
 
 	@PostMapping(value = "/updateMemberInfo", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO updateMemberInfo(MemberVO inVO) throws SQLException {
+	public ResultVO updateMemberInfo(MemberVO inVO) throws SQLException {
 		int flag = service.updateMemberInfo(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("update.success", null, Locale.getDefault()):
 			    messageSource.getMessage("update.error", null, Locale.getDefault());
-		return new SuccessMessageVO(String.valueOf(flag), message);
+		return new ResultVO(String.valueOf(flag), message);
 	}
 	
 	@PostMapping(value = "/changeMemberPassword", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO changeMemberPassword(MemberVO inVO) throws SQLException {	    
+	public ResultVO changeMemberPassword(MemberVO inVO) throws SQLException {	    
 		int flag = service.changeMemberPassword(inVO);
 		String message = (flag == 1) ? 
 				messageSource.getMessage("update.success", null, Locale.getDefault()):
 			    messageSource.getMessage("update.error", null, Locale.getDefault());
-		return new SuccessMessageVO(String.valueOf(flag), message);
+		return new ResultVO(String.valueOf(flag), message);
 	}
 	
 	@PostMapping(value = "/joinMember", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public SuccessMessageVO joinMember(MemberVO inVO) throws SQLException {
+	public ResultVO joinMember(MemberVO inVO) throws SQLException {
 	    logger.info("회원가입 시도:" + inVO);
 
-	    SuccessMessageVO validationResult = validationService.validateMember(inVO);
+	    ResultVO validationResult = validationService.validateMember(inVO);
 	    if (validationResult != null && "0".equals(validationResult.getMsgId())) {
 	        logger.info("회원가입 실패 - 유효성 검사 실패: " + validationResult);
 	        return validationResult;
@@ -174,7 +196,7 @@ public class MemberController {
 	    String message = (flag == 1) ? 
 	    		messageSource.getMessage("memberJoin.success", null, Locale.getDefault()):
 				messageSource.getMessage("memberJoin.error", null, Locale.getDefault());
-	    SuccessMessageVO result = new SuccessMessageVO(String.valueOf(flag), message);
+	    ResultVO result = new ResultVO(String.valueOf(flag), message);
 	    logger.info("회원가입 결과: " + result);
 	    return result;
 	}
