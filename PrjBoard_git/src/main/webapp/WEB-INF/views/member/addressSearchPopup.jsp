@@ -35,9 +35,7 @@ function getAddrLoc(){
         type: "post",
         data: { 
             keyword: $("#addressKeyword").val(),
-            currentPage: "1",
-            countPerPage: "10",
-            resultType: "json"
+            countPerPage: "10"
         },
         dataType: "jsonp",
         success: function(jsonStr){

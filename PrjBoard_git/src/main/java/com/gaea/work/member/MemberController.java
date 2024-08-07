@@ -47,13 +47,11 @@ public class MemberController {
     public void getAddrApi(HttpServletRequest req, HttpServletResponse response) {
 		try {
 			String callback = req.getParameter("callback");
-			String currentPage = req.getParameter("currentPage");
 			String countPerPage = req.getParameter("countPerPage");
-			String resultType = req.getParameter("resultType");
 			String keyword = req.getParameter("keyword");
 			
 			AddrApiUtil addrApiUtil = new AddrApiUtil();
-			String addrResult = addrApiUtil.fetchAddrApiData(currentPage, countPerPage, resultType, keyword);
+			String addrResult = addrApiUtil.fetchAddrApiData(countPerPage, keyword);
 			
 			String jsonResponse = callback + "(" + addrResult + ")";
 			response.setContentType("application/json");
@@ -67,7 +65,7 @@ public class MemberController {
 			} catch (IOException e1) {
 				 logger.error("Failed to send internal server error response", e1);
 			}
-		}	
+		}
 		
     }
 	
